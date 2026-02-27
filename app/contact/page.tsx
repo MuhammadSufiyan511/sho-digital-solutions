@@ -119,8 +119,8 @@ export default function ContactPage() {
 
               <div className="space-y-5">
                 {[
-                  { icon: Mail, label: 'Email', value: 'hello@shodigital.com', href: 'mailto:hello@shodigital.com' },
-                  { icon: Phone, label: 'Phone', value: '+1 (123) 456-7890', href: 'tel:+11234567890' },
+                  { icon: Mail, label: 'Email', value: 'connectshodigital@gmail.com', href: 'mailto:connectshodigital@gmail.com' },
+                  { icon: Phone, label: 'Phone', value: '03345856255', href: 'tel:03345856255' },
                   { icon: MapPin, label: 'Address', value: 'Islamabad, Pakistan', href: '#' },
                   // { icon: Clock, label: 'Business Hours', value: 'Mon–Fri: 9AM – 6PM EST', href: '#' },
                 ].map(({ icon: Icon, label, value, href }) => (
@@ -138,7 +138,7 @@ export default function ContactPage() {
 
               {/* WhatsApp CTA */}
               <a
-                href="https://wa.me/11234567890"
+                href="https://wa.me/923345856255"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3 bg-green-500 text-white px-6 py-4 rounded-xl font-semibold hover:bg-green-600 transition-colors"

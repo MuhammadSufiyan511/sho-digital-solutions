@@ -121,14 +121,14 @@ export default function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 text-electric mt-0.5 flex-shrink-0" />
-                <a href="mailto:hello@shodigital.com" className="text-gray-400 hover:text-white text-sm transition-colors">
-                  hello@shodigital.com
+                <a href="mailto:connectshodigital@gmail.com" className="text-gray-400 hover:text-white text-sm transition-colors">
+                  connectshodigital@gmail.com
                 </a>
               </li>
               <li className="flex items-start gap-3">
                 <Phone className="w-4 h-4 text-electric mt-0.5 flex-shrink-0" />
-                <a href="tel:+11234567890" className="text-gray-400 hover:text-white text-sm transition-colors">
-                  +1 (123) 456-7890
+                <a href="tel:03345856255" className="text-gray-400 hover:text-white text-sm transition-colors">
+                  03345856255
                 </a>
               </li>
               <li className="flex items-start gap-3">
@@ -138,7 +138,7 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MessageCircle className="w-4 h-4 text-electric mt-0.5 flex-shrink-0" />
                 <a
-                  href="https://wa.me/11234567890"
+                  href="https://wa.me/923345856255"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-white text-sm transition-colors"

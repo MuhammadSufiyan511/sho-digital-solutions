@@ -24,6 +24,11 @@ export const metadata: Metadata = {
     title: 'SHO Digital Solutions',
     description: 'Smart Websites. Real Growth.',
   },
+  icons: {
+    icon: '/assets/logo.png',
+    shortcut: '/assets/logo.png',
+    apple: '/assets/logo.png',
+  },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

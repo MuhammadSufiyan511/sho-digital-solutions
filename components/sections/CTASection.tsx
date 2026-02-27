@@ -44,7 +44,7 @@ export default function CTASection({
           </Link>
           {showWhatsapp && (
             <a
-              href="https://wa.me/11234567890"
+              href="https://wa.me/923345856255"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 border-2 border-white text-white font-bold px-8 py-4 rounded-lg hover:bg-white hover:text-electric transition-all duration-200 hover:-translate-y-0.5"
