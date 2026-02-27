@@ -1,0 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-poppins: 'Poppins', system-ui, sans-serif;
+  --anim-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-gray-800 bg-white;
+    font-family: var(--font-poppins), system-ui, sans-serif;
+  }
+
+  main > * {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: fade-up 620ms var(--anim-ease) forwards;
+    will-change: opacity, transform;
+  }
+
+  main > *:nth-child(2) {
+    animation-delay: 80ms;
+  }
+
+  main > *:nth-child(3) {
+    animation-delay: 120ms;
+  }
+
+  main > *:nth-child(4) {
+    animation-delay: 160ms;
+  }
+
+  main > *:nth-child(5) {
+    animation-delay: 200ms;
+  }
+
+  main > *:nth-child(6) {
+    animation-delay: 240ms;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-poppins), system-ui, sans-serif;
+    font-weight: 700;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-electric text-white px-6 py-3 rounded-lg font-semibold text-sm
+           hover:bg-electric-dark transition-all duration-200 shadow-lg hover:shadow-electric/30 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 border-2 border-white text-white px-6 py-3 rounded-lg font-semibold text-sm
+           hover:bg-white hover:text-navy transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-outline-navy {
+    @apply inline-flex items-center gap-2 border-2 border-electric text-electric px-6 py-3 rounded-lg font-semibold text-sm
+           hover:bg-electric hover:text-white transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .section-tag {
+    @apply inline-block text-electric text-xs font-semibold tracking-widest uppercase bg-electric/10 px-3 py-1 rounded-full mb-4;
+  }
+
+  .section-heading {
+    @apply text-3xl md:text-4xl font-bold text-navy leading-tight;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-xl;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-electric to-blue-400 bg-clip-text text-transparent;
+  }
+
+  .animate-on-scroll {
+    @apply opacity-0;
+  }
+
+  .animated {
+    @apply animate-fade-up opacity-100;
+  }
+
+  .animate-float-soft {
+    animation: float-soft 6s ease-in-out infinite;
+  }
+
+  .animate-fade-down {
+    animation: fade-down 260ms var(--anim-ease) both;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-soft {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #2563EB;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #1D4ED8;
+}
+
+/* Noise texture overlay */
+.noise-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  main > * {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}

@@ -1,36 +1,162 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SHO Digital Solutions — Website
 
-## Getting Started
+A complete, production-ready Next.js website for a digital agency.
 
-First, run the development server:
+## 🛠 Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **Icons**: Lucide React
+- **Font**: Poppins (Google Fonts)
+
+## 📁 Folder Structure
+
+```
+sho-digital/
+├── app/
+│   ├── layout.tsx              # Root layout with Navbar & Footer
+│   ├── page.tsx                # Home page
+│   ├── globals.css             # Global styles
+│   ├── not-found.tsx           # 404 page
+│   ├── about/page.tsx
+│   ├── services/page.tsx
+│   ├── portfolio/
+│   │   ├── page.tsx
+│   │   └── [id]/page.tsx       # Dynamic project detail page
+│   ├── industries/page.tsx
+│   ├── pricing/page.tsx
+│   ├── testimonials/page.tsx
+│   ├── contact/page.tsx
+│   └── blog/
+│       ├── page.tsx
+│       └── [id]/page.tsx       # Dynamic blog post page
+├── components/
+│   ├── layout/
+│   │   ├── Navbar.tsx          # Sticky navbar with mobile menu
+│   │   └── Footer.tsx          # Full footer with CTAstrip
+│   ├── sections/
+│   │   ├── HeroSection.tsx
+│   │   ├── ServicesHighlight.tsx
+│   │   ├── WhyChooseUs.tsx
+│   │   ├── ProcessSection.tsx
+│   │   ├── PortfolioPreview.tsx
+│   │   ├── TestimonialsSection.tsx
+│   │   └── CTASection.tsx
+│   └── ui/
+│       ├── Button.tsx
+│       ├── Card.tsx
+│       ├── Badge.tsx
+│       └── SectionHeader.tsx
+├── lib/
+│   └── data.ts                 # All dummy data
+├── types/
+│   └── index.ts                # TypeScript interfaces
+├── tailwind.config.ts
+├── tsconfig.json
+└── next.config.js
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Getting Started
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Prerequisites
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Node.js 18.17+ 
+- npm or yarn
 
-## Learn More
+### Installation
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# 1. Navigate to the project
+cd sho-digital
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# 2. Install dependencies
+npm install
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# 3. Run development server
+npm run dev
+```
 
-## Deploy on Vercel
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Build for Production
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+npm start
+```
+
+### Contact Form Email Setup
+
+Create a `.env.local` file and add:
+
+```bash
+RESEND_API_KEY=your_resend_api_key
+CONTACT_FROM_EMAIL=Website Leads <onboarding@resend.dev>
+CONTACT_TO_EMAIL=hello@shodigital.com
+```
+
+Notes:
+- `CONTACT_FROM_EMAIL` must use a sender allowed by your Resend account.
+- The contact form posts to `/api/contact` and sends emails through Resend.
+
+## 📄 Pages
+
+| Route | Description |
+|-------|-------------|
+| `/` | Home with hero, services, process, portfolio, testimonials |
+| `/about` | Company story, values, team, timeline |
+| `/services` | All 6 services with features and CTAs |
+| `/portfolio` | Project grid with filters |
+| `/portfolio/[id]` | Individual project case study |
+| `/industries` | 6 industry-specific sections |
+| `/pricing` | 3-tier pricing with FAQ |
+| `/testimonials` | All client reviews |
+| `/contact` | Contact form with validation + WhatsApp |
+| `/blog` | Blog index with featured post |
+| `/blog/[id]` | Individual blog article |
+
+## 🎨 Color Palette
+
+| Name | Hex |
+|------|-----|
+| Navy | `#0A1F44` |
+| Electric Blue | `#2563EB` |
+| White | `#FFFFFF` |
+| Light Gray | `#F9FAFB` |
+
+## ✨ Features
+
+- ✅ Fully responsive (mobile-first)
+- ✅ Sticky navbar with mobile hamburger menu
+- ✅ SEO metadata on all pages
+- ✅ TypeScript interfaces throughout
+- ✅ Form validation with error states
+- ✅ Dynamic routes for portfolio & blog
+- ✅ Hover animations and transitions
+- ✅ Optimized images with Next/Image
+- ✅ Smooth scroll
+- ✅ Accessible semantic HTML
+- ✅ WhatsApp integration button
+- ✅ Custom 404 page
+
+## 📝 Customization
+
+1. **Brand colors**: Edit `tailwind.config.ts`
+2. **Content/data**: Edit `lib/data.ts`
+3. **Contact info**: Update `Footer.tsx` and `contact/page.tsx`
+4. **Images**: Replace Unsplash URLs with your own images
+5. **WhatsApp number**: Search for `wa.me/` and replace the number
+
+## 📦 Dependencies
+
+```json
+{
+  "next": "14.2.5",
+  "react": "^18",
+  "react-dom": "^18",
+  "lucide-react": "^0.400.0",
+  "tailwindcss": "^3.4.1",
+  "typescript": "^5"
+}
+```
