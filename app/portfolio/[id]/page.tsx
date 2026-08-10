@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { ArrowLeft, CheckCircle, ExternalLink } from 'lucide-react'
 import { projects } from '@/lib/data'
 import CTASection from '@/components/sections/CTASection'
+import PageHero from '@/components/sections/PageHero'
 import Badge from '@/components/ui/Badge'
 
 interface Props {
@@ -84,29 +85,21 @@ export default function ProjectDetailPage({ params }: Props) {
 
   return (
     <>
-      <section className="pt-32 pb-16 bg-navy relative" style={{ backgroundColor: '#0A1F44' }}>
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <Link href="/portfolio" className="inline-flex items-center gap-2 text-blue-300 text-sm hover:text-white mb-8 transition-colors">
-            <ArrowLeft className="w-4 h-4" /> Back to Portfolio
-          </Link>
-          <Badge variant="blue">{project.industry}</Badge>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white mt-4 mb-4">{project.title}</h1>
-          <p className="text-blue-200 text-lg">{project.description}</p>
-          <div className="flex flex-wrap gap-2 mt-6">
-            {project.tags.map((tag) => (
-              <span key={tag} className="text-xs bg-white/10 text-blue-200 px-3 py-1 rounded-full">{tag}</span>
-            ))}
-          </div>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 40" fill="none" className="w-full">
-            <path d="M0 40L1440 40L1440 10C1200 35 960 0 720 15C480 30 240 0 0 10L0 40Z" fill="white" />
-          </svg>
-        </div>
-      </section>
+      <PageHero
+        tag="Portfolio"
+        title={project.title}
+        subtitle={project.description}
+        chips={[project.industry, ...project.tags]}
+        panelTitle="Case study"
+        panelBody="A clearer top section gives the project room to feel polished before the details and results are introduced."
+        panelStats={['Strategy', 'Build', 'Outcome']}
+      />
 
       <section className="py-20 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link href="/portfolio" className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 mb-8 transition-colors">
+            <ArrowLeft className="w-4 h-4" /> Back to Portfolio
+          </Link>
           {/* Featured Image */}
           <div className="relative h-80 md:h-[480px] rounded-2xl overflow-hidden mb-16 shadow-2xl">
             <Image src={project.image} alt={project.title} fill className="object-cover" />
@@ -153,6 +146,16 @@ export default function ProjectDetailPage({ params }: Props) {
               >
                 Start a Similar Project <ExternalLink className="w-4 h-4" />
               </Link>
+              {project.link && (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-full inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-navy transition-colors hover:border-electric hover:text-electric"
+                >
+                  Visit Live Site <ExternalLink className="w-4 h-4" />
+                </a>
+              )}
             </div>
           </div>
 

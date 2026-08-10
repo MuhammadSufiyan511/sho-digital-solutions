@@ -10,59 +10,77 @@ export default function PortfolioPreview() {
   const showViewAll = projects.length > 6
 
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 gap-4">
+    <section className="bg-white py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <SectionHeader
-            tag="Our Work"
-            title="Websites That Actually<br/><span style='color:#2563EB'>Perform</span>"
-            subtitle="A selection of projects that drove measurable results for our clients."
+            tag="Selected work"
+            title="A few examples that show how a polished website can support real business goals."
+            subtitle="The goal is not just to look good. Each project is built to improve clarity, trust, and action."
           />
           {showViewAll && (
             <Link
               href="/portfolio"
-              className="flex-shrink-0 flex items-center gap-2 text-electric font-semibold text-sm hover:gap-3 transition-all"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-electric transition-colors hover:text-electric-dark"
             >
-              View Full Portfolio <ArrowRight className="w-4 h-4" />
+              View full portfolio <ArrowRight className="h-4 w-4" />
             </Link>
           )}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {featured.map((project) => (
-            <div
+            <article
               key={project.id}
-              className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:-translate-y-1.5 hover:shadow-2xl transition-all duration-300"
+              className="group overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
             >
-              <div className="relative h-52 overflow-hidden bg-gray-100">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-navy/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <Link
-                    href={`/portfolio/${project.id}`}
-                    className="bg-white text-navy text-sm font-bold px-5 py-2.5 rounded-lg flex items-center gap-2 hover:bg-electric hover:text-white transition-colors"
-                  >
-                    View Details <ExternalLink className="w-3.5 h-3.5" />
-                  </Link>
+                <div className="relative h-56 overflow-hidden bg-slate-100">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center bg-navy/45 opacity-0 transition-opacity group-hover:opacity-100">
+                    <Link
+                      href={`/portfolio/${project.id}`}
+                      className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-navy transition-colors hover:bg-electric hover:text-white"
+                    >
+                      View details <ExternalLink className="h-4 w-4" />
+                    </Link>
+                  </div>
                 </div>
-              </div>
               <div className="p-6">
                 <Badge variant="blue">{project.industry}</Badge>
-                <h3 className="text-navy font-bold text-lg mt-3 mb-2">{project.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed mb-4 line-clamp-2">{project.description}</p>
-                <div className="flex flex-wrap gap-1.5">
+                <h3 className="mt-4 text-lg font-bold text-navy">{project.title}</h3>
+                <p className="mt-3 line-clamp-3 text-sm leading-7 text-slate-600">{project.description}</p>
+                <div className="mt-5 flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
-                    <span key={tag} className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-md">
+                    <span key={tag} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
                       {tag}
                     </span>
                   ))}
                 </div>
+                <div className="mt-6 flex flex-wrap items-center gap-4">
+                  <Link
+                    href={`/portfolio/${project.id}`}
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-electric transition-colors hover:text-electric-dark"
+                  >
+                    Open case study <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  {project.link && (
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 transition-colors hover:text-navy"
+                    >
+                      Live site <ExternalLink className="h-4 w-4" />
+                    </a>
+                  )}
+                </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

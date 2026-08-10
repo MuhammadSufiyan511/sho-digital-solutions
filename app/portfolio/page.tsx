@@ -1,108 +1,194 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, ExternalLink } from 'lucide-react'
 import { projects } from '@/lib/data'
 import CTASection from '@/components/sections/CTASection'
+import PageHero from '@/components/sections/PageHero'
 import Badge from '@/components/ui/Badge'
 
 export const metadata: Metadata = {
   title: 'Portfolio',
-  description: 'View SHO Digital Solutions\' portfolio of websites, e-commerce stores, and digital systems.',
+  description: 'Explore selected projects that show how we help businesses present themselves online with more clarity.',
 }
 
-const industries = ['All', ...Array.from(new Set(projects.map((p) => p.industry)))]
+const industries = ['All', ...Array.from(new Set(projects.map((project) => project.industry)))]
+const itemsPerPage = 6
 
-export default function PortfolioPage() {
+function isVercelProject(link?: string) {
+  if (!link) return false
+  try {
+    return new URL(link).hostname.includes('vercel.app')
+  } catch {
+    return false
+  }
+}
+
+function getOrderedProjects() {
+  return [...projects]
+    .map((project, index) => ({ project, index }))
+    .sort((a, b) => {
+      const aVercel = isVercelProject(a.project.link)
+      const bVercel = isVercelProject(b.project.link)
+
+      if (aVercel !== bVercel) return aVercel ? 1 : -1
+      return a.index - b.index
+    })
+    .map(({ project }) => project)
+}
+
+interface PortfolioPageProps {
+  searchParams?: {
+    page?: string
+  }
+}
+
+export default function PortfolioPage({ searchParams }: PortfolioPageProps) {
+  const orderedProjects = getOrderedProjects()
+  const totalPages = Math.max(1, Math.ceil(orderedProjects.length / itemsPerPage))
+  const requestedPage = Number(searchParams?.page ?? '1')
+  const currentPage = Number.isFinite(requestedPage)
+    ? Math.min(Math.max(1, Math.floor(requestedPage)), totalPages)
+    : 1
+  const start = (currentPage - 1) * itemsPerPage
+  const visibleProjects = orderedProjects.slice(start, start + itemsPerPage)
+  const buildPageHref = (page: number) => (page <= 1 ? '/portfolio' : `/portfolio?page=${page}`)
+
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-16 bg-navy relative overflow-hidden" style={{ backgroundColor: '#0A1F44' }}>
-        <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-[120px] opacity-20" style={{ background: 'radial-gradient(circle, #2563EB, transparent)' }} />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase bg-electric/20 text-blue-200 px-3 py-1 rounded-full mb-6">
-            Our Work
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white leading-tight mb-6">
-            Projects That Prove <br/>
-            <span className="text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(135deg, #60A5FA, #2563EB)' }}>
-              Results Speak Louder
-            </span>
-          </h1>
-          <p className="text-blue-200 text-lg leading-relaxed max-w-2xl mx-auto">
-            Every project in our portfolio was built with a single goal: to drive measurable business growth for our clients.
-          </p>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 40" fill="none" className="w-full">
-            <path d="M0 40L1440 40L1440 10C1200 35 960 0 720 15C480 30 240 0 0 10L0 40Z" fill="white" />
-          </svg>
-        </div>
-      </section>
+      <PageHero
+        tag="Portfolio"
+        title="Projects that show how a strong digital presence can feel more composed and more persuasive."
+        subtitle="Each project here was built with clarity in mind. The goal is always to make the business easier to understand and easier to trust."
+        chips={['Case studies', 'UI polish', 'Conversion']}
+        panelTitle="Selected work"
+        panelBody="A handful of examples that show how we combine structure, tone, and presentation to support real outcomes."
+        panelStats={['Trust', 'Speed', 'Conversion']}
+      />
 
-      {/* Projects Grid */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Filter tags */}
-          <div className="flex flex-wrap gap-2 mb-12 justify-center">
-            {industries.map((ind) => (
+      <section className="py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 flex flex-wrap justify-center gap-3">
+            {industries.map((industry) => (
               <span
-                key={ind}
-                className="px-4 py-2 text-sm rounded-full border border-gray-200 text-gray-600 hover:bg-electric hover:text-white hover:border-electric transition-colors cursor-pointer"
+                key={industry}
+                className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600"
               >
-                {ind}
+                {industry}
               </span>
             ))}
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project) => (
-              <div
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {visibleProjects.map((project) => (
+              <article
                 key={project.id}
-                className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:-translate-y-1.5 hover:shadow-2xl transition-all duration-300"
+                className="group overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
               >
-                <div className="relative h-56 overflow-hidden bg-gray-100">
+                <div className="relative h-56 overflow-hidden bg-slate-100">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-navy/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <div className="absolute inset-0 flex items-center justify-center bg-navy/50 opacity-0 transition-opacity group-hover:opacity-100">
                     <Link
                       href={`/portfolio/${project.id}`}
-                      className="bg-white text-navy text-sm font-bold px-5 py-2.5 rounded-lg hover:bg-electric hover:text-white transition-colors"
+                      className="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-navy transition-colors hover:bg-electric hover:text-white"
                     >
-                      View Details
+                      View details
                     </Link>
                   </div>
                 </div>
+
                 <div className="p-6">
                   <Badge variant="blue">{project.industry}</Badge>
-                  <h3 className="text-navy font-bold text-xl mt-3 mb-2">{project.title}</h3>
-                  <p className="text-gray-500 text-sm leading-relaxed mb-4">{project.description}</p>
-                  <div className="flex flex-wrap gap-1.5 mb-4">
+                  <h2 className="mt-4 text-lg font-bold text-navy">{project.title}</h2>
+                  <p className="mt-3 text-sm leading-7 text-slate-600">{project.description}</p>
+                  <div className="mt-5 flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
-                      <span key={tag} className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-md">
+                      <span key={tag} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
                         {tag}
                       </span>
                     ))}
                   </div>
-                  <Link
-                    href={`/portfolio/${project.id}`}
-                    className="inline-flex items-center gap-1.5 text-electric text-sm font-semibold hover:gap-2.5 transition-all"
-                  >
-                    View Details <ArrowRight className="w-3.5 h-3.5" />
-                  </Link>
+                  <div className="mt-6 flex flex-wrap items-center gap-4">
+                    <Link
+                      href={`/portfolio/${project.id}`}
+                      className="inline-flex items-center gap-2 text-sm font-semibold text-electric transition-colors hover:text-electric-dark"
+                    >
+                      Open case study <ArrowRight className="h-4 w-4" />
+                    </Link>
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 transition-colors hover:text-navy"
+                      >
+                        Live site <ExternalLink className="h-4 w-4" />
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </div>
+              </article>
             ))}
           </div>
+
+          {totalPages > 1 && (
+            <div className="mt-12 flex flex-col items-center gap-4">
+              <div className="text-sm text-slate-500">
+                Showing {start + 1}-{Math.min(start + itemsPerPage, orderedProjects.length)} of {orderedProjects.length} projects
+              </div>
+              <div className="flex flex-wrap items-center justify-center gap-2">
+                <Link
+                  href={buildPageHref(Math.max(1, currentPage - 1))}
+                  aria-disabled={currentPage === 1}
+                  className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
+                    currentPage === 1
+                      ? 'pointer-events-none border-slate-200 bg-slate-50 text-slate-300'
+                      : 'border-slate-200 bg-white text-slate-600 hover:border-electric hover:text-electric'
+                  }`}
+                >
+                  Prev
+                </Link>
+
+                {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+                  <Link
+                    key={page}
+                    href={buildPageHref(page)}
+                    className={`min-w-10 rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
+                      page === currentPage
+                        ? 'border-navy bg-navy text-white'
+                        : 'border-slate-200 bg-white text-slate-600 hover:border-electric hover:text-electric'
+                    }`}
+                  >
+                    {page}
+                  </Link>
+                ))}
+
+                <Link
+                  href={buildPageHref(Math.min(totalPages, currentPage + 1))}
+                  aria-disabled={currentPage === totalPages}
+                  className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
+                    currentPage === totalPages
+                      ? 'pointer-events-none border-slate-200 bg-slate-50 text-slate-300'
+                      : 'border-slate-200 bg-white text-slate-600 hover:border-electric hover:text-electric'
+                  }`}
+                >
+                  Next
+                </Link>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
-      <CTASection title="Like What You See? Let's Build Yours." subtitle="Every project starts with a free consultation. Tell us about your goals and we'll build a strategy around them." />
+      <CTASection
+        title="Like what you see? Let&apos;s build something similar for your business."
+        subtitle="We can help translate your goals into a cleaner, more effective web presence."
+      />
     </>
   )
 }
-

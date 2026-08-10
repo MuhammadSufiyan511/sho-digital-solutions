@@ -1,150 +1,283 @@
 import type { Metadata } from 'next'
-import { CheckCircle, Award, Users, Globe, Target, Heart } from 'lucide-react'
+import Image from 'next/image'
+import { Award, CheckCircle2, HeartHandshake, ShieldCheck, Target } from 'lucide-react'
 import CTASection from '@/components/sections/CTASection'
+import PageHero from '@/components/sections/PageHero'
 import SectionHeader from '@/components/ui/SectionHeader'
 
 export const metadata: Metadata = {
   title: 'About Us',
-  description: 'Learn about SHO Digital Solutions — our story, mission, and the team behind your digital growth.',
+  description:
+    'Learn how SHO Digital Solutions works, what we value, and who helps shape the team behind each project.',
 }
 
 const values = [
-  { icon: Target, title: 'Results First', description: 'Every decision is driven by one question: does it grow your business?' },
-  { icon: Heart, title: 'Genuine Partnership', description: "We treat your business like it's our own. Your wins are our wins." },
-  { icon: Award, title: 'Craft & Quality', description: 'We take pride in clean code, beautiful design, and pixel-perfect delivery.' },
-  { icon: Globe, title: 'Transparency', description: 'Clear communication, honest timelines, and no hidden costs — ever.' },
+  {
+    icon: Target,
+    title: 'Business-first thinking',
+    description: 'Every decision should help the website do a real job for the business, not just look impressive.',
+  },
+  {
+    icon: HeartHandshake,
+    title: 'Genuine partnership',
+    description: 'We keep communication honest, clear, and respectful so the process stays easy to trust.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Dependable delivery',
+    description: 'We care about the details, the timelines, and the long-term stability of the work we ship.',
+  },
+  {
+    icon: Award,
+    title: 'Craft and consistency',
+    description: 'Strong design, tidy code, and polished messaging all matter when your brand is on display.',
+  },
 ]
 
 const milestones = [
-  { year: '2019', title: 'Founded', description: 'SHO Digital was born with a mission to make enterprise-quality web development accessible to all businesses.' },
-  { year: '2020', title: '50 Projects', description: 'Hit our first 50 project milestone, expanding our team and service offerings.' },
-  { year: '2022', title: 'Regional Expansion', description: 'Expanded to serve clients across multiple markets with a team of 12 specialists.' },
-  { year: '2024', title: '150+ Projects', description: 'Over 150 successful projects delivered with a 98% client satisfaction rate.' },
+  {
+    year: '2019',
+    title: 'Started with a simple idea',
+    description: 'Build websites that feel more credible, more strategic, and more useful to growing businesses.',
+  },
+  {
+    year: '2021',
+    title: 'Expanded our process',
+    description: 'We refined our discovery, design, and delivery flow so clients could move forward with more confidence.',
+  },
+  {
+    year: '2023',
+    title: 'Broader industry focus',
+    description: 'We shaped solutions for restaurants, healthcare, retail, professional services, and property brands.',
+  },
+  {
+    year: '2026',
+    title: 'A stronger, more complete team',
+    description: 'We continue to grow with a sharper design system, better process, and a stronger focus on business outcomes.',
+  },
+]
+
+const team = [
+  {
+    initials: 'MS',
+    name: 'Muhammad Sufiyan',
+    role: 'Full Stack Engineer',
+    bio: 'Full Stack Developer specializing in MERN and MySQL, focused on building scalable SaaS platforms, e-commerce systems, dashboards, and AI-powered applications. He combines modern frontend development with robust backend architecture to create efficient, user-friendly digital solutions.',
+    image: '/assets/MuhammadSufiyan.webp',
+  },
+  {
+    initials: 'ZY',
+    name: 'Zohaib Younis',
+    role: 'Full Stack Engineer',
+    bio: 'Full Stack Developer driven by building software that matters. He bridges elegant front-end design with robust back-end architecture, and brings a detail-oriented approach to SaaS platforms, Shopify stores, and business websites.',
+    image: '/assets/ZohaibYounis.webp',
+  },
+  {
+    initials: 'AW',
+    name: 'Abdul Wahab',
+    role: 'Full Stack Engineer',
+    bio: 'Works across front-end and back-end implementation to keep launches smooth and technically solid.',
+  },
+  {
+    initials: 'AH',
+    name: 'Abid Hussain',
+    role: 'Full Stack Engineer',
+    bio: 'Full Stack Engineer with 1.5+ years of experience building scalable web apps and SaaS platforms using Node.js and React.js. Coming from an IT background, he ships clean, optimized code with AI-assisted workflows while keeping architecture and quality strong. He enjoys turning ideas into products that actually work.',
+    image: '/assets/AbidHussain.webp',
+  },
+  {
+    initials: 'MU',
+    name: 'Muhammad Umar',
+    role: 'AI Engineer',
+    bio: 'Software engineer specializing in AI and machine learning, with experience in computer vision, deep learning, backend systems, and scalable ML pipelines.',
+    image: '/assets/MuhammadUmer.webp',
+  },
+  {
+    initials: 'HA',
+    name: 'Abdul Haq',
+    role: 'AI Engineer',
+    bio: 'Builds AI-assisted systems and internal tools that make product experiences feel more responsive and useful.',
+  },
+]
+
+const stats = [
+  { value: '150+', label: 'Projects delivered' },
+  { value: '98%', label: 'Client satisfaction' },
+  { value: '24/7', label: 'Digital presence' },
+  { value: '4', label: 'Core disciplines' },
 ]
 
 export default function AboutPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-20 bg-navy relative overflow-hidden" style={{ backgroundColor: '#0A1F44' }}>
-        <div
-          className="absolute top-0 right-0 w-96 h-96 rounded-full blur-[120px] opacity-20"
-          style={{ background: 'radial-gradient(circle, #2563EB, transparent)' }}
-        />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase bg-electric/20 text-blue-200 px-3 py-1 rounded-full mb-6">
-            Our Story
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white leading-tight mb-6">
-            We&apos;re Not Just an Agency.<br/>
-            <span className="text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(135deg, #60A5FA, #2563EB)' }}>
-              We&apos;re Your Growth Partner.
-            </span>
-          </h1>
-          <p className="text-blue-200 text-lg leading-relaxed max-w-2xl mx-auto">
-            SHO Digital Solutions was founded with a clear mission: to give every business — regardless of size — access to
-            the kind of high-performance digital presence that drives real, measurable growth.
-          </p>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-            <path d="M0 40L1440 40L1440 10C1200 35 960 0 720 15C480 30 240 0 0 10L0 40Z" fill="white" />
-          </svg>
-        </div>
-      </section>
+      <PageHero
+        tag="About our team"
+        title="A small team with a clear goal: help businesses show up online with more clarity and confidence."
+        subtitle="SHO Digital Solutions was built around one idea: your website should feel like a trustworthy extension of your business. We care about the tone, the structure, the details, and the way everything comes together to support real growth."
+        chips={['Strategy', 'Design', 'Build']}
+        panelTitle="How we work"
+        panelBody="We keep the process collaborative and the result practical so the final site feels useful, not inflated."
+        panelStats={['Human', 'Clear', 'Polished']}
+      />
 
-      {/* Mission */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <SectionHeader
-                tag="Our Mission"
-                title="Leveling the Playing Field for<br/><span style='color:#2563EB'>Growing Businesses</span>"
-              />
-              <p className="text-gray-500 leading-relaxed mb-6">
-                We believe every business deserves a world-class online presence. For too long, premium web development
-                has been the exclusive domain of large corporations with six-figure budgets. We changed that.
+      <section className="py-20">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8">
+          <div className="surface-card rounded-[2rem] p-8">
+            <SectionHeader
+              tag="Our mission"
+              title="Make business websites feel more human, more useful, and more trusted."
+              subtitle="We want visitors to feel clear on who you are, what you offer, and why you are the right team to contact."
+            />
+
+            <div className="space-y-4 text-sm leading-7 text-slate-600">
+              <p>
+                We work best with businesses that want to present themselves well and communicate with more intention.
+                That could mean a new brand direction, a stronger website, or a more useful lead-generation flow.
               </p>
-              <p className="text-gray-500 leading-relaxed mb-8">
-                Our team combines deep technical expertise with strategic business thinking. We don&apos;t just build websites
-                — we architect digital growth engines tailored to your specific industry, market, and goals.
+              <p>
+                The process is collaborative by design. We ask better questions up front, shape the structure with care,
+                and keep the final result focused on the people who will actually use it.
               </p>
-              <ul className="space-y-3">
-                {[
-                  'Client-first approach in everything we do',
-                  'Measurable results, not vanity metrics',
-                  'Long-term relationships over one-off projects',
-                  'Continuous learning and innovation',
-                ].map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-gray-600 text-sm">
-                    <CheckCircle className="w-4 h-4 text-electric flex-shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
             </div>
-            <div className="grid grid-cols-2 gap-4">
+
+            <ul className="mt-8 grid gap-3 sm:grid-cols-2">
               {[
-                { value: '150+', label: 'Projects Delivered', bg: 'bg-electric text-white' },
-                { value: '98%', label: 'Satisfaction Rate', bg: 'bg-navy text-white', style: { backgroundColor: '#0A1F44' } },
-                { value: '5+', label: 'Years Experience', bg: 'bg-gray-50 text-navy border border-gray-100' },
-                { value: '12+', label: 'Team Members', bg: 'bg-blue-50 text-electric border border-blue-100' },
-              ].map((stat) => (
-                <div
-                  key={stat.label}
-                  className={`${stat.bg} rounded-2xl p-8 flex flex-col justify-center`}
-                  style={stat.style}
-                >
-                  <div className="text-4xl font-bold mb-1">{stat.value}</div>
-                  <div className="text-sm opacity-80">{stat.label}</div>
-                </div>
+                'Clear discovery and planning',
+                'Messaging that sounds human',
+                'Mobile-first, responsive design',
+                'Support after launch',
+              ].map((item) => (
+                <li key={item} className="flex items-center gap-3 rounded-2xl bg-slate-50 px-4 py-3 text-sm text-slate-600">
+                  <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-electric" />
+                  {item}
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
-        </div>
-      </section>
 
-      {/* Values */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            tag="Our Values"
-            title="The Principles That Guide<br/>Every Project We Touch"
-            center
-          />
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map(({ icon: Icon, title, description }) => (
-              <div key={title} className="bg-white rounded-2xl border border-gray-100 p-6 text-center hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
-                <div className="w-12 h-12 bg-electric/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                  <Icon className="w-6 h-6 text-electric" />
+          <div className="grid gap-4 sm:grid-cols-2">
+            {stats.map((stat) => (
+              <div key={stat.label} className="surface-card rounded-[1.75rem] p-6">
+                <div className="text-4xl font-bold text-navy">{stat.value}</div>
+                <div className="mt-2 text-sm font-medium uppercase tracking-[0.16em] text-slate-500">
+                  {stat.label}
                 </div>
-                <h3 className="text-navy font-bold mb-2">{title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{description}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Timeline */}
       <section className="py-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader tag="Our Journey" title="From Startup to Trusted <span style='color:#2563EB'>Digital Agency</span>" center />
-          <div className="relative">
-            <div className="absolute left-1/2 top-0 bottom-0 w-0.5 bg-gray-200 -translate-x-1/2 hidden md:block" />
-            <div className="space-y-12">
-              {milestones.map((m, i) => (
-                <div key={m.year} className={`relative flex flex-col md:flex-row gap-8 items-center ${i % 2 === 1 ? 'md:flex-row-reverse' : ''}`}>
-                  <div className={`flex-1 ${i % 2 === 1 ? 'md:text-right' : ''}`}>
-                    <span className="text-electric font-bold text-sm">{m.year}</span>
-                    <h3 className="text-navy font-bold text-xl mt-1 mb-2">{m.title}</h3>
-                    <p className="text-gray-500 text-sm leading-relaxed">{m.description}</p>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionHeader
+            tag="What we value"
+            title="The principles that keep our work sharp and our process easy to trust."
+            subtitle="We try to make the experience steady, thoughtful, and respectful from the first email to the final launch."
+            center
+          />
+
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {values.map(({ icon: Icon, title, description }) => (
+              <article key={title} className="surface-card rounded-[1.75rem] p-6">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-electric/10 text-electric">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <h3 className="mt-5 text-lg font-bold text-navy">{title}</h3>
+                <p className="mt-3 text-sm leading-7 text-slate-600">{description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <SectionHeader
+            tag="Our story"
+            title="How the business has grown over time."
+            subtitle="The focus has stayed the same: build work that feels professional, useful, and honest."
+            center
+          />
+
+          <div className="space-y-6">
+            {milestones.map((item) => (
+              <div key={item.year} className="surface-card grid gap-4 rounded-[1.75rem] p-6 md:grid-cols-[120px_1fr]">
+                <div className="text-2xl font-bold text-electric">{item.year}</div>
+                <div>
+                  <h3 className="text-lg font-bold text-navy">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-7 text-slate-600">{item.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 bg-white">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionHeader
+            tag="Our team"
+            title="The people building the work, together."
+            subtitle="A focused team keeps the process direct, collaborative, and easier to trust."
+            center
+          />
+
+          <div className="grid grid-cols-3 gap-3 md:grid-cols-3 md:gap-6">
+            {team.map((member) => (
+              <article key={member.name} className="surface-card rounded-[1.5rem] p-3 md:p-6">
+                <div className="overflow-hidden rounded-[1rem] border border-slate-200 bg-slate-100 md:rounded-[1.5rem]">
+                  {member.image ? (
+                    <div className="relative aspect-[4/3]">
+                      <Image src={member.image} alt={member.name} fill className="object-cover" />
+                    </div>
+                  ) : (
+                    <div className="flex aspect-[4/3] items-center justify-center bg-[radial-gradient(circle_at_top_left,rgba(15,118,110,0.14),transparent_40%),linear-gradient(135deg,#f8fafc,#eef2f7)]">
+                      <div className="flex h-24 w-24 items-center justify-center rounded-[2rem] border border-white/80 bg-white/90 text-2xl font-bold text-navy shadow-lg">
+                        {member.initials}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <div className="mt-3 flex items-start gap-3 md:mt-5 md:gap-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-navy text-xs font-bold text-white md:h-12 md:w-12 md:text-sm">
+                    {member.initials}
                   </div>
-                  <div className="hidden md:flex w-10 h-10 bg-electric rounded-full items-center justify-center flex-shrink-0 z-10">
-                    <div className="w-3 h-3 bg-white rounded-full" />
+                  <div>
+                    <h3 className="text-sm font-bold leading-tight text-navy md:text-base">{member.name}</h3>
+                    <p className="text-[11px] text-electric md:text-sm">{member.role}</p>
                   </div>
-                  <div className="flex-1" />
+                </div>
+                <p className="mt-3 text-[11px] leading-5 text-slate-600 md:mt-4 md:text-sm md:leading-7">{member.bio}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="surface-card grid gap-8 rounded-[2rem] p-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-electric">Why clients stay</p>
+              <h2 className="mt-4 text-3xl font-bold leading-tight text-navy text-balance">
+                A better process makes the outcome feel better too.
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-slate-600">
+                We do not aim to overwhelm with jargon. We aim to make the path forward easier to see and easier to
+                approve.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {[
+                'Simple communication',
+                'Intentional layout choices',
+                'Careful handoff and support',
+                'A brand presence you can stand behind',
+              ].map((item) => (
+                <div key={item} className="rounded-2xl bg-slate-50 px-4 py-4 text-sm font-medium text-slate-600">
+                  {item}
                 </div>
               ))}
             </div>
@@ -152,7 +285,10 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <CTASection title="Want to Work With a Team That Cares?" subtitle="Let's have a conversation about your business goals and how we can help you achieve them." />
+      <CTASection
+        title="Want a team that makes the process feel easier?"
+        subtitle="Let&apos;s talk about where your business is now, where you want it to go, and what a clearer digital presence could look like."
+      />
     </>
   )
 }

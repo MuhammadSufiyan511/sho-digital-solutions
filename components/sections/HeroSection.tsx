@@ -1,176 +1,132 @@
 import Link from 'next/link'
-import { ArrowRight, CheckCircle, Play } from 'lucide-react'
+import { ArrowRight, CheckCircle2 } from 'lucide-react'
 
-const stats = [
-  { value: '150+', label: 'Projects Delivered' },
-  { value: '98%', label: 'Client Satisfaction' },
-  { value: '3x', label: 'Avg. Lead Increase' },
-  { value: '48h', label: 'Turnaround Start' },
+const highlights = [
+  'Strategy-led structure',
+  'Clear messaging',
+  'Built for trust and conversion',
 ]
 
-const trust = [
-  'No long-term contracts',
-  'Free initial consultation',
-  'Results-driven approach',
+const stats = [
+  { value: '150+', label: 'Projects launched' },
+  { value: '98%', label: 'Client satisfaction' },
+  { value: '3x', label: 'Avg. lead lift' },
 ]
 
 export default function HeroSection() {
   return (
-    <section
-      className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ backgroundColor: '#0A1F44' }}
-    >
-      {/* Background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div
-          className="absolute top-1/4 right-0 w-[600px] h-[600px] rounded-full blur-[120px] opacity-20 animate-float-soft"
-          style={{ background: 'radial-gradient(circle, #2563EB, transparent)' }}
-        />
-        <div
-          className="absolute bottom-0 left-1/4 w-[400px] h-[400px] rounded-full blur-[100px] opacity-10 animate-float-soft"
-          style={{ background: 'radial-gradient(circle, #3B82F6, transparent)' }}
-        />
-        {/* Grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: '60px 60px',
-          }}
-        />
+    <section className="relative overflow-hidden pt-16">
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,#f8fbff_0%,#ffffff_46%,#f8fafc_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_16%,rgba(59,130,246,0.16),transparent_16%),radial-gradient(circle_at_74%_24%,rgba(249,115,22,0.12),transparent_14%),radial-gradient(circle_at_84%_78%,rgba(15,118,110,0.09),transparent_18%),radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.08),transparent_20%)]" />
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent" />
+      <div
+        className="absolute left-[-6rem] top-[-4rem] h-[22rem] w-[22rem] rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.22),transparent_62%)] blur-2xl animate-float-soft"
+        style={{ animationDuration: '13s' }}
+      />
+      <div className="absolute left-[-12rem] top-[12rem] h-[34rem] w-[34rem] rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.14),transparent_62%)] blur-3xl animate-float-soft" />
+      <div
+        className="absolute right-[-6rem] top-[4rem] h-[18rem] w-[18rem] rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.2),transparent_64%)] blur-2xl animate-float-soft"
+        style={{ animationDuration: '15s', animationDelay: '-4s' }}
+      />
+      <div className="absolute right-[-14rem] top-[10rem] h-[38rem] w-[38rem] rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.14),transparent_64%)] blur-3xl animate-float-soft" />
+      <div className="absolute bottom-[-7rem] right-[-4rem] h-[22rem] w-[22rem] rounded-full bg-[radial-gradient(circle,rgba(15,118,110,0.14),transparent_60%)] blur-2xl animate-float-soft" />
+      <div className="absolute left-[-10rem] bottom-[-9rem] h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgba(15,118,110,0.12),transparent_62%)] blur-3xl animate-float-soft" />
+
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute left-[-3rem] top-[4rem] h-96 w-96 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.95),rgba(255,255,255,0.22)_46%,transparent_72%)] opacity-75" />
+        <div className="absolute left-[-6rem] top-[30%] h-44 w-44 rounded-full border border-blue-300/35" />
+        <div className="absolute left-[-4rem] bottom-[18%] h-16 w-16 rounded-full bg-amber-400 shadow-[0_0_0_14px_rgba(245,158,11,0.12)]" />
+        <div className="absolute left-[26%] top-[8%] h-24 w-24 rounded-full border border-slate-300/40" />
+        <div className="absolute left-[34%] top-[12%] h-4 w-4 rounded-full bg-amber-400 shadow-[0_0_0_10px_rgba(245,158,11,0.12)]" />
+        <div className="absolute left-[22%] bottom-[15%] h-3 w-3 rounded-full bg-blue-500 shadow-[0_0_0_9px_rgba(59,130,246,0.12)]" />
+        <div className="absolute right-[28%] top-[20%] h-20 w-20 rounded-full border border-blue-300/40" />
+        <div className="absolute right-[-7rem] top-[26%] h-52 w-52 rounded-full border border-amber-300/35" />
+        <div className="absolute right-[-5rem] bottom-[16%] h-[4.5rem] w-[4.5rem] rounded-full bg-blue-500 shadow-[0_0_0_14px_rgba(59,130,246,0.12)]" />
+        <div className="absolute left-[7%] top-[17%] h-28 w-28 rounded-full border border-blue-300/40" />
+        <div className="absolute left-[12%] top-[21%] h-14 w-14 rounded-full border border-amber-300/60" />
+        <div className="absolute right-[16%] top-[14%] h-3 w-3 rounded-full bg-amber-400 shadow-[0_0_0_10px_rgba(245,158,11,0.12)]" />
+        <div className="absolute right-[10%] top-[23%] h-2 w-2 rounded-full bg-blue-500 shadow-[0_0_0_8px_rgba(59,130,246,0.12)]" />
+        <div className="absolute left-[9%] bottom-[16%] h-24 w-24 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.24),transparent_70%)] blur-lg" />
+        <div className="absolute right-[8%] bottom-[12%] h-28 w-28 rounded-full bg-[radial-gradient(circle,rgba(245,158,11,0.2),transparent_72%)] blur-lg" />
+        <div className="absolute inset-x-0 top-16 h-[30rem] bg-[linear-gradient(rgba(148,163,184,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.08)_1px,transparent_1px)] bg-[size:52px_52px] [mask-image:radial-gradient(circle_at_center,black_34%,transparent_76%)] opacity-45" />
+        <div className="absolute left-1/2 top-[22%] h-[36rem] w-[36rem] -translate-x-1/2 rounded-full border border-dashed border-amber-300/25 opacity-70" />
+        <div className="absolute left-1/2 top-[28%] h-[28rem] w-[28rem] -translate-x-1/2 rounded-full border border-slate-300/35 opacity-60" />
+        <div className="absolute left-[42%] top-[18%] h-2 w-2 rounded-full bg-teal-500 shadow-[0_0_0_8px_rgba(20,184,166,0.1)]" />
+        <div className="absolute right-[40%] bottom-[24%] h-2 w-2 rounded-full bg-orange-400 shadow-[0_0_0_8px_rgba(249,115,22,0.12)]" />
+        <div className="absolute left-[18%] top-[9%] h-2 w-2 rounded-full bg-blue-400 shadow-[0_0_0_8px_rgba(59,130,246,0.12)]" />
+        <div className="absolute left-[22%] bottom-[18%] h-20 w-20 rounded-full border border-slate-300/35" />
+        <div className="absolute right-[24%] bottom-[14%] h-16 w-16 rounded-full border border-amber-300/45" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left Content */}
-          <div>
-            <div className="inline-flex items-center gap-2 bg-electric/15 border border-electric/30 rounded-full px-4 py-2 mb-8">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
-              <span className="text-blue-200 text-xs font-semibold tracking-wider uppercase">
-                Now Accepting New Clients
-              </span>
-            </div>
+      <div className="relative mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8 lg:py-10">
+        <div className="mx-auto max-w-4xl text-center">
+          {/* <div
+            className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/80 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-electric shadow-sm backdrop-blur-sm animate-fade-down"
+            style={{ animationDelay: '80ms' }}
+          >
+            <span className="h-2 w-2 rounded-full bg-electric" />
+            Modern websites for growing businesses
+          </div> */}
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-[1.1] mb-6">
-              We Build{' '}
-              <span
-                className="text-transparent bg-clip-text"
-                style={{ backgroundImage: 'linear-gradient(135deg, #60A5FA, #2563EB)' }}
+          <h1
+            className="mt-6 text-4xl font-bold leading-[1.02] text-slate-950 text-balance sm:text-5xl lg:text-6xl animate-fade-down"
+            style={{ animationDelay: '140ms' }}
+          >
+            Websites that look{' '}
+            <span className="bg-gradient-to-r from-electric via-sky-500 to-amber-400 bg-clip-text text-transparent">
+              premium
+            </span>
+            , feel trustworthy, and turn visits into real conversations.
+          </h1>
+
+          <p
+            className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg animate-fade-down"
+            style={{ animationDelay: '200ms' }}
+          >
+            We craft polished digital experiences with clear structure, strong visual hierarchy, and the kind of
+            confidence that helps people trust your business faster.
+          </p>
+
+          <div
+            className="mt-8 flex flex-wrap justify-center gap-3 animate-fade-down"
+            style={{ animationDelay: '260ms' }}
+          >
+            {highlights.map((item) => (
+              <div
+                key={item}
+                className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/85 px-4 py-2 text-sm text-slate-600 shadow-sm backdrop-blur-sm"
               >
-                Revenue-Generating
-              </span>{' '}
-              Websites
-            </h1>
-
-            <p className="text-lg text-blue-200 leading-relaxed mb-8 max-w-xl">
-              From concept to conversion — we design and develop high-performance websites that attract your ideal
-              customers, build trust, and grow your bottom line. <strong className="text-white">Smart. Fast. Affordable.</strong>
-            </p>
-
-            <div className="flex flex-wrap gap-3 mb-10">
-              {trust.map((item) => (
-                <div key={item} className="flex items-center gap-2 text-sm text-blue-200">
-                  <CheckCircle className="w-4 h-4 text-green-400 flex-shrink-0" />
-                  {item}
-                </div>
-              ))}
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-4 mb-16">
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-electric text-white px-8 py-4 rounded-lg font-bold hover:bg-electric-dark transition-all duration-200 shadow-lg hover:shadow-electric/40 hover:-translate-y-0.5"
-                style={{ boxShadow: '0 4px 24px rgba(37, 99, 235, 0.4)' }}
-              >
-                Get Free Consultation <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                href="/portfolio"
-                className="inline-flex items-center justify-center gap-2 border-2 border-white/30 text-white px-8 py-4 rounded-lg font-bold hover:bg-white/10 transition-all duration-200 hover:-translate-y-0.5"
-              >
-                <Play className="w-4 h-4" /> View Our Work
-              </Link>
-            </div>
-
-            {/* Stats Row */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-8 border-t border-white/10">
-              {stats.map((stat) => (
-                <div key={stat.label}>
-                  <div className="text-2xl font-bold text-white">{stat.value}</div>
-                  <div className="text-xs text-blue-300 mt-0.5">{stat.label}</div>
-                </div>
-              ))}
-            </div>
+                <CheckCircle2 className="h-4 w-4 text-electric" />
+                {item}
+              </div>
+            ))}
           </div>
 
-          {/* Right — Visual Element */}
-          <div className="hidden lg:block relative">
-            <div className="relative">
-              {/* Browser mockup */}
-              <div className="bg-white/5 border border-white/15 rounded-2xl p-1 backdrop-blur-sm shadow-2xl">
-                {/* Browser bar */}
-                <div className="bg-white/10 rounded-xl px-4 py-3 flex items-center gap-3 mb-1">
-                  <div className="flex gap-1.5">
-                    <div className="w-3 h-3 rounded-full bg-red-400/70" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-400/70" />
-                    <div className="w-3 h-3 rounded-full bg-green-400/70" />
-                  </div>
-                  <div className="flex-1 bg-white/10 rounded-md px-3 py-1.5 text-xs text-blue-200">
-                    yourbusiness.com
-                  </div>
-                </div>
-                {/* Content mockup */}
-                <div className="bg-white/5 rounded-xl p-6 space-y-4">
-                  <div className="h-5 bg-white/20 rounded w-1/2" />
-                  <div className="h-3 bg-white/10 rounded w-3/4" />
-                  <div className="h-3 bg-white/10 rounded w-2/3" />
-                  <div className="flex gap-3 mt-4">
-                    <div className="h-10 bg-electric/60 rounded-lg w-32" />
-                    <div className="h-10 border border-white/20 rounded-lg w-28" />
-                  </div>
-                  <div className="grid grid-cols-3 gap-3 mt-6">
-                    {[1, 2, 3].map((i) => (
-                      <div key={i} className="bg-white/5 border border-white/10 rounded-lg p-4 space-y-2">
-                        <div className="w-8 h-8 bg-electric/30 rounded-lg" />
-                        <div className="h-2.5 bg-white/20 rounded" />
-                        <div className="h-2 bg-white/10 rounded w-3/4" />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating metrics */}
-              <div className="absolute -right-6 top-1/4 bg-white rounded-xl shadow-xl p-4 flex items-center gap-3 border border-gray-100 animate-float-soft">
-                <div className="w-10 h-10 bg-green-50 rounded-lg flex items-center justify-center">
-                  <span className="text-green-600 font-bold text-sm">↑</span>
-                </div>
-                <div>
-                  <div className="text-navy font-bold text-sm">+143%</div>
-                  <div className="text-gray-400 text-xs">Organic Traffic</div>
-                </div>
-              </div>
-
-              <div className="absolute -left-6 bottom-1/4 bg-white rounded-xl shadow-xl p-4 flex items-center gap-3 border border-gray-100 animate-float-soft">
-                <div className="w-10 h-10 bg-blue-50 rounded-lg flex items-center justify-center">
-                  <span className="text-electric font-bold text-sm">⚡</span>
-                </div>
-                <div>
-                  <div className="text-navy font-bold text-sm">98/100</div>
-                  <div className="text-gray-400 text-xs">Performance Score</div>
-                </div>
-              </div>
-            </div>
+          <div
+            className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row animate-fade-down"
+            style={{ animationDelay: '320ms' }}
+          >
+            <Link href="/contact" className="btn-primary">
+              Start your project <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link href="/portfolio" className="btn-outline-navy">
+              See selected work
+            </Link>
           </div>
+
+          <div
+            className="mx-auto mt-12 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-3 animate-fade-down"
+            style={{ animationDelay: '380ms' }}
+          >
+            {stats.map((stat) => (
+              <div key={stat.label} className="rounded-[1.35rem] border border-slate-200 bg-white/85 p-4 shadow-sm backdrop-blur-sm">
+                <div className="text-2xl font-bold text-slate-950">{stat.value}</div>
+                <div className="mt-1 text-xs font-medium uppercase tracking-[0.16em] text-slate-500">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+
         </div>
-      </div>
-
-      {/* Wave divider */}
-      <div className="absolute bottom-0 left-0 right-0">
-        <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-          <path d="M0 60L1440 60L1440 20C1200 55 960 10 720 30C480 50 240 5 0 20L0 60Z" fill="white" />
-        </svg>
       </div>
     </section>
   )

@@ -1,78 +1,74 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Database, LayoutPanelTop, RefreshCcw, ShoppingCart, Wrench } from 'lucide-react'
 import SectionHeader from '@/components/ui/SectionHeader'
 
 const highlights = [
   {
-    icon: '💻',
+    icon: LayoutPanelTop,
     title: 'Website Development',
-    description: 'Custom, high-performance websites built to convert visitors into paying customers.',
+    description: 'Clean, responsive websites designed to make your business feel established and easy to trust.',
     href: '/services#web-dev',
-    color: 'from-blue-500/20 to-electric/10',
   },
   {
-    icon: '🛒',
+    icon: ShoppingCart,
     title: 'E-commerce Solutions',
-    description: 'Full-featured online stores that drive sales around the clock with seamless checkout.',
+    description: 'Conversion-focused online stores with smooth buying journeys and room to scale.',
     href: '/services#ecommerce',
-    color: 'from-purple-500/20 to-blue-500/10',
   },
   {
-    icon: '🏗️',
-    title: 'Industry-Specific Systems',
-    description: 'Booking systems, patient portals, and property platforms built for your exact sector.',
+    icon: Database,
+    title: 'Industry Systems',
+    description: 'Booking, lead, and workflow tools shaped around the way your business actually works.',
     href: '/services#industry-systems',
-    color: 'from-cyan-500/20 to-blue-400/10',
   },
   {
-    icon: '🔧',
+    icon: Wrench,
     title: 'Maintenance & Support',
-    description: 'Keep your website secure, updated, and performing with ongoing expert support.',
+    description: 'Reliable support that keeps your site secure, updated, and performing at a high standard.',
     href: '/services#maintenance',
-    color: 'from-green-500/20 to-emerald-400/10',
   },
 ]
 
 export default function ServicesHighlight() {
   return (
-    <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-12 gap-4">
+    <section className="py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <SectionHeader
-            tag="What We Do"
-            title="Digital Solutions That<br/><span style='color:#2563EB'>Drive Real Results</span>"
-            subtitle="We don't just build websites — we engineer growth platforms that work for your business 24/7."
+            tag="What we do"
+            title="Practical digital services with a more polished, human feel."
+            subtitle="We focus on the pieces that matter most: trust, clarity, and a user journey that feels effortless."
           />
           <Link
             href="/services"
-            className="flex-shrink-0 flex items-center gap-2 text-electric font-semibold text-sm hover:gap-3 transition-all"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-electric transition-colors hover:text-electric-dark"
           >
-            View All Services <ArrowRight className="w-4 h-4" />
+            View all services <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {highlights.map((item) => (
-            <Link
-              key={item.title}
-              href={item.href}
-              className="group relative bg-gray-50 border border-gray-100 rounded-2xl p-6 hover:-translate-y-1.5 hover:shadow-xl hover:border-electric/20 transition-all duration-300"
-            >
-              <div
-                className={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity bg-gradient-to-br ${item.color}`}
-              />
-              <div className="relative">
-                <div className="text-4xl mb-5">{item.icon}</div>
-                <h3 className="text-navy font-bold text-lg mb-3 group-hover:text-electric transition-colors">
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {highlights.map((item) => {
+            const Icon = item.icon
+            return (
+              <Link
+                key={item.title}
+                href={item.href}
+                className="group surface-card rounded-[1.75rem] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-electric/20"
+              >
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-electric/10 text-electric">
+                  <Icon className="h-6 w-6" />
+                </div>
+                <h3 className="mt-5 text-lg font-bold text-navy transition-colors group-hover:text-electric">
                   {item.title}
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed mb-4">{item.description}</p>
-                <div className="flex items-center gap-1 text-electric text-sm font-semibold group-hover:gap-2 transition-all">
-                  Learn more <ArrowRight className="w-3.5 h-3.5" />
+                <p className="mt-3 text-sm leading-7 text-slate-600">{item.description}</p>
+                <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-electric">
+                  Learn more <ArrowRight className="h-4 w-4" />
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            )
+          })}
         </div>
       </div>
     </section>

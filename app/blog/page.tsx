@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ArrowRight, Clock, User } from 'lucide-react'
 import { blogPosts } from '@/lib/data'
 import CTASection from '@/components/sections/CTASection'
+import PageHero from '@/components/sections/PageHero'
 import Badge from '@/components/ui/Badge'
 
 export const metadata: Metadata = {
@@ -18,28 +19,15 @@ export default function BlogPage() {
 
   return (
     <>
-      <section className="pt-32 pb-16 bg-navy relative overflow-hidden" style={{ backgroundColor: '#0A1F44' }}>
-        <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-[120px] opacity-20" style={{ background: 'radial-gradient(circle, #2563EB, transparent)' }} />
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative">
-          <span className="inline-block text-xs font-semibold tracking-widest uppercase bg-electric/20 text-blue-200 px-3 py-1 rounded-full mb-6">
-            Insights & Resources
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-bold text-white leading-tight mb-6">
-            Digital Growth<br/>
-            <span className="text-transparent bg-clip-text" style={{ backgroundImage: 'linear-gradient(135deg, #60A5FA, #2563EB)' }}>
-              Tips & Strategies
-            </span>
-          </h1>
-          <p className="text-blue-200 text-lg leading-relaxed max-w-2xl mx-auto">
-            Actionable advice, industry insights, and proven strategies to help your business win online.
-          </p>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 40" fill="none" className="w-full">
-            <path d="M0 40L1440 40L1440 10C1200 35 960 0 720 15C480 30 240 0 0 10L0 40Z" fill="white" />
-          </svg>
-        </div>
-      </section>
+      <PageHero
+        tag="Insights & resources"
+        title="Digital growth tips and strategies."
+        subtitle="Actionable advice, industry insights, and practical ideas to help your business win online."
+        chips={['Performance', 'SEO', 'Strategy']}
+        panelTitle="Latest thinking"
+        panelBody="Useful notes on how to improve site speed, clarity, and lead generation without overcomplicating the work."
+        panelStats={['Useful', 'Practical', 'Clear']}
+      />
 
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

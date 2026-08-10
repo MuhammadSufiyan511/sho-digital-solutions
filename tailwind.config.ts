@@ -10,24 +10,26 @@ const config: Config = {
     extend: {
       colors: {
         navy: {
-          DEFAULT: '#0A1F44',
-          light: '#112952',
-          dark: '#061530',
+          DEFAULT: '#0f172a',
+          light: '#1e293b',
+          dark: '#020617',
         },
         electric: {
-          DEFAULT: '#2563EB',
-          light: '#3B82F6',
-          dark: '#1D4ED8',
+          DEFAULT: '#0f766e',
+          light: '#14b8a6',
+          dark: '#115e59',
         },
       },
       fontFamily: {
-        sans: ['var(--font-poppins)', 'system-ui', 'sans-serif'],
-        display: ['var(--font-poppins)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-sans)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-sans)', 'system-ui', 'sans-serif'],
       },
       animation: {
         'fade-up': 'fadeUp 0.6s ease-out forwards',
         'fade-in': 'fadeIn 0.5s ease-out forwards',
         'slide-right': 'slideRight 0.5s ease-out forwards',
+        'float-slow': 'floatSlow 10s ease-in-out infinite',
+        'float-soft': 'floatSoft 8s ease-in-out infinite',
       },
       keyframes: {
         fadeUp: {
@@ -41,6 +43,14 @@ const config: Config = {
         slideRight: {
           '0%': { opacity: '0', transform: 'translateX(-24px)' },
           '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        floatSlow: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
+        },
+        floatSoft: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-6px)' },
         },
       },
     },

@@ -8,9 +8,9 @@ import TestimonialsSection from '@/components/sections/TestimonialsSection'
 import CTASection from '@/components/sections/CTASection'
 
 export const metadata: Metadata = {
-  title: 'SHO Digital Solutions — Smart Websites. Real Growth.',
+  title: 'Home',
   description:
-    'We build revenue-generating websites for businesses ready to grow. Web development, e-commerce, SEO, and digital strategy — all under one roof.',
+    'SHO Digital Solutions helps businesses build a more polished, credible, and conversion-focused online presence.',
 }
 
 export default function HomePage() {

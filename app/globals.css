@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-poppins: 'Poppins', system-ui, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
   --anim-ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -19,8 +19,18 @@
   }
 
   body {
-    @apply text-gray-800 bg-white;
-    font-family: var(--font-poppins), system-ui, sans-serif;
+    @apply text-slate-800;
+    font-family: var(--font-sans), system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-sans), system-ui, sans-serif;
+    letter-spacing: -0.03em;
   }
 
   main > * {
@@ -50,34 +60,36 @@
     animation-delay: 240ms;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-poppins), system-ui, sans-serif;
-    font-weight: 700;
+  ::selection {
+    background: rgba(15, 118, 110, 0.18);
+    color: #0f172a;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgba(15, 118, 110, 0.85);
+    outline-offset: 3px;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center gap-2 bg-electric text-white px-6 py-3 rounded-lg font-semibold text-sm
-           hover:bg-electric-dark transition-all duration-200 shadow-lg hover:shadow-electric/30 hover:-translate-y-0.5 active:translate-y-0;
+    @apply inline-flex items-center gap-2 rounded-full bg-electric px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-electric-dark hover:shadow-lg hover:shadow-electric/20 active:translate-y-0;
   }
 
   .btn-outline {
-    @apply inline-flex items-center gap-2 border-2 border-white text-white px-6 py-3 rounded-lg font-semibold text-sm
-           hover:bg-white hover:text-navy transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0;
+    @apply inline-flex items-center gap-2 rounded-full border border-white/30 px-6 py-3 text-sm font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-white hover:text-navy active:translate-y-0;
   }
 
   .btn-outline-navy {
-    @apply inline-flex items-center gap-2 border-2 border-electric text-electric px-6 py-3 rounded-lg font-semibold text-sm
-           hover:bg-electric hover:text-white transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0;
+    @apply inline-flex items-center gap-2 rounded-full border border-electric px-6 py-3 text-sm font-semibold text-electric transition-all duration-200 hover:-translate-y-0.5 hover:bg-electric hover:text-white active:translate-y-0;
   }
 
   .section-tag {
-    @apply inline-block text-electric text-xs font-semibold tracking-widest uppercase bg-electric/10 px-3 py-1 rounded-full mb-4;
+    @apply mb-4 inline-flex items-center rounded-full bg-electric/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.24em] text-electric;
   }
 
   .section-heading {
-    @apply text-3xl md:text-4xl font-bold text-navy leading-tight;
+    @apply text-3xl font-bold leading-tight text-navy md:text-4xl;
   }
 
   .card-hover {
@@ -85,23 +97,22 @@
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-electric to-blue-400 bg-clip-text text-transparent;
-  }
-
-  .animate-on-scroll {
-    @apply opacity-0;
-  }
-
-  .animated {
-    @apply animate-fade-up opacity-100;
+    @apply bg-gradient-to-r from-electric to-emerald-500 bg-clip-text text-transparent;
   }
 
   .animate-float-soft {
-    animation: float-soft 6s ease-in-out infinite;
+    animation: float-soft 8s ease-in-out infinite;
   }
 
   .animate-fade-down {
     animation: fade-down 260ms var(--anim-ease) both;
+  }
+
+  .surface-card {
+    background: rgba(255, 255, 255, 0.84);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: 0 24px 50px rgba(15, 23, 42, 0.08);
   }
 }
 
@@ -128,7 +139,8 @@
 }
 
 @keyframes float-soft {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -136,22 +148,23 @@
   }
 }
 
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-::-webkit-scrollbar-thumb {
-  background: #2563EB;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #1D4ED8;
+  background: #e5e7eb;
 }
 
-/* Noise texture overlay */
+::-webkit-scrollbar-thumb {
+  background: #0f766e;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #115e59;
+}
+
 .noise-bg::before {
   content: '';
   position: absolute;
@@ -163,7 +176,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;

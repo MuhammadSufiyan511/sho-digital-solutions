@@ -11,23 +11,23 @@ export default function SectionHeader({ tag, title, subtitle, center = false, li
     <div className={`mb-12 ${center ? 'text-center' : ''}`}>
       {tag && (
         <span
-          className={`inline-block text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full mb-4 ${
-            light ? 'bg-white/10 text-blue-200' : 'bg-electric/10 text-electric'
+          className={`inline-flex items-center rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] mb-4 ${
+            light ? 'bg-white/10 text-white/80' : 'bg-electric/10 text-electric'
           }`}
         >
           {tag}
         </span>
       )}
       <h2
-        className={`text-3xl md:text-4xl font-bold leading-tight ${
+        className={`text-3xl md:text-4xl font-bold leading-tight text-balance ${
           light ? 'text-white' : 'text-navy'
         }`}
         dangerouslySetInnerHTML={{ __html: title }}
       />
       {subtitle && (
         <p
-          className={`mt-4 text-lg leading-relaxed max-w-2xl ${center ? 'mx-auto' : ''} ${
-            light ? 'text-blue-200' : 'text-gray-500'
+          className={`mt-4 text-base md:text-lg leading-relaxed max-w-2xl ${center ? 'mx-auto' : ''} ${
+            light ? 'text-white/70' : 'text-slate-600'
           }`}
         >
           {subtitle}

@@ -1,69 +1,65 @@
-import { DollarSign, Zap, Globe, Headphones, Award, TrendingUp } from 'lucide-react'
+import { Award, Globe, Headphones, ShieldCheck, Sparkles, TrendingUp } from 'lucide-react'
 import SectionHeader from '@/components/ui/SectionHeader'
 
 const reasons = [
   {
-    icon: DollarSign,
-    title: 'Transparent Pricing',
-    description: 'No hidden fees, no surprises. You get clear quotes upfront and we stick to them.',
+    icon: ShieldCheck,
+    title: 'Clear pricing',
+    description: 'You get straightforward quotes, no hidden extras, and no vague scope creep.',
   },
   {
-    icon: Zap,
-    title: 'Fast Delivery',
-    description: 'Most projects are delivered in 2–6 weeks. We move fast without sacrificing quality.',
+    icon: Sparkles,
+    title: 'Thoughtful design',
+    description: 'The work feels polished without feeling over-designed or hard to use.',
   },
   {
     icon: Globe,
-    title: 'Local Market Insight',
-    description: 'We understand regional buyer behavior and build strategies tailored to your market.',
+    title: 'Market awareness',
+    description: 'We understand how to speak to local and international customers with confidence.',
   },
   {
     icon: Headphones,
-    title: 'Ongoing Support',
-    description: 'We don\'t disappear after launch. Our team is always a message away when you need us.',
+    title: 'Reliable support',
+    description: 'We stay available after launch so your team never feels left on its own.',
   },
   {
     icon: Award,
-    title: 'Proven Track Record',
-    description: '150+ successful projects across industries with measurable, documented results.',
+    title: 'Proven delivery',
+    description: 'We have a history of shipping work that supports real business goals.',
   },
   {
     icon: TrendingUp,
-    title: 'Growth-Focused',
-    description: 'Every decision we make — design, copy, tech — is aimed at growing your revenue.',
+    title: 'Growth mindset',
+    description: 'Every choice is made with your long-term brand and revenue in mind.',
   },
 ]
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-24 relative overflow-hidden" style={{ backgroundColor: '#0A1F44' }}>
-      {/* Background */}
-      <div
-        className="absolute top-0 right-0 w-96 h-96 rounded-full blur-[120px] opacity-20"
-        style={{ background: 'radial-gradient(circle, #2563EB, transparent)' }}
-      />
+    <section className="relative overflow-hidden bg-navy py-24">
+      <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-electric/15 blur-[120px]" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
           tag="Why SHO Digital"
-          title="The Agency That Treats<br/>Your Business Like Its Own"
-          subtitle="We measure our success by your success. Here's what sets us apart from the rest."
+          title="A partner that cares about how your business actually shows up online."
+          subtitle="We keep the work calm, clear, and accountable so the end result feels dependable rather than flashy."
           center
           light
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {reasons.map(({ icon: Icon, title, description }) => (
-            <div
+            <article
               key={title}
-              className="group bg-white/5 border border-white/10 rounded-xl p-6 hover:bg-white/10 hover:border-electric/40 transition-all duration-300 hover:-translate-y-1"
+              className="rounded-[1.5rem] border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-electric/30 hover:bg-white/10"
             >
-              <div className="w-12 h-12 bg-electric/20 rounded-xl flex items-center justify-center mb-5 group-hover:bg-electric transition-colors duration-300">
-                <Icon className="w-6 h-6 text-electric group-hover:text-white transition-colors duration-300" />
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-electric/15 text-electric">
+                <Icon className="h-6 w-6" />
               </div>
-              <h3 className="text-white font-bold text-lg mb-2">{title}</h3>
-              <p className="text-blue-200 text-sm leading-relaxed">{description}</p>
-            </div>
+              <h3 className="mt-5 text-lg font-bold text-white">{title}</h3>
+              <p className="mt-3 text-sm leading-7 text-white/70">{description}</p>
+            </article>
           ))}
         </div>
       </div>

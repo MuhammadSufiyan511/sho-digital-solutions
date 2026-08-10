@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation'
 import { ArrowLeft, Clock, User, Calendar } from 'lucide-react'
 import { blogPosts } from '@/lib/data'
 import CTASection from '@/components/sections/CTASection'
+import PageHero from '@/components/sections/PageHero'
 import Badge from '@/components/ui/Badge'
 
 interface Props {
@@ -63,28 +64,21 @@ export default function BlogDetailPage({ params }: Props) {
 
   return (
     <>
-      <section className="pt-32 pb-16 bg-navy relative overflow-hidden" style={{ backgroundColor: '#0A1F44' }}>
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <Link href="/blog" className="inline-flex items-center gap-2 text-blue-300 text-sm hover:text-white mb-8 transition-colors">
-            <ArrowLeft className="w-4 h-4" /> Back to Blog
-          </Link>
-          <Badge variant="blue">{post.category}</Badge>
-          <h1 className="text-3xl sm:text-4xl font-bold text-white mt-4 mb-6 leading-tight">{post.title}</h1>
-          <div className="flex items-center gap-5 text-blue-300 text-sm">
-            <span className="flex items-center gap-1.5"><User className="w-4 h-4" />{post.author}</span>
-            <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" />{post.date}</span>
-            <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" />{post.readTime}</span>
-          </div>
-        </div>
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 40" fill="none" className="w-full">
-            <path d="M0 40L1440 40L1440 10C1200 35 960 0 720 15C480 30 240 0 0 10L0 40Z" fill="white" />
-          </svg>
-        </div>
-      </section>
+      <PageHero
+        tag="Blog"
+        title={post.title}
+        subtitle={post.excerpt}
+        chips={[post.category, post.readTime, post.date]}
+        panelTitle="Article preview"
+        panelBody="A clean, readable feature header that gives the article room to breathe before the main content begins."
+        panelStats={[post.author, 'Insight', 'Practical']}
+      />
 
       <section className="py-20 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+          <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 mb-8 transition-colors">
+            <ArrowLeft className="w-4 h-4" /> Back to Blog
+          </Link>
           <div className="relative h-72 md:h-96 rounded-2xl overflow-hidden mb-12 shadow-xl">
             <Image src={post.image} alt={post.title} fill className="object-cover" />
           </div>

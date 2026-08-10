@@ -15,9 +15,9 @@ interface ButtonProps {
 }
 
 const variants = {
-  primary: 'bg-electric text-white hover:bg-electric-dark shadow-lg hover:shadow-electric/30',
-  outline: 'border-2 border-white text-white hover:bg-white hover:text-navy',
-  'outline-navy': 'border-2 border-electric text-electric hover:bg-electric hover:text-white',
+  primary: 'bg-electric text-white hover:bg-electric-dark shadow-lg shadow-electric/15',
+  outline: 'border border-white/30 text-white hover:bg-white hover:text-navy',
+  'outline-navy': 'border border-electric text-electric hover:bg-electric hover:text-white',
   ghost: 'text-electric hover:bg-electric/10',
 }
 
@@ -39,7 +39,7 @@ export default function Button({
   disabled = false,
   external = false,
 }: ButtonProps) {
-  const baseClasses = `inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 ${variants[variant]} ${sizes[size]} ${className} ${disabled ? 'opacity-50 cursor-not-allowed' : ''}`
+  const baseClasses = `inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-2 focus-visible:ring-electric/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${variants[variant]} ${sizes[size]} ${className} ${disabled ? 'cursor-not-allowed opacity-50' : ''}`
 
   const content = (
     <>
