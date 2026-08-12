@@ -66,26 +66,26 @@ export default function PortfolioPage({ searchParams }: PortfolioPageProps) {
         panelStats={['Trust', 'Speed', 'Conversion']}
       />
 
-      <section className="py-24">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-12 flex flex-wrap justify-center gap-3">
+          <div className="mb-10 flex flex-wrap justify-start gap-3 overflow-x-auto pb-2 sm:mb-12 sm:justify-center sm:pb-0">
             {industries.map((industry) => (
               <span
                 key={industry}
-                className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600"
+                className="whitespace-nowrap rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600"
               >
                 {industry}
               </span>
             ))}
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
             {visibleProjects.map((project) => (
               <article
                 key={project.id}
                 className="group overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
               >
-                <div className="relative h-56 overflow-hidden bg-slate-100">
+                <div className="relative h-48 overflow-hidden bg-slate-100 sm:h-52 lg:h-56">
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -137,7 +137,7 @@ export default function PortfolioPage({ searchParams }: PortfolioPageProps) {
           </div>
 
           {totalPages > 1 && (
-            <div className="mt-12 flex flex-col items-center gap-4">
+            <div className="mt-10 flex flex-col items-center gap-4 sm:mt-12">
               <div className="text-sm text-slate-500">
                 Showing {start + 1}-{Math.min(start + itemsPerPage, orderedProjects.length)} of {orderedProjects.length} projects
               </div>

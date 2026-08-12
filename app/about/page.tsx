@@ -1,14 +1,14 @@
 import type { Metadata } from 'next'
-import Image from 'next/image'
 import { Award, CheckCircle2, HeartHandshake, ShieldCheck, Target } from 'lucide-react'
 import CTASection from '@/components/sections/CTASection'
 import PageHero from '@/components/sections/PageHero'
 import SectionHeader from '@/components/ui/SectionHeader'
+import TeamMembersSection from '@/components/sections/TeamMembersSection'
 
 export const metadata: Metadata = {
   title: 'About Us',
   description:
-    'Learn how SHO Digital Solutions works, what we value, and who helps shape the team behind each project.',
+    'Learn how SixByte Technologies works, what we value, and who helps shape the team behind each project.',
 }
 
 const values = [
@@ -61,42 +61,43 @@ const team = [
   {
     initials: 'MS',
     name: 'Muhammad Sufiyan',
-    role: 'Full Stack Engineer',
-    bio: 'Full Stack Developer specializing in MERN and MySQL, focused on building scalable SaaS platforms, e-commerce systems, dashboards, and AI-powered applications. He combines modern frontend development with robust backend architecture to create efficient, user-friendly digital solutions.',
+    role: 'Full Stack Developer',
+    bio: 'Specializes in MERN, MySQL, and AI-enabled web applications with a focus on scalable business products.',
     image: '/assets/MuhammadSufiyan.webp',
   },
   {
     initials: 'ZY',
-    name: 'Zohaib Younis',
-    role: 'Full Stack Engineer',
-    bio: 'Full Stack Developer driven by building software that matters. He bridges elegant front-end design with robust back-end architecture, and brings a detail-oriented approach to SaaS platforms, Shopify stores, and business websites.',
+    name: 'Zohaib Younas',
+    role: 'Full Stack Developer',
+    bio: 'Builds polished websites and products with a strong eye for structure, speed, and user experience.',
     image: '/assets/ZohaibYounis.webp',
   },
   {
     initials: 'AW',
     name: 'Abdul Wahab',
-    role: 'Full Stack Engineer',
-    bio: 'Works across front-end and back-end implementation to keep launches smooth and technically solid.',
+    role: 'Mobile Application Developer',
+    bio: 'Creates smooth mobile experiences and handles app flows with a focus on usability and reliability.',
+    image: '/assets/AbdulWahab.webp',
   },
   {
     initials: 'AH',
     name: 'Abid Hussain',
-    role: 'Full Stack Engineer',
-    bio: 'Full Stack Engineer with 1.5+ years of experience building scalable web apps and SaaS platforms using Node.js and React.js. Coming from an IT background, he ships clean, optimized code with AI-assisted workflows while keeping architecture and quality strong. He enjoys turning ideas into products that actually work.',
+    role: 'DevOps Engineer',
+    bio: 'Keeps deployment pipelines, infrastructure, and release processes stable and efficient.',
     image: '/assets/AbidHussain.webp',
   },
   {
     initials: 'MU',
     name: 'Muhammad Umar',
     role: 'AI Engineer',
-    bio: 'Software engineer specializing in AI and machine learning, with experience in computer vision, deep learning, backend systems, and scalable ML pipelines.',
+    bio: 'Focuses on AI, machine learning, computer vision, and practical backend integration for products.',
     image: '/assets/MuhammadUmer.webp',
   },
   {
     initials: 'HA',
     name: 'Abdul Haq',
-    role: 'AI Engineer',
-    bio: 'Builds AI-assisted systems and internal tools that make product experiences feel more responsive and useful.',
+    role: 'Business Developer',
+    bio: 'Connects client goals with the right solution and helps shape clear, practical next steps.',
   },
 ]
 
@@ -113,16 +114,16 @@ export default function AboutPage() {
       <PageHero
         tag="About our team"
         title="A small team with a clear goal: help businesses show up online with more clarity and confidence."
-        subtitle="SHO Digital Solutions was built around one idea: your website should feel like a trustworthy extension of your business. We care about the tone, the structure, the details, and the way everything comes together to support real growth."
+        subtitle="SixByte Technologies was built around one idea: your website should feel like a trustworthy extension of your business. We care about the tone, the structure, the details, and the way everything comes together to support real growth."
         chips={['Strategy', 'Design', 'Build']}
         panelTitle="How we work"
         panelBody="We keep the process collaborative and the result practical so the final site feels useful, not inflated."
         panelStats={['Human', 'Clear', 'Polished']}
       />
 
-      <section className="py-20">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8">
-          <div className="surface-card rounded-[2rem] p-8">
+      <section className="py-16 sm:py-20">
+        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8">
+          <div className="surface-card rounded-[1.5rem] p-6 sm:rounded-[2rem] sm:p-8">
             <SectionHeader
               tag="Our mission"
               title="Make business websites feel more human, more useful, and more trusted."
@@ -168,7 +169,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-white">
+      <section className="py-16 sm:py-20 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             tag="What we value"
@@ -177,7 +178,7 @@ export default function AboutPage() {
             center
           />
 
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
             {values.map(({ icon: Icon, title, description }) => (
               <article key={title} className="surface-card rounded-[1.75rem] p-6">
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-electric/10 text-electric">
@@ -191,7 +192,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             tag="Our story"
@@ -214,7 +215,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-white">
+      <section className="py-16 sm:py-20 bg-white">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             tag="Our team"
@@ -223,40 +224,11 @@ export default function AboutPage() {
             center
           />
 
-          <div className="grid grid-cols-3 gap-3 md:grid-cols-3 md:gap-6">
-            {team.map((member) => (
-              <article key={member.name} className="surface-card rounded-[1.5rem] p-3 md:p-6">
-                <div className="overflow-hidden rounded-[1rem] border border-slate-200 bg-slate-100 md:rounded-[1.5rem]">
-                  {member.image ? (
-                    <div className="relative aspect-[4/3]">
-                      <Image src={member.image} alt={member.name} fill className="object-cover" />
-                    </div>
-                  ) : (
-                    <div className="flex aspect-[4/3] items-center justify-center bg-[radial-gradient(circle_at_top_left,rgba(15,118,110,0.14),transparent_40%),linear-gradient(135deg,#f8fafc,#eef2f7)]">
-                      <div className="flex h-24 w-24 items-center justify-center rounded-[2rem] border border-white/80 bg-white/90 text-2xl font-bold text-navy shadow-lg">
-                        {member.initials}
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <div className="mt-3 flex items-start gap-3 md:mt-5 md:gap-4">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-navy text-xs font-bold text-white md:h-12 md:w-12 md:text-sm">
-                    {member.initials}
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-bold leading-tight text-navy md:text-base">{member.name}</h3>
-                    <p className="text-[11px] text-electric md:text-sm">{member.role}</p>
-                  </div>
-                </div>
-                <p className="mt-3 text-[11px] leading-5 text-slate-600 md:mt-4 md:text-sm md:leading-7">{member.bio}</p>
-              </article>
-            ))}
-          </div>
+          <TeamMembersSection team={team} />
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="py-16 sm:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="surface-card grid gap-8 rounded-[2rem] p-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
             <div>

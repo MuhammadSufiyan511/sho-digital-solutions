@@ -6,7 +6,7 @@ import PageHero from '@/components/sections/PageHero'
 
 export const metadata: Metadata = {
   title: 'Client Testimonials',
-  description: 'Read what our clients say about working with SHO Digital Solutions.',
+  description: 'Read what our clients say about working with SixByte Technologies.',
 }
 
 export default function TestimonialsPage() {
@@ -22,13 +22,13 @@ export default function TestimonialsPage() {
         panelStats={['Responsive', 'Thoughtful', 'Reliable']}
       />
 
-      <section className="py-24 bg-white">
+      <section className="py-16 bg-white sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
             {testimonials.map((t) => (
               <div
                 key={t.id}
-                className="bg-white rounded-2xl border border-gray-100 p-7 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 flex flex-col"
+                className="bg-white rounded-[1.25rem] border border-gray-100 p-5 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 flex flex-col sm:rounded-2xl sm:p-7"
               >
                 <Quote className="w-8 h-8 text-electric/20 mb-4 flex-shrink-0" />
                 <p className="text-gray-600 text-sm leading-relaxed flex-1 mb-6">&ldquo;{t.content}&rdquo;</p>

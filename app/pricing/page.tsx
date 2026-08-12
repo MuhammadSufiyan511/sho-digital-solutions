@@ -47,15 +47,15 @@ export default function PricingPage() {
         panelStats={['Starter', 'Growth', 'Enterprise']}
       />
 
-      <section className="py-24 bg-white">
+      <section className="py-16 bg-white sm:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3 items-stretch">
             {pricingPlans.map((plan) => (
               <div
                 key={plan.id}
                 className={`relative rounded-2xl flex flex-col ${
                   plan.highlighted
-                    ? 'bg-navy text-white shadow-2xl scale-105 z-10'
+                    ? 'bg-navy text-white shadow-2xl z-10 lg:scale-105'
                     : 'bg-white border border-gray-100 shadow-sm'
                 }`}
                 style={plan.highlighted ? { backgroundColor: '#0A1F44' } : undefined}
@@ -68,7 +68,7 @@ export default function PricingPage() {
                   </div>
                 )}
 
-                <div className="p-8 flex-1">
+                <div className="p-6 flex-1 sm:p-8">
                   <h2 className={`font-bold text-xl mb-1 ${plan.highlighted ? 'text-white' : 'text-navy'}`}>
                     {plan.name}
                   </h2>
@@ -99,7 +99,7 @@ export default function PricingPage() {
                   </ul>
                 </div>
 
-                <div className="p-8 pt-0">
+                <div className="p-6 pt-0 sm:p-8 sm:pt-0">
                   <Link
                     href="/contact"
                     className={`w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg font-bold text-sm transition-all hover:-translate-y-0.5 ${
@@ -121,9 +121,9 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-gray-50">
+      <section className="py-16 bg-gray-50 sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <SectionHeader tag="FAQ" title="Questions about <span style='color:#0f766e'>pricing</span>" center />
+          <SectionHeader tag="FAQ" title="Questions about pricing" center />
           <div className="space-y-4">
             {faqs.map((faq) => (
               <div key={faq.q} className="bg-white rounded-xl border border-gray-100 p-6">

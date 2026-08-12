@@ -221,7 +221,7 @@ export const testimonials: Testimonial[] = [
     role: 'Owner',
     company: 'Saveur Restaurant',
     content:
-      'SHO Digital helped us present our restaurant more professionally online. Reservations improved quickly, and the booking experience feels much smoother for our guests.',
+      'SixByte Technologies helped us present our restaurant more professionally online. Reservations improved quickly, and the booking experience feels much smoother for our guests.',
     rating: 5,
     avatar: 'SR',
   },
@@ -345,7 +345,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       'A faster site does more than improve metrics. It changes how trustworthy and usable your brand feels.',
     date: 'December 12, 2024',
-    author: 'SHO Digital Team',
+    author: 'SixByte Team',
     category: 'Performance',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop',
     readTime: '5 min read',
@@ -356,7 +356,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       'A practical look at how local search can bring the right people to your business before they find a competitor.',
     date: 'November 28, 2024',
-    author: 'SHO Digital Team',
+    author: 'SixByte Team',
     category: 'SEO',
     image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=800&auto=format&fit=crop',
     readTime: '8 min read',
@@ -367,7 +367,7 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       'WhatsApp can be a strong contact point when it is integrated with a clear message and simple flow.',
     date: 'November 10, 2024',
-    author: 'SHO Digital Team',
+    author: 'SixByte Team',
     category: 'Lead Generation',
     image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&auto=format&fit=crop',
     readTime: '6 min read',

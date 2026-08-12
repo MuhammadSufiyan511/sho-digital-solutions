@@ -9,7 +9,7 @@ import SectionHeader from '@/components/ui/SectionHeader'
 
 export const metadata: Metadata = {
   title: 'Services',
-  description: 'Explore the web design, development, and support services offered by SHO Digital Solutions.',
+  description: 'Explore the web design, development, and support services offered by SixByte Technologies.',
 }
 
 const serviceIcons: Record<string, ComponentType<{ className?: string }>> = {
@@ -34,9 +34,9 @@ export default function ServicesPage() {
         panelStats={['Design', 'Build', 'Support']}
       />
 
-      <section className="py-24">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
             {services.map((service) => {
               const Icon = serviceIcons[service.id] ?? LayoutPanelTop
               return (
@@ -76,7 +76,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="bg-white py-16">
+      <section className="bg-white py-14 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
           <SectionHeader
             tag="Our promise"
@@ -85,7 +85,7 @@ export default function ServicesPage() {
             center
           />
 
-          <div className="grid gap-6 sm:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {[
               { title: 'Clear scope', desc: 'A defined process that avoids confusion and protects the timeline.' },
               { title: 'Transparent pricing', desc: 'Simple estimates with no hidden extras or unclear add-ons.' },

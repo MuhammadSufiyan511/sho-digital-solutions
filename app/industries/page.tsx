@@ -34,9 +34,9 @@ export default function IndustriesPage() {
         panelStats={['Booking', 'Lead gen', 'Authority']}
       />
 
-      <section className="py-24">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
             {industries.map((industry) => {
               const Icon = industryIcons[industry.id] ?? ShoppingBag
               return (
@@ -68,7 +68,7 @@ export default function IndustriesPage() {
         </div>
       </section>
 
-      <section className="bg-white py-16">
+      <section className="bg-white py-14 sm:py-16">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <SectionHeader
             tag="Not listed?"

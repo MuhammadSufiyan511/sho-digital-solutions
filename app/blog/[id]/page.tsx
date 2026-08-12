@@ -74,12 +74,12 @@ export default function BlogDetailPage({ params }: Props) {
         panelStats={[post.author, 'Insight', 'Practical']}
       />
 
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white sm:py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 mb-8 transition-colors">
             <ArrowLeft className="w-4 h-4" /> Back to Blog
           </Link>
-          <div className="relative h-72 md:h-96 rounded-2xl overflow-hidden mb-12 shadow-xl">
+          <div className="relative mb-10 h-56 overflow-hidden rounded-2xl shadow-xl sm:h-72 md:mb-12 md:h-96">
             <Image src={post.image} alt={post.title} fill className="object-cover" />
           </div>
 
@@ -97,7 +97,7 @@ export default function BlogDetailPage({ params }: Props) {
           {related.length > 0 && (
             <div className="mt-16 pt-12 border-t border-gray-100">
               <h2 className="text-xl font-bold text-navy mb-6">Related Articles</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 {related.map((p) => (
                   <Link key={p.id} href={`/blog/${p.id}`} className="group block">
                     <div className="relative h-40 rounded-xl overflow-hidden mb-3">

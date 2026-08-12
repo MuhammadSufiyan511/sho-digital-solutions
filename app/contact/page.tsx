@@ -95,8 +95,8 @@ export default function ContactPage() {
         panelStats={['Reply fast', 'No pressure', 'Clear next step']}
       />
 
-      <section className="py-24">
-        <div className="mx-auto grid max-w-7xl gap-14 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
+      <section className="py-16 sm:py-24">
+        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 lg:px-8">
           <div className="space-y-8">
             <div>
               <h2 className="text-2xl font-bold text-navy">Reach out directly</h2>
@@ -112,7 +112,7 @@ export default function ContactPage() {
                 { icon: Phone, label: 'Phone', value: '03345856255', href: 'tel:03345856255' },
                 { icon: MapPin, label: 'Location', value: 'Islamabad, Pakistan', href: '#' },
               ].map(({ icon: Icon, label, value, href }) => (
-                <a key={label} href={href} className="surface-card flex items-start gap-4 rounded-[1.5rem] p-5 transition-all hover:-translate-y-0.5">
+                <a key={label} href={href} className="surface-card flex items-start gap-4 rounded-[1.25rem] p-4 transition-all hover:-translate-y-0.5 sm:rounded-[1.5rem] sm:p-5">
                   <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-electric/10 text-electric">
                     <Icon className="h-5 w-5" />
                   </div>
@@ -134,7 +134,7 @@ export default function ContactPage() {
               Chat on WhatsApp
             </a>
 
-            <div className="surface-card rounded-[1.75rem] p-6">
+            <div className="surface-card rounded-[1.25rem] p-5 sm:rounded-[1.75rem] sm:p-6">
               <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">What to expect</p>
               <ul className="mt-4 space-y-3 text-sm text-slate-600">
                 {[
@@ -153,7 +153,7 @@ export default function ContactPage() {
 
           <div>
             {submitted ? (
-              <div className="surface-card rounded-[2rem] p-10 text-center">
+              <div className="surface-card rounded-[1.5rem] p-6 text-center sm:rounded-[2rem] sm:p-10">
                 <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
                   <CheckCircle2 className="h-8 w-8" />
                 </div>
@@ -166,7 +166,7 @@ export default function ContactPage() {
                 </button>
               </div>
             ) : (
-              <div className="surface-card rounded-[2rem] p-8 sm:p-10">
+              <div className="surface-card rounded-[1.5rem] p-6 sm:rounded-[2rem] sm:p-10">
                 <h2 className="text-2xl font-bold text-navy">Book a free consultation</h2>
                 <p className="mt-2 text-sm leading-7 text-slate-600">
                   Tell us a bit about the business, and we&apos;ll take it from there.

@@ -1,4 +1,5 @@
 import { CheckCircle2 } from 'lucide-react'
+import { Reveal, Stagger, StaggerItem } from '@/components/animations/Motion'
 import SectionHeader from '@/components/ui/SectionHeader'
 
 const steps = [
@@ -34,18 +35,20 @@ const steps = [
 
 export default function ProcessSection() {
   return (
-    <section className="bg-white py-24">
+    <section className="bg-white py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeader
-          tag="Our process"
-          title="A straightforward way to move from idea to polished launch."
-          subtitle="The experience should feel organized and reassuring from the first conversation to the final handoff."
-          center
-        />
+        <Reveal>
+          <SectionHeader
+            tag="Our process"
+            title="A straightforward way to move from idea to polished launch."
+            subtitle="The experience should feel organized and reassuring from the first conversation to the final handoff."
+            center
+          />
+        </Reveal>
 
-        <div className="grid gap-6 lg:grid-cols-4">
+        <Stagger className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
           {steps.map((step) => (
-            <article key={step.number} className="surface-card rounded-[1.75rem] p-6">
+            <StaggerItem key={step.number} className="surface-card rounded-[1.5rem] p-5 sm:rounded-[1.75rem] sm:p-6">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-electric text-sm font-bold text-white">
                 {step.number}
               </div>
@@ -59,9 +62,9 @@ export default function ProcessSection() {
                   </li>
                 ))}
               </ul>
-            </article>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   )

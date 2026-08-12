@@ -9,7 +9,7 @@ import Badge from '@/components/ui/Badge'
 
 export const metadata: Metadata = {
   title: 'Blog',
-  description: 'Digital marketing, web development, and growth tips from the SHO Digital Solutions team.',
+  description: 'Digital marketing, web development, and growth tips from the SixByte Technologies team.',
 }
 
 const categories = ['All', 'Performance', 'SEO', 'Lead Generation', 'E-commerce', 'Strategy']
@@ -29,12 +29,15 @@ export default function BlogPage() {
         panelStats={['Useful', 'Practical', 'Clear']}
       />
 
-      <section className="py-24 bg-white">
+      <section className="py-16 bg-white sm:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Category Filter */}
-          <div className="flex flex-wrap gap-2 mb-12 justify-center">
+          <div className="mb-10 flex flex-wrap justify-start gap-2 overflow-x-auto pb-2 sm:mb-12 sm:justify-center sm:pb-0">
             {categories.map((cat) => (
-              <span key={cat} className="px-4 py-1.5 text-sm rounded-full border border-gray-200 text-gray-600 hover:bg-electric hover:text-white hover:border-electric transition-colors cursor-pointer">
+              <span
+                key={cat}
+                className="whitespace-nowrap rounded-full border border-gray-200 px-4 py-1.5 text-sm text-gray-600 transition-colors cursor-pointer hover:bg-electric hover:text-white hover:border-electric"
+              >
                 {cat}
               </span>
             ))}
@@ -43,11 +46,11 @@ export default function BlogPage() {
           {/* Featured Post */}
           {featured && (
             <Link href={`/blog/${featured.id}`} className="group block mb-16">
-              <div className="grid lg:grid-cols-2 gap-8 bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl transition-all duration-300">
-                <div className="relative h-64 lg:h-auto overflow-hidden">
+              <div className="grid overflow-hidden rounded-2xl border border-gray-100 bg-gray-50 transition-all duration-300 hover:shadow-xl lg:grid-cols-2">
+                <div className="relative h-56 overflow-hidden sm:h-64 lg:h-auto">
                   <Image src={featured.image} alt={featured.title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
-                <div className="p-8 lg:p-10 flex flex-col justify-center">
+                <div className="flex flex-col justify-center p-6 sm:p-8 lg:p-10">
                   <div className="flex items-center gap-3 mb-4">
                     <Badge variant="blue">{featured.category}</Badge>
                     <span className="text-xs text-gray-400">Featured</span>
@@ -68,7 +71,7 @@ export default function BlogPage() {
           )}
 
           {/* Other Posts */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             {rest.map((post) => (
               <Link key={post.id} href={`/blog/${post.id}`} className="group bg-white rounded-2xl border border-gray-100 overflow-hidden hover:-translate-y-1.5 hover:shadow-xl transition-all duration-300">
                 <div className="relative h-52 overflow-hidden">
@@ -95,17 +98,17 @@ export default function BlogPage() {
       </section>
 
       {/* Newsletter */}
-      <section className="py-16 bg-gray-50">
+      <section className="py-14 bg-gray-50 sm:py-16">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl font-bold text-navy mb-3">Get Growth Tips in Your Inbox</h2>
           <p className="text-gray-500 text-sm mb-6">Weekly insights on web development, SEO, and digital strategy — no fluff.</p>
-          <div className="flex gap-3 max-w-md mx-auto">
+          <div className="mx-auto flex max-w-md flex-col gap-3 sm:flex-row">
             <input
               type="email"
               placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-lg border border-gray-200 text-sm outline-none focus:border-electric focus:ring-2 focus:ring-electric/10"
+              className="flex-1 rounded-lg border border-gray-200 px-4 py-3 text-sm outline-none focus:border-electric focus:ring-2 focus:ring-electric/10"
             />
-            <button className="bg-electric text-white px-5 py-3 rounded-lg text-sm font-semibold hover:bg-electric-dark transition-colors flex-shrink-0">
+            <button className="flex-shrink-0 rounded-lg bg-electric px-5 py-3 text-sm font-semibold text-white transition-colors hover:bg-electric-dark">
               Subscribe
             </button>
           </div>

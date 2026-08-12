@@ -1,4 +1,5 @@
 import { Award, Globe, Headphones, ShieldCheck, Sparkles, TrendingUp } from 'lucide-react'
+import { Reveal, Stagger, StaggerItem } from '@/components/animations/Motion'
 import SectionHeader from '@/components/ui/SectionHeader'
 
 const reasons = [
@@ -36,21 +37,23 @@ const reasons = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="relative overflow-hidden bg-navy py-24">
+    <section className="relative overflow-hidden bg-navy py-16 sm:py-24">
       <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-electric/15 blur-[120px]" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <SectionHeader
-          tag="Why SHO Digital"
-          title="A partner that cares about how your business actually shows up online."
-          subtitle="We keep the work calm, clear, and accountable so the end result feels dependable rather than flashy."
-          center
-          light
-        />
+        <Reveal>
+          <SectionHeader
+            tag="Why SixByte"
+            title="A partner that cares about how your business actually shows up online."
+            subtitle="We keep the work calm, clear, and accountable so the end result feels dependable rather than flashy."
+            center
+            light
+          />
+        </Reveal>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <Stagger className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {reasons.map(({ icon: Icon, title, description }) => (
-            <article
+            <StaggerItem
               key={title}
               className="rounded-[1.5rem] border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-electric/30 hover:bg-white/10"
             >
@@ -59,9 +62,9 @@ export default function WhyChooseUs() {
               </div>
               <h3 className="mt-5 text-lg font-bold text-white">{title}</h3>
               <p className="mt-3 text-sm leading-7 text-white/70">{description}</p>
-            </article>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   )

@@ -95,18 +95,18 @@ export default function ProjectDetailPage({ params }: Props) {
         panelStats={['Strategy', 'Build', 'Outcome']}
       />
 
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-white sm:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/portfolio" className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 mb-8 transition-colors">
             <ArrowLeft className="w-4 h-4" /> Back to Portfolio
           </Link>
           {/* Featured Image */}
-          <div className="relative h-80 md:h-[480px] rounded-2xl overflow-hidden mb-16 shadow-2xl">
+          <div className="relative mb-12 h-64 overflow-hidden rounded-2xl shadow-2xl sm:h-80 md:mb-16 md:h-[480px]">
             <Image src={project.image} alt={project.title} fill className="object-cover" />
           </div>
 
-          <div className="grid lg:grid-cols-3 gap-12">
-            <div className="lg:col-span-2 space-y-10">
+          <div className="grid gap-10 lg:grid-cols-3">
+            <div className="space-y-10 lg:col-span-2">
               <div>
                 <h2 className="text-navy font-bold text-2xl mb-4">The Challenge</h2>
                 <p className="text-gray-500 leading-relaxed">{details.challenge}</p>
@@ -160,9 +160,9 @@ export default function ProjectDetailPage({ params }: Props) {
           </div>
 
           {related.length > 0 && (
-            <div className="mt-20 pt-16 border-t border-gray-100">
+            <div className="mt-16 border-t border-gray-100 pt-12 sm:mt-20 sm:pt-16">
               <h2 className="text-navy font-bold text-2xl mb-8">Similar Projects</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 {related.map((p) => (
                   <Link key={p.id} href={`/portfolio/${p.id}`} className="group bg-gray-50 rounded-xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all">
                     <div className="relative h-40 overflow-hidden">

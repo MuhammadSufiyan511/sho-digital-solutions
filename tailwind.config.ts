@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
+  darkMode: 'class',
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -9,15 +10,35 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        card: 'hsl(var(--card))',
+        'card-foreground': 'hsl(var(--card-foreground))',
+        muted: 'hsl(var(--muted))',
+        'muted-foreground': 'hsl(var(--muted-foreground))',
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        primary: {
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
+        },
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
+        },
         navy: {
-          DEFAULT: '#0f172a',
-          light: '#1e293b',
-          dark: '#020617',
+          DEFAULT: 'hsl(var(--navy))',
+          light: 'hsl(var(--navy))',
+          dark: 'hsl(var(--navy))',
         },
         electric: {
-          DEFAULT: '#0f766e',
-          light: '#14b8a6',
-          dark: '#115e59',
+          DEFAULT: 'hsl(var(--electric))',
+          light: 'hsl(var(--electric))',
+          dark: 'hsl(var(--electric))',
         },
       },
       fontFamily: {

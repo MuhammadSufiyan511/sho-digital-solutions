@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, Mail, Phone, MapPin, MessageCircle, Linkedin, Instagram, Facebook } from 'lucide-react'
-import logo from '../../public/assets/logo.webp'
 
 const serviceLinks = [
   { label: 'Website Development', href: '/services#web-dev' },
@@ -51,15 +50,21 @@ export default function Footer() {
       </div>
 
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <Link href="/" className="flex items-center gap-3">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10">
-                <Image src={logo} alt="SHO Digital Solutions" className="h-8 w-8 object-contain" />
+                <Image
+                  src="/assets/SixByte_standalone.webp"
+                  alt="SixByte Technologies"
+                  width={44}
+                  height={44}
+                  className="h-9 w-9 object-contain"
+                />
               </div>
               <div>
-                <span className="block text-sm font-extrabold tracking-[0.24em] uppercase">SHO Digital</span>
-                <span className="block text-xs font-medium tracking-[0.18em] text-white/70 uppercase">Solutions</span>
+                <span className="block text-sm font-extrabold tracking-[0.24em] uppercase">SixByte</span>
+                <span className="block text-xs font-medium tracking-[0.18em] text-white/70 uppercase">Technologies</span>
               </div>
             </Link>
             <p className="mt-5 text-sm leading-7 text-white/70">
@@ -146,9 +151,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm text-white/50 md:flex-row md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} SHO Digital Solutions. All rights reserved.</p>
-          <div className="flex gap-6">
+        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-8 text-center text-sm text-white/50 md:flex-row md:items-center md:justify-between md:text-left">
+          <p>© {new Date().getFullYear()} SixByte Technologies. All rights reserved.</p>
+          <div className="flex flex-wrap justify-center gap-4 md:justify-end md:gap-6">
             <a href="#" className="transition-colors hover:text-white">
               Privacy Policy
             </a>

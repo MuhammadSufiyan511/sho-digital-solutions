@@ -13,11 +13,11 @@ const plusJakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | SHO Digital Solutions',
-    default: 'SHO Digital Solutions | Smart Websites for Growing Businesses',
+    template: 'SixByte Technologies | %s',
+    default: 'SixByte Technologies',
   },
   description:
-    'SHO Digital Solutions creates polished, high-converting websites and digital experiences for businesses that want to look credible and grow with confidence.',
+    'SixByte Technologies creates polished, high-converting websites and digital experiences for businesses that want to look credible and grow with confidence.',
   keywords: [
     'web development',
     'digital agency',
@@ -25,33 +25,33 @@ export const metadata: Metadata = {
     'website design',
     'e-commerce',
     'SEO',
-    'SHO Digital Solutions',
+    'SixByte Technologies',
   ],
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://shodigital.com',
-    siteName: 'SHO Digital Solutions',
-    title: 'SHO Digital Solutions | Smart Websites for Growing Businesses',
+    siteName: 'SixByte Technologies',
+    title: 'SixByte Technologies | Smart Websites for Growing Businesses',
     description:
       'We build credible digital experiences that help businesses win trust, convert better, and grow with clarity.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SHO Digital Solutions',
+    title: 'SixByte Technologies',
     description: 'Smart websites for growing businesses.',
   },
   icons: {
-    icon: '/assets/logo.webp',
-    shortcut: '/assets/logo.webp',
-    apple: '/assets/logo.webp',
+    icon: '/assets/SixByte_standalone.webp',
+    shortcut: '/assets/SixByte_standalone.webp',
+    apple: '/assets/SixByte_standalone.webp',
   },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={plusJakarta.variable}>
-      <body className="antialiased">
+    <html lang="en" className={plusJakarta.variable} suppressHydrationWarning>
+      <body className="antialiased transition-colors duration-300">
         <Navbar />
         <main>{children}</main>
         <Footer />
