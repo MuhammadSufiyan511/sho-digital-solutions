@@ -42,9 +42,9 @@ export const metadata: Metadata = {
     description: 'Smart websites for growing businesses.',
   },
   icons: {
-    icon: '/assets/SixByte_standalone.webp',
-    shortcut: '/assets/SixByte_standalone.webp',
-    apple: '/assets/SixByte_standalone.webp',
+    icon: '/assets/SixByte_standalone-removebg-preview.webp',
+    shortcut: '/assets/SixByte_standalone-removebg-preview.webp',
+    apple: '/assets/SixByte_standalone-removebg-preview.webp',
   },
 }
 

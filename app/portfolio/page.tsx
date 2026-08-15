@@ -95,6 +95,7 @@ export default function PortfolioPage({ searchParams }: PortfolioPageProps) {
                   <div className="absolute inset-0 flex items-center justify-center bg-navy/50 opacity-0 transition-opacity group-hover:opacity-100">
                     <Link
                       href={`/portfolio/${project.id}`}
+                      scroll={false}
                       className="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-navy transition-colors hover:bg-electric hover:text-white"
                     >
                       View details
@@ -116,6 +117,7 @@ export default function PortfolioPage({ searchParams }: PortfolioPageProps) {
                   <div className="mt-6 flex flex-wrap items-center gap-4">
                     <Link
                       href={`/portfolio/${project.id}`}
+                      scroll={false}
                       className="inline-flex items-center gap-2 text-sm font-semibold text-electric transition-colors hover:text-electric-dark"
                     >
                       Open case study <ArrowRight className="h-4 w-4" />
@@ -144,6 +146,7 @@ export default function PortfolioPage({ searchParams }: PortfolioPageProps) {
               <div className="flex flex-wrap items-center justify-center gap-2">
                 <Link
                   href={buildPageHref(Math.max(1, currentPage - 1))}
+                  scroll={false}
                   aria-disabled={currentPage === 1}
                   className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
                     currentPage === 1
@@ -158,6 +161,7 @@ export default function PortfolioPage({ searchParams }: PortfolioPageProps) {
                   <Link
                     key={page}
                     href={buildPageHref(page)}
+                    scroll={false}
                     className={`min-w-10 rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
                       page === currentPage
                         ? 'border-navy bg-navy text-white'
@@ -170,6 +174,7 @@ export default function PortfolioPage({ searchParams }: PortfolioPageProps) {
 
                 <Link
                   href={buildPageHref(Math.min(totalPages, currentPage + 1))}
+                  scroll={false}
                   aria-disabled={currentPage === totalPages}
                   className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
                     currentPage === totalPages

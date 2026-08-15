@@ -109,7 +109,7 @@ export const projects: Project[] = [
     description:
       'A business transfer platform presented as a polished client project with a streamlined interface and a more credible online presence.',
     industry: 'Logistics & Transfers',
-    image: 'https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&auto=format&fit=crop',
+    image: '/assets/mockups/epass.webp',
     tags: ['Client Work', 'Web App', 'Production'],
     link: 'https://www.e-passtransfer.de/',
   },
@@ -119,7 +119,7 @@ export const projects: Project[] = [
     description:
       'A refined company website concept focused on trust, service clarity, and a cleaner presentation for prospective clients.',
     industry: 'Corporate Services',
-    image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800&auto=format&fit=crop',
+    image: '/assets/mockups/miraee.webp',
     tags: ['Client Work', 'Corporate Site', 'UI/UX'],
     link: 'https://mira-ee.de/',
   },
@@ -129,7 +129,7 @@ export const projects: Project[] = [
     description:
       'A modern technology services website designed to feel sharper, more structured, and easier to trust at a glance.',
     industry: 'Technology Services',
-    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&auto=format&fit=crop',
+    image: '/assets/mockups/iwizsols.webp',
     tags: ['Client Work', 'Next.js', 'Brand Presence'],
     link: 'https://www.iwizsols.com/',
   },
@@ -139,7 +139,7 @@ export const projects: Project[] = [
     description:
       'A structured planning platform presented as a client project with a more organized layout and a clearer workflow.',
     industry: 'Planning & Productivity',
-    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop',
+    image: '/assets/mockups/aiinterioirplanner.webp',
     tags: ['Client Work', 'Planning', 'Web App'],
     link: 'https://al-planner.vercel.app',
   },
@@ -149,7 +149,7 @@ export const projects: Project[] = [
     description:
       'An AI document analysis product designed to feel sharper, more useful, and easier to trust for business workflows.',
     industry: 'AI & Automation',
-    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop',
+    image: '/assets/mockups/ai-powered-docs-analyst.webp',
     tags: ['Client Work', 'AI', 'Product UI'],
     link: 'https://ai-powered-docs-analyst.vercel.app/',
   },
@@ -159,7 +159,7 @@ export const projects: Project[] = [
     description:
       'A modern digital brand presence that focuses on clean hierarchy, stronger messaging, and a premium first impression.',
     industry: 'Corporate Services',
-    image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=800&auto=format&fit=crop',
+    image: '/assets/mockups/sova.webp',
     tags: ['Client Work', 'Corporate', 'Brand Site'],
     link: 'https://sova.my/',
   },
@@ -169,7 +169,7 @@ export const projects: Project[] = [
     description:
       'An education-focused web experience designed to present courses, trust signals, and sign-up paths more clearly.',
     industry: 'Education',
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&auto=format&fit=crop',
+    image: '/assets/mockups/PrepPro.webp',
     tags: ['Client Work', 'Academy', 'Lead Gen'],
     link: 'https://preppro.academy/',
   },
@@ -189,7 +189,7 @@ export const projects: Project[] = [
     description:
       'A secure real-time communication platform for private messages, group discussions, and cross-device collaboration.',
     industry: 'Social Platform',
-    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop',
+    image: '/assets/mockups/connectcircle.webp',
     tags: ['Vue.js', 'Firebase', 'Realtime Chat'],
     link: 'https://connectcircle-dff2b.web.app/',
   },
@@ -205,12 +205,13 @@ export const projects: Project[] = [
   },
   {
     id: 'resto-booking',
-    title: 'Saveur Restaurant & Booking',
+    title: 'E2H Corian Fabrication',
     description:
-      'A polished restaurant presence with an online reservation system, digital menu, and integrated reviews.',
-    industry: 'Restaurant & Hospitality',
-    image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&auto=format&fit=crop',
-    tags: ['Next.js', 'Booking System', 'SEO'],
+      'A refined fabrication website presentation for E2H Corian with a premium visual style and a clearer path to inquiries.',
+    industry: 'Fabrication & Interiors',
+    image: '/assets/mockups/e2hcorian.webp',
+    tags: ['Next.js', 'Brand Site', 'Lead Gen'],
+    link: 'https://e2hcorian.com/',
   },
 ]
 

@@ -71,7 +71,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between py-3 sm:py-4">
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src="/assets/SixByte_standalone.webp"
+              src="/assets/SixByte_standalone-removebg-preview.webp"
               alt="SixByte Technologies"
               width={44}
               height={44}
@@ -161,7 +161,7 @@ export default function Navbar() {
         <div className="flex items-center justify-between border-b border-slate-100 px-4 py-4 dark:border-slate-800">
           <div className="flex items-center gap-3">
             <Image
-              src="/assets/SixByte_standalone.webp"
+              src="/assets/SixByte_standalone-removebg-preview.webp"
               alt="SixByte Technologies"
               width={36}
               height={36}

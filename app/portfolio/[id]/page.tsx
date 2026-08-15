@@ -97,7 +97,7 @@ export default function ProjectDetailPage({ params }: Props) {
 
       <section className="py-16 bg-white sm:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link href="/portfolio" className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 mb-8 transition-colors">
+          <Link href="/portfolio" scroll={false} className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 mb-8 transition-colors">
             <ArrowLeft className="w-4 h-4" /> Back to Portfolio
           </Link>
           {/* Featured Image */}
@@ -164,7 +164,7 @@ export default function ProjectDetailPage({ params }: Props) {
               <h2 className="text-navy font-bold text-2xl mb-8">Similar Projects</h2>
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 {related.map((p) => (
-                  <Link key={p.id} href={`/portfolio/${p.id}`} className="group bg-gray-50 rounded-xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all">
+                  <Link key={p.id} href={`/portfolio/${p.id}`} scroll={false} className="group bg-gray-50 rounded-xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all">
                     <div className="relative h-40 overflow-hidden">
                       <Image src={p.image} alt={p.title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
                     </div>
