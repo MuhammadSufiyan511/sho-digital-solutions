@@ -8,7 +8,7 @@ import PageHero from '@/components/sections/PageHero'
 import SectionHeader from '@/components/ui/SectionHeader'
 
 export const metadata: Metadata = {
-  title: 'Industries',
+  title: 'Industries | Tailored Digital Systems',
   description: 'Industry-focused website and digital system solutions for businesses that need a more tailored fit.',
 }
 
@@ -34,33 +34,35 @@ export default function IndustriesPage() {
         panelStats={['Booking', 'Lead gen', 'Authority']}
       />
 
-      <section className="py-16 sm:py-24">
+      <section className="py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {industries.map((industry) => {
               const Icon = industryIcons[industry.id] ?? ShoppingBag
               return (
                 <article
                   key={industry.id}
-                  className="surface-card rounded-[1.75rem] p-7 transition-all duration-300 hover:-translate-y-1 hover:border-electric/20"
+                  className="surface-card rounded-xl p-7 transition-all duration-200 hover:border-teal/30"
                 >
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-electric/10 text-electric">
+                  <div className="flex h-12 w-12 items-center justify-center rounded border border-slate-200 bg-slate-50 text-teal dark:border-slate-800 dark:bg-slate-900 dark:text-teal-light">
                     <Icon className="h-6 w-6" />
                   </div>
-                  <h2 className="mt-5 text-xl font-bold text-navy">{industry.name}</h2>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">{industry.description}</p>
+                  <h2 className="mt-5 text-xl font-bold text-navy dark:text-white">{industry.name}</h2>
+                  <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-400">{industry.description}</p>
 
-                  <h3 className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
-                    Common solutions
-                  </h3>
-                  <ul className="mt-4 space-y-2">
-                    {industry.solutions.map((solution) => (
-                      <li key={solution} className="flex items-start gap-2 text-sm text-slate-600">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-electric" />
-                        {solution}
-                      </li>
-                    ))}
-                  </ul>
+                  <div className="mt-6 border-t border-slate-100 pt-4 dark:border-slate-800">
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">
+                      Common solutions
+                    </h3>
+                    <ul className="mt-3 space-y-2">
+                      {industry.solutions.map((solution) => (
+                        <li key={solution} className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
+                          <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-teal" />
+                          {solution}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </article>
               )
             })}
@@ -68,7 +70,7 @@ export default function IndustriesPage() {
         </div>
       </section>
 
-      <section className="bg-white py-14 sm:py-16">
+      <section className="bg-slate-50/80 py-16 dark:bg-slate-950/60 lg:py-20">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <SectionHeader
             tag="Not listed?"
@@ -76,9 +78,11 @@ export default function IndustriesPage() {
             subtitle="If your niche is not here, it usually just means we have not named it yet."
             center
           />
-          <Link href="/contact" className="btn-primary">
-            Tell us about your business <ArrowRight className="h-4 w-4" />
-          </Link>
+          <div className="mt-6">
+            <Link href="/contact" className="btn-primary">
+              Tell us about your business <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </section>
 

@@ -1,7 +1,7 @@
 'use client'
 
 import type { ReactNode } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion, useReducedMotion, type Variants } from 'framer-motion'
 
 type RevealProps = {
   children?: ReactNode
@@ -21,35 +21,34 @@ type StaggerItemProps = {
   className?: string
 }
 
-function useRevealVariants(delay = 0, distance = 22) {
+function useRevealVariants(delay = 0, distance = 16): Variants {
   const prefersReducedMotion = useReducedMotion()
 
   return {
     hidden: {
       opacity: 0,
       y: prefersReducedMotion ? 0 : distance,
-      filter: prefersReducedMotion ? 'none' : 'blur(4px)',
     },
     visible: {
       opacity: 1,
       y: 0,
-      filter: 'none',
       transition: {
-        duration: prefersReducedMotion ? 0 : 0.55,
+        duration: prefersReducedMotion ? 0 : 0.45,
         delay,
+        ease: [0.22, 1, 0.36, 1],
       },
     },
   }
 }
 
-export function Reveal({ children, className, delay = 0, distance = 22 }: RevealProps) {
+export function Reveal({ children, className, delay = 0, distance = 16 }: RevealProps) {
   return (
     <motion.div
       className={className}
       variants={useRevealVariants(delay, distance)}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.24 }}
+      viewport={{ once: true, amount: 0.15 }}
     >
       {children}
     </motion.div>
@@ -59,14 +58,14 @@ export function Reveal({ children, className, delay = 0, distance = 22 }: Reveal
 export function Stagger({ children, className, delay = 0 }: StaggerProps) {
   const prefersReducedMotion = useReducedMotion()
 
-  const variants = {
+  const variants: Variants = {
     hidden: {},
     visible: {
       transition: prefersReducedMotion
         ? undefined
         : {
             delayChildren: delay,
-            staggerChildren: 0.08,
+            staggerChildren: 0.07,
           },
     },
   }
@@ -77,7 +76,7 @@ export function Stagger({ children, className, delay = 0 }: StaggerProps) {
       variants={variants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, amount: 0.18 }}
+      viewport={{ once: true, amount: 0.15 }}
     >
       {children}
     </motion.div>
@@ -87,25 +86,23 @@ export function Stagger({ children, className, delay = 0 }: StaggerProps) {
 export function StaggerItem({ children, className }: StaggerItemProps) {
   const prefersReducedMotion = useReducedMotion()
 
+  const variants: Variants = {
+    hidden: {
+      opacity: 0,
+      y: prefersReducedMotion ? 0 : 14,
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: prefersReducedMotion ? 0 : 0.4,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    },
+  }
+
   return (
-    <motion.div
-      className={className}
-      variants={{
-        hidden: {
-          opacity: 0,
-          y: prefersReducedMotion ? 0 : 18,
-          filter: prefersReducedMotion ? 'none' : 'blur(3px)',
-        },
-        visible: {
-          opacity: 1,
-          y: 0,
-          filter: 'none',
-          transition: {
-            duration: prefersReducedMotion ? 0 : 0.5,
-          },
-        },
-      }}
-    >
+    <motion.div className={className} variants={variants}>
       {children}
     </motion.div>
   )

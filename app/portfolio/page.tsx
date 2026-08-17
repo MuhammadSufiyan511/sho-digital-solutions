@@ -8,7 +8,7 @@ import PageHero from '@/components/sections/PageHero'
 import Badge from '@/components/ui/Badge'
 
 export const metadata: Metadata = {
-  title: 'Portfolio',
+  title: 'Portfolio | Client Projects & Work',
   description: 'Explore selected projects that show how we help businesses present themselves online with more clarity.',
 }
 
@@ -66,70 +66,73 @@ export default function PortfolioPage({ searchParams }: PortfolioPageProps) {
         panelStats={['Trust', 'Speed', 'Conversion']}
       />
 
-      <section className="py-16 sm:py-24">
+      <section className="py-20 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 flex flex-wrap justify-start gap-3 overflow-x-auto pb-2 sm:mb-12 sm:justify-center sm:pb-0">
+          {/* Industry Filter Pills */}
+          <div className="mb-12 flex flex-wrap gap-2 sm:justify-center">
             {industries.map((industry) => (
               <span
                 key={industry}
-                className="whitespace-nowrap rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-600"
+                className="rounded border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
               >
                 {industry}
               </span>
             ))}
           </div>
 
-          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+          {/* Project Grid */}
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {visibleProjects.map((project) => (
               <article
                 key={project.id}
-                className="group overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
+                className="group surface-card overflow-hidden rounded-xl transition-all duration-300 hover:border-teal/30 hover:shadow-lg"
               >
-                <div className="relative h-48 overflow-hidden bg-slate-100 sm:h-52 lg:h-56">
+                <div className="relative h-56 w-full overflow-hidden bg-slate-900">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center bg-navy/50 opacity-0 transition-opacity group-hover:opacity-100">
-                    <Link
-                      href={`/portfolio/${project.id}`}
-                      scroll={false}
-                      className="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-navy transition-colors hover:bg-electric hover:text-white"
-                    >
-                      View details
-                    </Link>
-                  </div>
+                  <div className="absolute inset-0 bg-slate-950/20 opacity-60 transition-opacity group-hover:opacity-30" />
                 </div>
 
                 <div className="p-6">
                   <Badge variant="blue">{project.industry}</Badge>
-                  <h2 className="mt-4 text-lg font-bold text-navy">{project.title}</h2>
-                  <p className="mt-3 text-sm leading-7 text-slate-600">{project.description}</p>
-                  <div className="mt-5 flex flex-wrap gap-2">
+                  <h2 className="mt-3 text-lg font-bold text-navy transition-colors group-hover:text-teal dark:text-white dark:group-hover:text-teal-light">
+                    {project.title}
+                  </h2>
+                  <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
+                    {project.description}
+                  </p>
+
+                  <div className="mt-4 flex flex-wrap gap-1.5">
                     {project.tags.map((tag) => (
-                      <span key={tag} className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
+                      <span
+                        key={tag}
+                        className="rounded border border-slate-100 bg-slate-50 px-2 py-0.5 text-[10px] font-medium text-slate-600 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400"
+                      >
                         {tag}
                       </span>
                     ))}
                   </div>
-                  <div className="mt-6 flex flex-wrap items-center gap-4">
+
+                  <div className="mt-6 flex items-center justify-between border-t border-slate-100 pt-4 dark:border-slate-800">
                     <Link
                       href={`/portfolio/${project.id}`}
                       scroll={false}
-                      className="inline-flex items-center gap-2 text-sm font-semibold text-electric transition-colors hover:text-electric-dark"
+                      className="inline-flex items-center gap-1 text-xs font-semibold text-teal transition-colors hover:text-teal-dark dark:text-teal-light"
                     >
-                      Open case study <ArrowRight className="h-4 w-4" />
+                      Case study <ArrowRight className="h-3.5 w-3.5" />
                     </Link>
                     {project.link && (
                       <a
                         href={project.link}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 transition-colors hover:text-navy"
+                        className="inline-flex items-center gap-1 text-xs font-semibold text-slate-500 transition-colors hover:text-navy dark:text-slate-400 dark:hover:text-white"
                       >
-                        Live site <ExternalLink className="h-4 w-4" />
+                        Live site <ExternalLink className="h-3.5 w-3.5" />
                       </a>
                     )}
                   </div>
@@ -138,20 +141,21 @@ export default function PortfolioPage({ searchParams }: PortfolioPageProps) {
             ))}
           </div>
 
+          {/* Pagination */}
           {totalPages > 1 && (
-            <div className="mt-10 flex flex-col items-center gap-4 sm:mt-12">
-              <div className="text-sm text-slate-500">
+            <div className="mt-12 flex flex-col items-center gap-4">
+              <div className="text-xs text-slate-500 dark:text-slate-400">
                 Showing {start + 1}-{Math.min(start + itemsPerPage, orderedProjects.length)} of {orderedProjects.length} projects
               </div>
-              <div className="flex flex-wrap items-center justify-center gap-2">
+              <div className="flex items-center gap-2">
                 <Link
                   href={buildPageHref(Math.max(1, currentPage - 1))}
                   scroll={false}
                   aria-disabled={currentPage === 1}
-                  className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
+                  className={`rounded border px-3 py-1.5 text-xs font-semibold transition-colors ${
                     currentPage === 1
-                      ? 'pointer-events-none border-slate-200 bg-slate-50 text-slate-300'
-                      : 'border-slate-200 bg-white text-slate-600 hover:border-electric hover:text-electric'
+                      ? 'pointer-events-none border-slate-200 bg-slate-100 text-slate-400 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-600'
+                      : 'border-slate-200 bg-white text-slate-700 hover:border-teal hover:text-teal dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300'
                   }`}
                 >
                   Prev
@@ -162,10 +166,10 @@ export default function PortfolioPage({ searchParams }: PortfolioPageProps) {
                     key={page}
                     href={buildPageHref(page)}
                     scroll={false}
-                    className={`min-w-10 rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
+                    className={`min-w-8 rounded border px-3 py-1.5 text-center text-xs font-semibold transition-colors ${
                       page === currentPage
-                        ? 'border-navy bg-navy text-white'
-                        : 'border-slate-200 bg-white text-slate-600 hover:border-electric hover:text-electric'
+                        ? 'border-navy bg-navy text-white dark:border-teal dark:bg-teal'
+                        : 'border-slate-200 bg-white text-slate-700 hover:border-teal hover:text-teal dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300'
                     }`}
                   >
                     {page}
@@ -176,10 +180,10 @@ export default function PortfolioPage({ searchParams }: PortfolioPageProps) {
                   href={buildPageHref(Math.min(totalPages, currentPage + 1))}
                   scroll={false}
                   aria-disabled={currentPage === totalPages}
-                  className={`rounded-full border px-4 py-2 text-sm font-semibold transition-colors ${
+                  className={`rounded border px-3 py-1.5 text-xs font-semibold transition-colors ${
                     currentPage === totalPages
-                      ? 'pointer-events-none border-slate-200 bg-slate-50 text-slate-300'
-                      : 'border-slate-200 bg-white text-slate-600 hover:border-electric hover:text-electric'
+                      ? 'pointer-events-none border-slate-200 bg-slate-100 text-slate-400 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-600'
+                      : 'border-slate-200 bg-white text-slate-700 hover:border-teal hover:text-teal dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300'
                   }`}
                 >
                   Next

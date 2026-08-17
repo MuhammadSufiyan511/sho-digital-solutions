@@ -95,30 +95,31 @@ export default function ContactPage() {
         panelStats={['Reply fast', 'No pressure', 'Clear next step']}
       />
 
-      <section className="py-16 sm:py-24">
-        <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14 lg:px-8">
-          <div className="space-y-8">
+      <section className="py-20 lg:py-24">
+        <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
+          {/* Info Left */}
+          <div className="space-y-6 lg:col-span-5">
             <div>
-              <h2 className="text-2xl font-bold text-navy">Reach out directly</h2>
-              <p className="mt-2 text-sm leading-7 text-slate-600">
+              <h2 className="text-xl font-bold text-navy dark:text-white">Reach out directly</h2>
+              <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
                 If you prefer to speak first, use email or WhatsApp. We keep responses clear and timely during business
                 hours.
               </p>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               {[
                 { icon: Mail, label: 'Email', value: 'connectshodigital@gmail.com', href: 'mailto:connectshodigital@gmail.com' },
                 { icon: Phone, label: 'Phone', value: '03345856255', href: 'tel:03345856255' },
                 { icon: MapPin, label: 'Location', value: 'Islamabad, Pakistan', href: '#' },
               ].map(({ icon: Icon, label, value, href }) => (
-                <a key={label} href={href} className="surface-card flex items-start gap-4 rounded-[1.25rem] p-4 transition-all hover:-translate-y-0.5 sm:rounded-[1.5rem] sm:p-5">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-electric/10 text-electric">
+                <a key={label} href={href} className="surface-card flex items-center gap-4 rounded-xl p-4 transition-colors hover:border-teal/30">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-teal/10 text-teal dark:bg-teal/20 dark:text-teal-light">
                     <Icon className="h-5 w-5" />
                   </div>
                   <div>
-                    <div className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">{label}</div>
-                    <div className="mt-1 text-sm font-medium text-navy">{value}</div>
+                    <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">{label}</div>
+                    <div className="mt-0.5 text-xs font-bold text-navy dark:text-white">{value}</div>
                   </div>
                 </a>
               ))}
@@ -134,16 +135,16 @@ export default function ContactPage() {
               Chat on WhatsApp
             </a>
 
-            <div className="surface-card rounded-[1.25rem] p-5 sm:rounded-[1.75rem] sm:p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">What to expect</p>
-              <ul className="mt-4 space-y-3 text-sm text-slate-600">
+            <div className="surface-card rounded-xl p-6">
+              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">What to expect</h3>
+              <ul className="mt-3 space-y-2 text-xs text-slate-600 dark:text-slate-300">
                 {[
                   'A quick review of your goals and priorities',
                   'A simple recommendation for the right next step',
                   'A clear sense of timeline and scope',
                 ].map((item) => (
                   <li key={item} className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-electric" />
+                    <CheckCircle2 className="h-4 w-4 text-teal shrink-0" />
                     {item}
                   </li>
                 ))}
@@ -151,31 +152,32 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div>
+          {/* Form Right */}
+          <div className="lg:col-span-7">
             {submitted ? (
-              <div className="surface-card rounded-[1.5rem] p-6 text-center sm:rounded-[2rem] sm:p-10">
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-50 text-emerald-600">
-                  <CheckCircle2 className="h-8 w-8" />
+              <div className="surface-card rounded-xl p-8 text-center sm:p-12">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-300">
+                  <CheckCircle2 className="h-7 w-7" />
                 </div>
-                <h2 className="mt-6 text-2xl font-bold text-navy">Message sent</h2>
-                <p className="mt-3 text-sm leading-7 text-slate-600">
+                <h2 className="mt-4 text-xl font-bold text-navy dark:text-white">Message sent</h2>
+                <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
                   Thank you for reaching out. We&apos;ll review your message and get back to you within 2 business hours.
                 </p>
-                <button onClick={() => setSubmitted(false)} className="btn-primary mt-8">
+                <button onClick={() => setSubmitted(false)} className="btn-primary mt-6">
                   Send another message
                 </button>
               </div>
             ) : (
-              <div className="surface-card rounded-[1.5rem] p-6 sm:rounded-[2rem] sm:p-10">
-                <h2 className="text-2xl font-bold text-navy">Book a free consultation</h2>
-                <p className="mt-2 text-sm leading-7 text-slate-600">
+              <div className="surface-card rounded-xl p-6 sm:p-8">
+                <h2 className="text-xl font-bold text-navy dark:text-white">Book a free consultation</h2>
+                <p className="mt-1 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
                   Tell us a bit about the business, and we&apos;ll take it from there.
                 </p>
 
-                <form onSubmit={handleSubmit} noValidate className="mt-8 space-y-5">
-                  <div className="grid gap-5 sm:grid-cols-2">
+                <form onSubmit={handleSubmit} noValidate className="mt-6 space-y-4">
+                  <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label className="mb-1.5 block text-sm font-medium text-navy">
+                      <label className="mb-1 block text-xs font-semibold text-navy dark:text-slate-200">
                         Full name <span className="text-red-500">*</span>
                       </label>
                       <input
@@ -184,15 +186,15 @@ export default function ContactPage() {
                         value={form.name}
                         onChange={handleChange}
                         placeholder="John Smith"
-                        className={`w-full rounded-2xl border bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-electric focus:ring-2 focus:ring-electric/10 ${
-                          errors.name ? 'border-red-400' : 'border-slate-200'
+                        className={`w-full rounded border bg-white px-3.5 py-2.5 text-xs outline-none transition-colors focus:border-teal dark:border-slate-800 dark:bg-slate-900 dark:text-white ${
+                          errors.name ? 'border-red-500' : 'border-slate-200'
                         }`}
                       />
-                      {errors.name && <p className="mt-1 text-xs text-red-500">{errors.name}</p>}
+                      {errors.name && <p className="mt-1 text-[11px] text-red-500">{errors.name}</p>}
                     </div>
 
                     <div>
-                      <label className="mb-1.5 block text-sm font-medium text-navy">
+                      <label className="mb-1 block text-xs font-semibold text-navy dark:text-slate-200">
                         Email address <span className="text-red-500">*</span>
                       </label>
                       <input
@@ -201,17 +203,17 @@ export default function ContactPage() {
                         value={form.email}
                         onChange={handleChange}
                         placeholder="john@business.com"
-                        className={`w-full rounded-2xl border bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-electric focus:ring-2 focus:ring-electric/10 ${
-                          errors.email ? 'border-red-400' : 'border-slate-200'
+                        className={`w-full rounded border bg-white px-3.5 py-2.5 text-xs outline-none transition-colors focus:border-teal dark:border-slate-800 dark:bg-slate-900 dark:text-white ${
+                          errors.email ? 'border-red-500' : 'border-slate-200'
                         }`}
                       />
-                      {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email}</p>}
+                      {errors.email && <p className="mt-1 text-[11px] text-red-500">{errors.email}</p>}
                     </div>
                   </div>
 
-                  <div className="grid gap-5 sm:grid-cols-2">
+                  <div className="grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label className="mb-1.5 block text-sm font-medium text-navy">
+                      <label className="mb-1 block text-xs font-semibold text-navy dark:text-slate-200">
                         Phone number <span className="text-red-500">*</span>
                       </label>
                       <input
@@ -220,23 +222,23 @@ export default function ContactPage() {
                         value={form.phone}
                         onChange={handleChange}
                         placeholder="+1 (555) 000-0000"
-                        className={`w-full rounded-2xl border bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-electric focus:ring-2 focus:ring-electric/10 ${
-                          errors.phone ? 'border-red-400' : 'border-slate-200'
+                        className={`w-full rounded border bg-white px-3.5 py-2.5 text-xs outline-none transition-colors focus:border-teal dark:border-slate-800 dark:bg-slate-900 dark:text-white ${
+                          errors.phone ? 'border-red-500' : 'border-slate-200'
                         }`}
                       />
-                      {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone}</p>}
+                      {errors.phone && <p className="mt-1 text-[11px] text-red-500">{errors.phone}</p>}
                     </div>
 
                     <div>
-                      <label className="mb-1.5 block text-sm font-medium text-navy">
+                      <label className="mb-1 block text-xs font-semibold text-navy dark:text-slate-200">
                         Business type <span className="text-red-500">*</span>
                       </label>
                       <select
                         name="businessType"
                         value={form.businessType}
                         onChange={handleChange}
-                        className={`w-full rounded-2xl border bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-electric focus:ring-2 focus:ring-electric/10 ${
-                          errors.businessType ? 'border-red-400' : 'border-slate-200'
+                        className={`w-full rounded border bg-white px-3.5 py-2.5 text-xs outline-none transition-colors focus:border-teal dark:border-slate-800 dark:bg-slate-900 dark:text-white ${
+                          errors.businessType ? 'border-red-500' : 'border-slate-200'
                         }`}
                       >
                         <option value="">Select your industry</option>
@@ -246,25 +248,25 @@ export default function ContactPage() {
                           </option>
                         ))}
                       </select>
-                      {errors.businessType && <p className="mt-1 text-xs text-red-500">{errors.businessType}</p>}
+                      {errors.businessType && <p className="mt-1 text-[11px] text-red-500">{errors.businessType}</p>}
                     </div>
                   </div>
 
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-navy">
+                    <label className="mb-1 block text-xs font-semibold text-navy dark:text-slate-200">
                       Tell us about your project <span className="text-red-500">*</span>
                     </label>
                     <textarea
                       name="message"
                       value={form.message}
                       onChange={handleChange}
-                      rows={6}
+                      rows={5}
                       placeholder="Describe your business, your goals, and what you would like the website to do."
-                      className={`w-full resize-none rounded-2xl border bg-white px-4 py-3 text-sm outline-none transition-colors focus:border-electric focus:ring-2 focus:ring-electric/10 ${
-                        errors.message ? 'border-red-400' : 'border-slate-200'
+                      className={`w-full resize-none rounded border bg-white px-3.5 py-2.5 text-xs outline-none transition-colors focus:border-teal dark:border-slate-800 dark:bg-slate-900 dark:text-white ${
+                        errors.message ? 'border-red-500' : 'border-slate-200'
                       }`}
                     />
-                    {errors.message && <p className="mt-1 text-xs text-red-500">{errors.message}</p>}
+                    {errors.message && <p className="mt-1 text-[11px] text-red-500">{errors.message}</p>}
                   </div>
 
                   <button type="submit" disabled={loading} className="btn-primary w-full justify-center">
@@ -272,7 +274,7 @@ export default function ContactPage() {
                     {!loading && <Send className="h-4 w-4" />}
                   </button>
 
-                  {submitError && <p className="text-center text-sm text-red-500">{submitError}</p>}
+                  {submitError && <p className="text-center text-xs text-red-500">{submitError}</p>}
                 </form>
               </div>
             )}

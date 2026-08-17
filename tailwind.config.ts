@@ -18,27 +18,30 @@ const config: Config = {
         'muted-foreground': 'hsl(var(--muted-foreground))',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
-        },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
-        },
         navy: {
-          DEFAULT: 'hsl(var(--navy))',
-          light: 'hsl(var(--navy))',
-          dark: 'hsl(var(--navy))',
+          DEFAULT: '#0E1A2E',
+          light: '#162844',
+          dark: '#09111F',
+        },
+        teal: {
+          DEFAULT: '#0F766E',
+          light: '#149188',
+          dark: '#0B5650',
+        },
+        softBlue: {
+          DEFAULT: '#D1E2F8',
+          light: '#E2EDFC',
+          dark: '#B0CEF3',
+        },
+        offWhite: {
+          DEFAULT: '#FAFBFC',
+          light: '#FFFFFF',
+          dark: '#F1F5F9',
         },
         electric: {
-          DEFAULT: 'hsl(var(--electric))',
-          light: 'hsl(var(--electric))',
-          dark: 'hsl(var(--electric))',
+          DEFAULT: '#0F766E',
+          light: '#149188',
+          dark: '#0B5650',
         },
       },
       fontFamily: {
@@ -46,15 +49,13 @@ const config: Config = {
         display: ['var(--font-sans)', 'system-ui', 'sans-serif'],
       },
       animation: {
-        'fade-up': 'fadeUp 0.6s ease-out forwards',
-        'fade-in': 'fadeIn 0.5s ease-out forwards',
-        'slide-right': 'slideRight 0.5s ease-out forwards',
-        'float-slow': 'floatSlow 10s ease-in-out infinite',
-        'float-soft': 'floatSoft 8s ease-in-out infinite',
+        'fade-up': 'fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards',
+        'fade-in': 'fadeIn 0.4s ease-out forwards',
+        'slide-right': 'slideRight 0.4s ease-out forwards',
       },
       keyframes: {
         fadeUp: {
-          '0%': { opacity: '0', transform: 'translateY(24px)' },
+          '0%': { opacity: '0', transform: 'translateY(16px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         fadeIn: {
@@ -62,16 +63,8 @@ const config: Config = {
           '100%': { opacity: '1' },
         },
         slideRight: {
-          '0%': { opacity: '0', transform: 'translateX(-24px)' },
+          '0%': { opacity: '0', transform: 'translateX(-16px)' },
           '100%': { opacity: '1', transform: 'translateX(0)' },
-        },
-        floatSlow: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' },
-        },
-        floatSoft: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-6px)' },
         },
       },
     },

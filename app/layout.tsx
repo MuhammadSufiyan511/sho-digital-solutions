@@ -3,6 +3,7 @@ import './globals.css'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import BackToTop from '@/components/layout/BackToTop'
+import CustomCursor from '@/components/layout/CustomCursor'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -14,7 +15,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: {
     template: 'SixByte Technologies | %s',
-    default: 'SixByte Technologies',
+    default: 'SixByte Technologies | Smart Websites for Growing Businesses',
   },
   description:
     'SixByte Technologies creates polished, high-converting websites and digital experiences for businesses that want to look credible and grow with confidence.',
@@ -51,7 +52,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={plusJakarta.variable} suppressHydrationWarning>
-      <body className="antialiased transition-colors duration-300">
+      <body className="min-h-screen bg-slate-50 text-navy antialiased dark:bg-slate-950 dark:text-slate-100">
+        <CustomCursor />
         <Navbar />
         <main>{children}</main>
         <Footer />

@@ -121,55 +121,59 @@ export default function AboutPage() {
         panelStats={['Human', 'Clear', 'Polished']}
       />
 
-      <section className="py-16 sm:py-20">
-        <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8">
-          <div className="surface-card rounded-[1.5rem] p-6 sm:rounded-[2rem] sm:p-8">
-            <SectionHeader
-              tag="Our mission"
-              title="Make business websites feel more human, more useful, and more trusted."
-              subtitle="We want visitors to feel clear on who you are, what you offer, and why you are the right team to contact."
-            />
+      {/* Mission */}
+      <section className="py-20 lg:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-7">
+              <SectionHeader
+                tag="Our mission"
+                title="Make business websites feel more human, more useful, and more trusted."
+                subtitle="We want visitors to feel clear on who you are, what you offer, and why you are the right team to contact."
+              />
 
-            <div className="space-y-4 text-sm leading-7 text-slate-600">
-              <p>
-                We work best with businesses that want to present themselves well and communicate with more intention.
-                That could mean a new brand direction, a stronger website, or a more useful lead-generation flow.
-              </p>
-              <p>
-                The process is collaborative by design. We ask better questions up front, shape the structure with care,
-                and keep the final result focused on the people who will actually use it.
-              </p>
+              <div className="mt-6 space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                <p>
+                  We work best with businesses that want to present themselves well and communicate with more intention.
+                  That could mean a new brand direction, a stronger website, or a more useful lead-generation flow.
+                </p>
+                <p>
+                  The process is collaborative by design. We ask better questions up front, shape the structure with care,
+                  and keep the final result focused on the people who will actually use it.
+                </p>
+              </div>
+
+              <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+                {[
+                  'Clear discovery and planning',
+                  'Messaging that sounds human',
+                  'Mobile-first, responsive design',
+                  'Support after launch',
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-2.5 text-xs font-semibold text-slate-700 dark:text-slate-300">
+                    <CheckCircle2 className="h-4 w-4 shrink-0 text-teal" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
 
-            <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-              {[
-                'Clear discovery and planning',
-                'Messaging that sounds human',
-                'Mobile-first, responsive design',
-                'Support after launch',
-              ].map((item) => (
-                <li key={item} className="flex items-center gap-3 rounded-2xl bg-slate-50 px-4 py-3 text-sm text-slate-600">
-                  <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-electric" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            {stats.map((stat) => (
-              <div key={stat.label} className="surface-card rounded-[1.75rem] p-6">
-                <div className="text-4xl font-bold text-navy">{stat.value}</div>
-                <div className="mt-2 text-sm font-medium uppercase tracking-[0.16em] text-slate-500">
-                  {stat.label}
+            <div className="grid grid-cols-2 gap-4 lg:col-span-5">
+              {stats.map((stat) => (
+                <div key={stat.label} className="surface-card rounded-xl p-6 text-center">
+                  <div className="text-3xl font-extrabold text-navy dark:text-white">{stat.value}</div>
+                  <div className="mt-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                    {stat.label}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="py-16 sm:py-20 bg-white">
+      {/* Values */}
+      <section className="bg-slate-50/80 py-20 dark:bg-slate-950/60 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             tag="What we value"
@@ -178,22 +182,21 @@ export default function AboutPage() {
             center
           />
 
-          <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {values.map(({ icon: Icon, title, description }) => (
-              <article key={title} className="surface-card rounded-[1.75rem] p-6">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-electric/10 text-electric">
-                  <Icon className="h-5 w-5" />
-                </div>
-                <h3 className="mt-5 text-lg font-bold text-navy">{title}</h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600">{description}</p>
+              <article key={title} className="surface-card rounded-xl p-6">
+                <Icon className="h-6 w-6 text-teal" />
+                <h3 className="mt-4 text-base font-bold text-navy dark:text-white">{title}</h3>
+                <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-400">{description}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-16 sm:py-20">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      {/* Milestones */}
+      <section className="py-20 lg:py-24">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             tag="Our story"
             title="How the business has grown over time."
@@ -201,13 +204,15 @@ export default function AboutPage() {
             center
           />
 
-          <div className="space-y-6">
+          <div className="mt-12 space-y-6">
             {milestones.map((item) => (
-              <div key={item.year} className="surface-card grid gap-4 rounded-[1.75rem] p-6 md:grid-cols-[120px_1fr]">
-                <div className="text-2xl font-bold text-electric">{item.year}</div>
+              <div key={item.year} className="surface-card flex flex-col gap-4 rounded-xl p-6 sm:flex-row sm:items-start sm:gap-8">
+                <div className="text-xl font-extrabold text-teal dark:text-teal-light shrink-0 sm:w-20">
+                  {item.year}
+                </div>
                 <div>
-                  <h3 className="text-lg font-bold text-navy">{item.title}</h3>
-                  <p className="mt-2 text-sm leading-7 text-slate-600">{item.description}</p>
+                  <h3 className="text-base font-bold text-navy dark:text-white">{item.title}</h3>
+                  <p className="mt-1 text-xs leading-relaxed text-slate-600 dark:text-slate-400">{item.description}</p>
                 </div>
               </div>
             ))}
@@ -215,7 +220,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="py-16 sm:py-20 bg-white">
+      {/* Team */}
+      <section className="bg-slate-50/80 py-20 dark:bg-slate-950/60 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             tag="Our team"
@@ -224,35 +230,8 @@ export default function AboutPage() {
             center
           />
 
-          <TeamMembersSection team={team} />
-        </div>
-      </section>
-
-      <section className="py-16 sm:py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="surface-card grid gap-8 rounded-[2rem] p-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-electric">Why clients stay</p>
-              <h2 className="mt-4 text-3xl font-bold leading-tight text-navy text-balance">
-                A better process makes the outcome feel better too.
-              </h2>
-              <p className="mt-4 text-sm leading-7 text-slate-600">
-                We do not aim to overwhelm with jargon. We aim to make the path forward easier to see and easier to
-                approve.
-              </p>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {[
-                'Simple communication',
-                'Intentional layout choices',
-                'Careful handoff and support',
-                'A brand presence you can stand behind',
-              ].map((item) => (
-                <div key={item} className="rounded-2xl bg-slate-50 px-4 py-4 text-sm font-medium text-slate-600">
-                  {item}
-                </div>
-              ))}
-            </div>
+          <div className="mt-12">
+            <TeamMembersSection team={team} />
           </div>
         </div>
       </section>

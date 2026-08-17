@@ -5,7 +5,7 @@ import CTASection from '@/components/sections/CTASection'
 import PageHero from '@/components/sections/PageHero'
 
 export const metadata: Metadata = {
-  title: 'Client Testimonials',
+  title: 'Client Testimonials | Client Reviews',
   description: 'Read what our clients say about working with SixByte Technologies.',
 }
 
@@ -22,29 +22,37 @@ export default function TestimonialsPage() {
         panelStats={['Responsive', 'Thoughtful', 'Reliable']}
       />
 
-      <section className="py-16 bg-white sm:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3">
+      <section className="py-20 lg:py-24">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {testimonials.map((t) => (
               <div
                 key={t.id}
-                className="bg-white rounded-[1.25rem] border border-gray-100 p-5 hover:-translate-y-1 hover:shadow-xl transition-all duration-300 flex flex-col sm:rounded-2xl sm:p-7"
+                className="surface-card flex flex-col justify-between rounded-xl p-6 transition-all duration-200 hover:border-teal/30"
               >
-                <Quote className="w-8 h-8 text-electric/20 mb-4 flex-shrink-0" />
-                <p className="text-gray-600 text-sm leading-relaxed flex-1 mb-6">&ldquo;{t.content}&rdquo;</p>
-                <div className="flex items-center gap-3 pt-4 border-t border-gray-100">
-                  <div className="w-10 h-10 bg-electric rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-white text-xs font-bold">{t.avatar}</span>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-navy font-semibold text-sm truncate">{t.name}</div>
-                    <div className="text-gray-400 text-xs truncate">
-                      {t.role}, {t.company}
+                <div>
+                  <Quote className="h-6 w-6 text-teal/40" />
+                  <p className="mt-3 text-xs leading-relaxed text-slate-600 dark:text-slate-300">
+                    &ldquo;{t.content}&rdquo;
+                  </p>
+                </div>
+
+                <div className="mt-6 flex items-center justify-between border-t border-slate-100 pt-4 dark:border-slate-800">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-teal text-xs font-bold text-white">
+                      {t.avatar}
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-navy dark:text-white">{t.name}</div>
+                      <div className="text-[11px] text-slate-500 dark:text-slate-400">
+                        {t.role}, {t.company}
+                      </div>
                     </div>
                   </div>
+
                   <div className="flex gap-0.5">
-                    {Array.from({ length: t.rating }).map((_, i) => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+                    {Array.from({ length: t.rating }).map((_, idx) => (
+                      <Star key={idx} className="h-3 w-3 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
                 </div>

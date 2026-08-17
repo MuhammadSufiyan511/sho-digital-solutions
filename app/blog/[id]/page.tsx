@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowLeft, Clock, User, Calendar } from 'lucide-react'
+import { ArrowLeft, Clock, User } from 'lucide-react'
 import { blogPosts } from '@/lib/data'
 import CTASection from '@/components/sections/CTASection'
 import PageHero from '@/components/sections/PageHero'
@@ -65,46 +65,54 @@ export default function BlogDetailPage({ params }: Props) {
   return (
     <>
       <PageHero
-        tag="Blog"
+        tag="Blog Article"
         title={post.title}
         subtitle={post.excerpt}
         chips={[post.category, post.readTime, post.date]}
-        panelTitle="Article preview"
-        panelBody="A clean, readable feature header that gives the article room to breathe before the main content begins."
+        panelTitle="Article details"
+        panelBody="Insights and practical guidance from our engineering and digital strategy practice."
         panelStats={[post.author, 'Insight', 'Practical']}
       />
 
-      <section className="py-16 bg-white sm:py-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link href="/blog" className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 mb-8 transition-colors">
-            <ArrowLeft className="w-4 h-4" /> Back to Blog
+      <section className="py-20 lg:py-24">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <Link
+            href="/blog"
+            className="mb-8 inline-flex items-center gap-2 text-xs font-semibold text-slate-500 transition-colors hover:text-navy dark:text-slate-400 dark:hover:text-white"
+          >
+            <ArrowLeft className="h-4 w-4" /> Back to Blog
           </Link>
-          <div className="relative mb-10 h-56 overflow-hidden rounded-2xl shadow-xl sm:h-72 md:mb-12 md:h-96">
+
+          <div className="relative mb-10 h-64 overflow-hidden rounded-xl border border-slate-200 bg-slate-900 shadow-lg sm:h-80 dark:border-slate-800">
             <Image src={post.image} alt={post.title} fill className="object-cover" />
           </div>
 
-          <div className="prose prose-lg max-w-none">
-            <p className="text-lg text-gray-600 leading-relaxed font-medium mb-8">{post.excerpt}</p>
-            {content.trim().split('\n\n').map((para, i) => {
+          <div className="prose prose-slate max-w-none dark:prose-invert">
+            <p className="text-base font-semibold leading-relaxed text-slate-700 dark:text-slate-200 mb-6">{post.excerpt}</p>
+            {content.trim().split('\n\n').map((para, idx) => {
               if (para.startsWith('**') && para.endsWith('**')) {
-                return <h2 key={i} className="text-xl font-bold text-navy mt-8 mb-4">{para.replace(/\*\*/g, '')}</h2>
+                return <h2 key={idx} className="mt-8 mb-3 text-lg font-bold text-navy dark:text-white">{para.replace(/\*\*/g, '')}</h2>
               }
-              return <p key={i} className="text-gray-600 leading-relaxed mb-5">{para.trim()}</p>
+              return <p key={idx} className="mb-4 text-xs leading-relaxed text-slate-600 dark:text-slate-300">{para.trim()}</p>
             })}
           </div>
 
-          {/* Related */}
+          {/* Related Articles */}
           {related.length > 0 && (
-            <div className="mt-16 pt-12 border-t border-gray-100">
-              <h2 className="text-xl font-bold text-navy mb-6">Related Articles</h2>
-              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            <div className="mt-16 border-t border-slate-200 pt-12 dark:border-slate-800">
+              <h2 className="text-lg font-bold text-navy dark:text-white mb-6">Related Articles</h2>
+              <div className="grid gap-6 sm:grid-cols-2">
                 {related.map((p) => (
-                  <Link key={p.id} href={`/blog/${p.id}`} className="group block">
-                    <div className="relative h-40 rounded-xl overflow-hidden mb-3">
-                      <Image src={p.image} alt={p.title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
+                  <Link key={p.id} href={`/blog/${p.id}`} className="group surface-card overflow-hidden rounded-xl transition-all hover:border-teal/30">
+                    <div className="relative h-36 overflow-hidden bg-slate-900">
+                      <Image src={p.image} alt={p.title} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
                     </div>
-                    <Badge variant="blue">{p.category}</Badge>
-                    <h3 className="text-navy font-semibold text-sm mt-2 group-hover:text-electric transition-colors">{p.title}</h3>
+                    <div className="p-4">
+                      <Badge variant="blue">{p.category}</Badge>
+                      <h3 className="mt-2 text-sm font-bold text-navy transition-colors group-hover:text-teal dark:text-white dark:group-hover:text-teal-light">
+                        {p.title}
+                      </h3>
+                    </div>
                   </Link>
                 ))}
               </div>
@@ -113,7 +121,10 @@ export default function BlogDetailPage({ params }: Props) {
         </div>
       </section>
 
-      <CTASection title="Ready to Apply These Strategies?" subtitle="Book a free consultation and we'll show you exactly how to implement these insights for your specific business." />
+      <CTASection
+        title="Ready to Apply These Strategies?"
+        subtitle="Book a free consultation and we'll show you exactly how to implement these insights for your specific business."
+      />
     </>
   )
 }

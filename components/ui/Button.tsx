@@ -15,16 +15,16 @@ interface ButtonProps {
 }
 
 const variants = {
-  primary: 'bg-electric text-white hover:bg-electric-dark shadow-lg shadow-electric/15',
-  outline: 'border border-white/30 text-white hover:bg-white hover:text-navy',
-  'outline-navy': 'border border-electric text-electric hover:bg-electric hover:text-white',
-  ghost: 'text-electric hover:bg-electric/10',
+  primary: 'btn-primary',
+  outline: 'border border-slate-300 text-slate-800 hover:bg-slate-100 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-slate-800',
+  'outline-navy': 'btn-outline-navy',
+  ghost: 'text-teal hover:bg-teal/10 dark:text-teal-light dark:hover:bg-teal/20',
 }
 
 const sizes = {
-  sm: 'px-4 py-2 text-xs',
-  md: 'px-6 py-3 text-sm',
-  lg: 'px-8 py-4 text-base',
+  sm: 'px-3.5 py-1.5 text-xs',
+  md: 'px-5 py-2.5 text-sm',
+  lg: 'px-7 py-3.5 text-base',
 }
 
 export default function Button({
@@ -39,12 +39,12 @@ export default function Button({
   disabled = false,
   external = false,
 }: ButtonProps) {
-  const baseClasses = `inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 focus-visible:ring-2 focus-visible:ring-electric/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent ${variants[variant]} ${sizes[size]} ${className} ${disabled ? 'cursor-not-allowed opacity-50' : ''}`
+  const baseClasses = `inline-flex items-center justify-center gap-2 rounded font-semibold transition-all duration-200 focus-visible:ring-2 focus-visible:ring-teal/50 ${variants[variant]} ${sizes[size]} ${className} ${disabled ? 'cursor-not-allowed opacity-50' : ''}`
 
   const content = (
     <>
       {children}
-      {showArrow && <ArrowRight className="w-4 h-4" />}
+      {showArrow && <ArrowRight className="h-4 w-4" />}
     </>
   )
 

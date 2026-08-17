@@ -14,8 +14,8 @@ const paddings = {
 export default function Card({ children, className = '', hover = true, padding = 'md' }: CardProps) {
   return (
     <div
-      className={`surface-card rounded-2xl ${paddings[padding]} ${
-        hover ? 'transition-all duration-300 hover:-translate-y-1 hover:border-electric/20 hover:shadow-2xl' : ''
+      className={`surface-card rounded-xl ${paddings[padding]} ${
+        hover ? 'transition-all duration-200 hover:border-teal/30 hover:shadow-md' : ''
       } ${className}`}
     >
       {children}
@@ -26,8 +26,8 @@ export default function Card({ children, className = '', hover = true, padding =
 export function DarkCard({ children, className = '', hover = true, padding = 'md' }: CardProps) {
   return (
     <div
-      className={`rounded-2xl border border-white/10 bg-navy/80 backdrop-blur-sm ${paddings[padding]} ${
-        hover ? 'transition-all duration-300 hover:-translate-y-1 hover:border-electric/30 hover:bg-navy' : ''
+      className={`rounded-xl border border-slate-800 bg-[#0E1A2E] text-slate-100 ${paddings[padding]} ${
+        hover ? 'transition-all duration-200 hover:border-teal/50' : ''
       } ${className}`}
     >
       {children}

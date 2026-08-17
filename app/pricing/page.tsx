@@ -7,7 +7,7 @@ import PageHero from '@/components/sections/PageHero'
 import SectionHeader from '@/components/ui/SectionHeader'
 
 export const metadata: Metadata = {
-  title: 'Pricing',
+  title: 'Pricing | Transparent Web Development Packages',
   description: 'Transparent, affordable pricing for professional web development. No hidden fees.',
 }
 
@@ -47,88 +47,88 @@ export default function PricingPage() {
         panelStats={['Starter', 'Growth', 'Enterprise']}
       />
 
-      <section className="py-16 bg-white sm:py-24">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3 items-stretch">
+      <section className="py-20 lg:py-24">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:items-stretch">
             {pricingPlans.map((plan) => (
               <div
                 key={plan.id}
-                className={`relative rounded-2xl flex flex-col ${
+                className={`relative flex flex-col justify-between rounded-xl p-6 sm:p-8 transition-all ${
                   plan.highlighted
-                    ? 'bg-navy text-white shadow-2xl z-10 lg:scale-105'
-                    : 'bg-white border border-gray-100 shadow-sm'
+                    ? 'bg-[#0E1A2E] text-white shadow-xl ring-2 ring-teal dark:bg-slate-900'
+                    : 'surface-card'
                 }`}
-                style={plan.highlighted ? { backgroundColor: '#0A1F44' } : undefined}
               >
                 {plan.highlighted && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                    <span className="bg-electric text-white text-xs font-bold px-4 py-1.5 rounded-full whitespace-nowrap">
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                    <span className="rounded bg-teal px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white">
                       Most Popular
                     </span>
                   </div>
                 )}
 
-                <div className="p-6 flex-1 sm:p-8">
-                  <h2 className={`font-bold text-xl mb-1 ${plan.highlighted ? 'text-white' : 'text-navy'}`}>
+                <div>
+                  <h2 className={`text-xl font-bold ${plan.highlighted ? 'text-white' : 'text-navy dark:text-white'}`}>
                     {plan.name}
                   </h2>
-                  <p className={`text-sm mb-6 ${plan.highlighted ? 'text-blue-200' : 'text-gray-500'}`}>
+                  <p className={`mt-2 text-xs leading-relaxed ${plan.highlighted ? 'text-slate-300' : 'text-slate-600 dark:text-slate-400'}`}>
                     {plan.description}
                   </p>
 
-                  <div className="mb-8">
-                    <div className={`text-4xl font-bold ${plan.highlighted ? 'text-white' : 'text-navy'}`}>
+                  <div className="my-6 border-y border-slate-200/20 py-4">
+                    <div className={`text-3xl font-extrabold ${plan.highlighted ? 'text-white' : 'text-navy dark:text-white'}`}>
                       {plan.price}
                     </div>
-                    <div className={`text-xs mt-0.5 ${plan.highlighted ? 'text-blue-300' : 'text-gray-400'}`}>
+                    <div className={`mt-0.5 text-[11px] ${plan.highlighted ? 'text-slate-300' : 'text-slate-500 dark:text-slate-400'}`}>
                       {plan.period}
                     </div>
                   </div>
 
-                  <ul className="space-y-3 mb-8">
+                  <ul className="space-y-2.5">
                     {plan.features.map((f) => (
-                      <li key={f} className="flex items-start gap-2.5 text-sm">
+                      <li key={f} className="flex items-center gap-2 text-xs">
                         <CheckCircle
-                          className={`w-4 h-4 flex-shrink-0 mt-0.5 ${
-                            plan.highlighted ? 'text-blue-300' : 'text-electric'
+                          className={`h-4 w-4 shrink-0 ${
+                            plan.highlighted ? 'text-teal-light' : 'text-teal'
                           }`}
                         />
-                        <span className={plan.highlighted ? 'text-blue-100' : 'text-gray-600'}>{f}</span>
+                        <span className={plan.highlighted ? 'text-slate-200' : 'text-slate-600 dark:text-slate-300'}>{f}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <div className="p-6 pt-0 sm:p-8 sm:pt-0">
+                <div className="mt-8 pt-4">
                   <Link
                     href="/contact"
-                    className={`w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg font-bold text-sm transition-all hover:-translate-y-0.5 ${
+                    className={`w-full justify-center ${
                       plan.highlighted
-                        ? 'bg-electric text-white hover:bg-electric-dark'
-                        : 'bg-electric/10 text-electric hover:bg-electric hover:text-white'
+                        ? 'btn-primary bg-teal hover:bg-teal-light text-white'
+                        : 'btn-primary'
                     }`}
                   >
-                    {plan.cta} <ArrowRight className="w-4 h-4" />
+                    {plan.cta} <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
               </div>
             ))}
           </div>
 
-          <p className="text-center text-gray-400 text-sm mt-12">
+          <p className="mt-12 text-center text-xs text-slate-500 dark:text-slate-400">
             All prices in USD. Maintenance plans from $99/month. Custom integrations quoted separately.
           </p>
         </div>
       </section>
 
-      <section className="py-16 bg-gray-50 sm:py-20">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* FAQ */}
+      <section className="bg-slate-50/80 py-16 dark:bg-slate-950/60 lg:py-20">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <SectionHeader tag="FAQ" title="Questions about pricing" center />
-          <div className="space-y-4">
+          <div className="mt-8 space-y-4">
             {faqs.map((faq) => (
-              <div key={faq.q} className="bg-white rounded-xl border border-gray-100 p-6">
-                <h3 className="text-navy font-semibold mb-2">{faq.q}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed">{faq.a}</p>
+              <div key={faq.q} className="surface-card rounded-xl p-6">
+                <h3 className="text-sm font-bold text-navy dark:text-white">{faq.q}</h3>
+                <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-400">{faq.a}</p>
               </div>
             ))}
           </div>

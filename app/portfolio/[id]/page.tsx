@@ -86,41 +86,48 @@ export default function ProjectDetailPage({ params }: Props) {
   return (
     <>
       <PageHero
-        tag="Portfolio"
+        tag="Portfolio Case Study"
         title={project.title}
         subtitle={project.description}
         chips={[project.industry, ...project.tags]}
         panelTitle="Case study"
-        panelBody="A clearer top section gives the project room to feel polished before the details and results are introduced."
+        panelBody="Detailed breakdown of the problem, our strategic engineering solution, and measurable business outcomes."
         panelStats={['Strategy', 'Build', 'Outcome']}
       />
 
-      <section className="py-16 bg-white sm:py-20">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link href="/portfolio" scroll={false} className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-slate-900 mb-8 transition-colors">
-            <ArrowLeft className="w-4 h-4" /> Back to Portfolio
+      <section className="py-20 lg:py-24">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <Link
+            href="/portfolio"
+            scroll={false}
+            className="mb-8 inline-flex items-center gap-2 text-xs font-semibold text-slate-500 transition-colors hover:text-navy dark:text-slate-400 dark:hover:text-white"
+          >
+            <ArrowLeft className="h-4 w-4" /> Back to Portfolio
           </Link>
+
           {/* Featured Image */}
-          <div className="relative mb-12 h-64 overflow-hidden rounded-2xl shadow-2xl sm:h-80 md:mb-16 md:h-[480px]">
+          <div className="relative mb-12 h-64 overflow-hidden rounded-xl border border-slate-200 bg-slate-900 shadow-lg sm:h-96 md:mb-16 lg:h-[450px] dark:border-slate-800">
             <Image src={project.image} alt={project.title} fill className="object-cover" />
           </div>
 
-          <div className="grid gap-10 lg:grid-cols-3">
-            <div className="space-y-10 lg:col-span-2">
+          <div className="grid gap-12 lg:grid-cols-12">
+            <div className="space-y-10 lg:col-span-8">
               <div>
-                <h2 className="text-navy font-bold text-2xl mb-4">The Challenge</h2>
-                <p className="text-gray-500 leading-relaxed">{details.challenge}</p>
+                <h2 className="text-xl font-bold text-navy dark:text-white">The Challenge</h2>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">{details.challenge}</p>
               </div>
+
               <div>
-                <h2 className="text-navy font-bold text-2xl mb-4">Our Solution</h2>
-                <p className="text-gray-500 leading-relaxed">{details.solution}</p>
+                <h2 className="text-xl font-bold text-navy dark:text-white">Our Solution</h2>
+                <p className="mt-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300">{details.solution}</p>
               </div>
+
               <div>
-                <h2 className="text-navy font-bold text-2xl mb-4">Results Achieved</h2>
-                <ul className="space-y-3">
+                <h2 className="text-xl font-bold text-navy dark:text-white">Results Achieved</h2>
+                <ul className="mt-4 space-y-2.5">
                   {details.results.map((r) => (
-                    <li key={r} className="flex items-start gap-3 text-gray-600">
-                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                    <li key={r} className="flex items-start gap-3 text-xs text-slate-700 dark:text-slate-300">
+                      <CheckCircle className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
                       {r}
                     </li>
                   ))}
@@ -128,49 +135,55 @@ export default function ProjectDetailPage({ params }: Props) {
               </div>
             </div>
 
-            <div className="space-y-6">
-              <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
-                <h3 className="text-navy font-bold mb-4">What We Delivered</h3>
-                <ul className="space-y-2">
+            {/* Sidebar Deliverables */}
+            <div className="space-y-6 lg:col-span-4">
+              <div className="surface-card rounded-xl p-6">
+                <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">What We Delivered</h3>
+                <ul className="mt-4 space-y-2">
                   {details.deliverables.map((d) => (
-                    <li key={d} className="flex items-center gap-2 text-sm text-gray-600">
-                      <div className="w-1.5 h-1.5 bg-electric rounded-full flex-shrink-0" />
+                    <li key={d} className="flex items-center gap-2 text-xs text-slate-600 dark:text-slate-300">
+                      <span className="h-1.5 w-1.5 rounded-full bg-teal shrink-0" />
                       {d}
                     </li>
                   ))}
                 </ul>
               </div>
-              <Link
-                href="/contact"
-                className="w-full inline-flex items-center justify-center gap-2 bg-electric text-white px-6 py-3 rounded-lg font-semibold text-sm hover:bg-electric-dark transition-colors"
-              >
-                Start a Similar Project <ExternalLink className="w-4 h-4" />
+
+              <Link href="/contact" className="btn-primary w-full justify-center">
+                Start a Similar Project <ExternalLink className="h-4 w-4" />
               </Link>
+
               {project.link && (
                 <a
                   href={project.link}
                   target="_blank"
                   rel="noreferrer"
-                  className="w-full inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-6 py-3 text-sm font-semibold text-navy transition-colors hover:border-electric hover:text-electric"
+                  className="btn-outline-navy w-full justify-center text-xs"
                 >
-                  Visit Live Site <ExternalLink className="w-4 h-4" />
+                  Visit Live Site <ExternalLink className="h-4 w-4" />
                 </a>
               )}
             </div>
           </div>
 
+          {/* Related Projects */}
           {related.length > 0 && (
-            <div className="mt-16 border-t border-gray-100 pt-12 sm:mt-20 sm:pt-16">
-              <h2 className="text-navy font-bold text-2xl mb-8">Similar Projects</h2>
-              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+            <div className="mt-20 border-t border-slate-200 pt-12 dark:border-slate-800">
+              <h2 className="text-lg font-bold text-navy dark:text-white">Similar Projects</h2>
+              <div className="mt-6 grid gap-6 sm:grid-cols-2">
                 {related.map((p) => (
-                  <Link key={p.id} href={`/portfolio/${p.id}`} scroll={false} className="group bg-gray-50 rounded-xl overflow-hidden border border-gray-100 hover:shadow-lg transition-all">
-                    <div className="relative h-40 overflow-hidden">
-                      <Image src={p.image} alt={p.title} fill className="object-cover group-hover:scale-105 transition-transform duration-300" />
+                  <Link
+                    key={p.id}
+                    href={`/portfolio/${p.id}`}
+                    scroll={false}
+                    className="group surface-card overflow-hidden rounded-xl transition-all hover:border-teal/30"
+                  >
+                    <div className="relative h-40 overflow-hidden bg-slate-900">
+                      <Image src={p.image} alt={p.title} fill className="object-cover transition-transform duration-300 group-hover:scale-105" />
                     </div>
                     <div className="p-4">
                       <Badge variant="blue">{p.industry}</Badge>
-                      <h3 className="text-navy font-semibold mt-2 text-sm">{p.title}</h3>
+                      <h3 className="mt-2 text-sm font-bold text-navy dark:text-white">{p.title}</h3>
                     </div>
                   </Link>
                 ))}

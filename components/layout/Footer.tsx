@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Mail, Phone, MapPin, MessageCircle, Linkedin, Instagram, Facebook } from 'lucide-react'
+import { Mail, Phone, MapPin, MessageCircle, Linkedin, Instagram, Facebook } from 'lucide-react'
 
 const serviceLinks = [
   { label: 'Website Development', href: '/services#web-dev' },
@@ -16,82 +16,68 @@ const companyLinks = [
   { label: 'Portfolio', href: '/portfolio' },
   { label: 'Industries', href: '/industries' },
   { label: 'Testimonials', href: '/testimonials' },
+  { label: 'Pricing', href: '/pricing' },
   { label: 'Blog', href: '/blog' },
 ]
 
 const socialLinks = [
-  { Icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/company/sixbyte-technologies/', color: '#0A66C2' },
+  { Icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/company/sixbyte-technologies/' },
   { Icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/artb_yfari' },
-  { Icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/share/19V3tqCFKm/', color: '#1877F2' },
+  { Icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/share/19V3tqCFKm/' },
 ]
 
 export default function Footer() {
   return (
-    <footer className="bg-navy text-white">
-      <div className="border-b border-white/10 bg-electric/95">
-        <div className="mx-auto flex max-w-7xl flex-col gap-6 px-4 py-12 sm:px-6 lg:flex-row lg:items-center lg:justify-between lg:px-8">
-          <div className="max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-white/70">Start a conversation</p>
-            <h3 className="mt-2 text-2xl font-bold text-white md:text-3xl">
-              Ready for a website that feels credible from the first click?
-            </h3>
-            <p className="mt-2 text-sm leading-6 text-white/80">
-              We&apos;ll help you shape a clear, professional online presence that makes it easier for customers to trust
-              you and take the next step.
-            </p>
-          </div>
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-electric transition-colors hover:bg-slate-100"
-          >
-            Book a free consultation <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-      </div>
-
+    <footer className="border-t border-slate-800 bg-[#0E1A2E] text-slate-300">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
-          <div>
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-8">
+          {/* Brand Col */}
+          <div className="lg:col-span-4">
             <Link href="/" className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10">
-                <Image
-                  src="/assets/SixByte_standalone-removebg-preview.webp"
-                  alt="SixByte Technologies"
-                  width={44}
-                  height={44}
-                  className="h-9 w-9 object-contain"
-                />
-              </div>
-              <div>
-                <span className="block text-sm font-extrabold tracking-[0.24em] uppercase">SixByte</span>
-                <span className="block text-xs font-medium tracking-[0.18em] text-white/70 uppercase">Technologies</span>
+              <Image
+                src="/assets/SixByte_standalone-removebg-preview.webp"
+                alt="SixByte Technologies"
+                width={40}
+                height={40}
+                className="h-10 w-10 object-contain"
+              />
+              <div className="leading-none">
+                <span className="block text-base font-extrabold tracking-tight text-white uppercase">
+                  SixByte
+                </span>
+                <span className="mt-0.5 block text-[10px] font-semibold tracking-widest text-teal uppercase">
+                  Technologies
+                </span>
               </div>
             </Link>
-            <p className="mt-5 text-sm leading-7 text-white/70">
-              Smart websites, refined branding, and digital systems built to help real businesses grow with confidence.
+
+            <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-400">
+              Smart websites, refined branding, and digital systems built to help real businesses grow with clarity and confidence.
             </p>
-            <div className="mt-6 flex gap-3">
-              {socialLinks.map(({ Icon, label, href, color }) => (
+
+            <div className="mt-6 flex items-center gap-3">
+              {socialLinks.map(({ Icon, label, href }) => (
                 <a
                   key={label}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white transition-colors hover:border-white/20 hover:bg-white/10"
+                  className="flex h-9 w-9 items-center justify-center rounded border border-slate-700/80 bg-slate-900/50 text-slate-400 transition-colors hover:border-teal hover:text-white"
                 >
-                  <Icon className="h-4 w-4" style={color ? { color } : undefined} />
+                  <Icon className="h-4 w-4" />
                 </a>
               ))}
             </div>
           </div>
 
-          <div>
-            <h4 className="text-xs font-semibold uppercase tracking-[0.24em] text-white/70">Services</h4>
-            <ul className="mt-5 space-y-3">
+          {/* Services Links */}
+          <div className="lg:col-span-3">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400">Services</h4>
+            <ul className="mt-4 space-y-2.5">
               {serviceLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-white/70 transition-colors hover:text-white">
+                  <Link href={link.href} className="text-sm text-slate-300 transition-colors hover:text-teal">
                     {link.label}
                   </Link>
                 </li>
@@ -99,12 +85,13 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
-            <h4 className="text-xs font-semibold uppercase tracking-[0.24em] text-white/70">Company</h4>
-            <ul className="mt-5 space-y-3">
+          {/* Company Links */}
+          <div className="lg:col-span-2">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400">Company</h4>
+            <ul className="mt-4 space-y-2.5">
               {companyLinks.map((link) => (
                 <li key={link.href}>
-                  <Link href={link.href} className="text-sm text-white/70 transition-colors hover:text-white">
+                  <Link href={link.href} className="text-sm text-slate-300 transition-colors hover:text-teal">
                     {link.label}
                   </Link>
                 </li>
@@ -112,57 +99,51 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div>
-            <h4 className="text-xs font-semibold uppercase tracking-[0.24em] text-white/70">Contact</h4>
-            <ul className="mt-5 space-y-4 text-sm text-white/70">
-              <li className="flex items-start gap-3">
-                <Mail className="mt-0.5 h-4 w-4 text-electric-light" />
+          {/* Contact Details */}
+          <div className="lg:col-span-3">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400">Contact</h4>
+            <ul className="mt-4 space-y-3 text-sm text-slate-300">
+              <li className="flex items-center gap-3">
+                <Mail className="h-4 w-4 text-teal shrink-0" />
                 <a href="mailto:connectshodigital@gmail.com" className="transition-colors hover:text-white">
                   connectshodigital@gmail.com
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <Phone className="mt-0.5 h-4 w-4 text-electric-light" />
+              <li className="flex items-center gap-3">
+                <Phone className="h-4 w-4 text-teal shrink-0" />
                 <a href="tel:03345856255" className="transition-colors hover:text-white">
                   03345856255
                 </a>
               </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="mt-0.5 h-4 w-4 text-electric-light" />
+              <li className="flex items-center gap-3">
+                <MapPin className="h-4 w-4 text-teal shrink-0" />
                 <span>Islamabad, Pakistan</span>
               </li>
-              <li className="flex items-start gap-3">
-                <MessageCircle className="mt-0.5 h-4 w-4 text-electric-light" />
+              <li className="flex items-center gap-3">
+                <MessageCircle className="h-4 w-4 text-teal shrink-0" />
                 <a
                   href="https://wa.me/923345856255"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transition-colors hover:text-white"
                 >
-                  WhatsApp us
+                  Chat on WhatsApp
                 </a>
               </li>
             </ul>
-            <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/50">Availability</p>
-              <p className="mt-2 text-sm text-white">24/7 support for inquiries and project discussions.</p>
-              <p className="text-xs text-white/50">Replies may vary slightly outside business hours.</p>
-            </div>
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-4 border-t border-white/10 pt-8 text-center text-sm text-white/50 md:flex-row md:items-center md:justify-between md:text-left">
+        {/* Bottom Bar */}
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-slate-800/80 pt-8 text-xs text-slate-500 sm:flex-row">
           <p>© {new Date().getFullYear()} SixByte Technologies. All rights reserved.</p>
-          <div className="flex flex-wrap justify-center gap-4 md:justify-end md:gap-6">
-            <a href="#" className="transition-colors hover:text-white">
+          <div className="flex gap-6">
+            <Link href="/contact" className="transition-colors hover:text-slate-400">
               Privacy Policy
-            </a>
-            <a href="#" className="transition-colors hover:text-white">
+            </Link>
+            <Link href="/contact" className="transition-colors hover:text-slate-400">
               Terms of Service
-            </a>
-            <a href="#" className="transition-colors hover:text-white">
-              Sitemap
-            </a>
+            </Link>
           </div>
         </div>
       </div>

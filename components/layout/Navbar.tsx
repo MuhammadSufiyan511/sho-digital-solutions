@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { MessageCircle, Menu, Moon, Sun, X } from 'lucide-react'
+import { Menu, Moon, Sun, X, ArrowRight } from 'lucide-react'
 import { navLinks } from '@/lib/data'
 
 export default function Navbar() {
@@ -17,7 +17,7 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 12)
     handleScroll()
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
@@ -63,50 +63,44 @@ export default function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/85 shadow-lg shadow-slate-900/5 backdrop-blur-xl dark:bg-slate-950/80 dark:shadow-black/20'
-          : 'bg-transparent'
+          ? 'border-b border-slate-200/80 bg-white/90 shadow-sm backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/90'
+          : 'border-b border-transparent bg-slate-50/80 backdrop-blur-sm dark:bg-slate-950/40'
       }`}
-      >
-      <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between py-3 sm:py-4">
-          <Link href="/" className="flex items-center gap-3">
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-20 items-center justify-between">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-90">
             <Image
               src="/assets/SixByte_standalone-removebg-preview.webp"
-              alt="SixByte Technologies"
-              width={44}
-              height={44}
-              className="h-11 w-11 object-contain sm:h-12 sm:w-12"
+              alt="SixByte Technologies Logo"
+              width={40}
+              height={40}
+              className="h-10 w-10 object-contain"
               priority
             />
-            <div className="hidden leading-tight sm:block">
-              <span className="block text-sm font-extrabold tracking-[0.24em] text-navy uppercase dark:text-white">
+            <div className="leading-none">
+              <span className="block text-base font-extrabold tracking-tight text-navy uppercase dark:text-white">
                 SixByte
               </span>
-              <span className="block text-xs font-medium tracking-[0.18em] text-electric uppercase">
+              <span className="mt-0.5 block text-[10px] font-semibold tracking-widest text-teal uppercase">
                 Technologies
               </span>
             </div>
           </Link>
 
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-2 text-[11px] font-semibold text-electric shadow-sm transition-colors hover:border-electric hover:bg-electric/5 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 sm:hidden"
-          >
-            <MessageCircle className="h-3.5 w-3.5" />
-            Talk
-          </Link>
-
-          <nav className="hidden items-center gap-1 lg:flex">
+          {/* Desktop Nav Links */}
+          <nav className="hidden items-center gap-8 lg:flex">
             {navLinks.map((link) => {
               const active = pathname === link.href
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                  className={`text-sm font-medium transition-colors hover:text-teal ${
                     active
-                      ? 'bg-electric/10 text-electric'
-                      : 'text-slate-600 hover:bg-slate-100 hover:text-navy dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white'
+                      ? 'font-semibold text-teal dark:text-teal-light'
+                      : 'text-slate-700 dark:text-slate-300'
                   }`}
                 >
                   {link.label}
@@ -115,18 +109,29 @@ export default function Navbar() {
             })}
           </nav>
 
-          <div className="hidden items-center gap-3 lg:flex">
-            <Link href="/contact" className="btn-primary">
-              Free Consultation
-            </Link>
-          </div>
-
-          <div className="ml-auto mr-2 flex items-center gap-2 sm:mr-3 lg:ml-0">
+          {/* Actions (Theme toggle + CTA) */}
+          <div className="hidden items-center gap-4 lg:flex">
             <button
               type="button"
               onClick={() => setTheme((current) => (current === 'dark' ? 'light' : 'dark'))}
               aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-navy transition-colors hover:border-electric hover:text-electric dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+              className="inline-flex h-9 w-9 items-center justify-center rounded border border-slate-200 bg-white text-slate-700 transition-colors hover:border-teal hover:text-teal dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-teal"
+            >
+              {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            </button>
+
+            <Link href="/contact" className="btn-primary">
+              Free Consultation <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+
+          {/* Mobile Right Tools */}
+          <div className="flex items-center gap-3 lg:hidden">
+            <button
+              type="button"
+              onClick={() => setTheme((current) => (current === 'dark' ? 'light' : 'dark'))}
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              className="inline-flex h-9 w-9 items-center justify-center rounded border border-slate-200 bg-white text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
             >
               {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </button>
@@ -134,9 +139,9 @@ export default function Navbar() {
             <button
               type="button"
               onClick={() => setIsOpen((value) => !value)}
-              aria-label="Toggle menu"
+              aria-label="Toggle navigation menu"
               aria-expanded={isOpen}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-navy transition-colors hover:border-electric hover:text-electric dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100 lg:hidden"
+              className="inline-flex h-10 w-10 items-center justify-center rounded border border-slate-200 bg-white text-slate-800 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200"
             >
               {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -144,8 +149,9 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* Mobile Drawer */}
       <div
-        className={`fixed inset-0 z-40 bg-slate-950/45 backdrop-blur-[2px] transition-opacity duration-300 lg:hidden ${
+        className={`fixed inset-0 z-40 bg-slate-950/50 backdrop-blur-sm transition-opacity duration-300 lg:hidden ${
           isOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
         }`}
         aria-hidden="true"
@@ -153,52 +159,45 @@ export default function Navbar() {
       />
 
       <aside
-        className={`fixed inset-y-0 right-0 z-50 flex w-[min(88vw,22rem)] max-w-full transform flex-col border-l border-slate-200/80 bg-white shadow-2xl shadow-slate-950/10 transition-transform duration-300 ease-out dark:border-slate-800 dark:bg-slate-950 lg:hidden ${
+        className={`fixed inset-y-0 right-0 z-50 flex w-80 max-w-[85vw] transform flex-col border-l border-slate-200 bg-white shadow-xl transition-transform duration-300 ease-out dark:border-slate-800 dark:bg-slate-950 lg:hidden ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
         aria-hidden={!isOpen}
       >
-        <div className="flex items-center justify-between border-b border-slate-100 px-4 py-4 dark:border-slate-800">
+        <div className="flex h-20 items-center justify-between border-b border-slate-100 px-6 dark:border-slate-900">
           <div className="flex items-center gap-3">
             <Image
               src="/assets/SixByte_standalone-removebg-preview.webp"
               alt="SixByte Technologies"
-              width={36}
-              height={36}
-              className="h-9 w-9 object-contain"
+              width={32}
+              height={32}
+              className="h-8 w-8 object-contain"
             />
-            <div className="leading-tight">
-              <span className="block text-[10px] font-extrabold tracking-[0.24em] text-navy uppercase dark:text-white">
-                SixByte
-              </span>
-              <span className="block text-[10px] font-medium tracking-[0.18em] text-electric uppercase">
-                Technologies
-              </span>
-            </div>
+            <span className="text-sm font-bold text-navy dark:text-white">SixByte</span>
           </div>
 
           <button
             type="button"
             onClick={() => setIsOpen(false)}
             aria-label="Close menu"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-navy transition-colors hover:border-electric hover:text-electric dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
+            className="inline-flex h-9 w-9 items-center justify-center rounded border border-slate-200 text-slate-700 dark:border-slate-800 dark:text-slate-300"
           >
-            <X className="h-5 w-5" />
+            <X className="h-4 w-4" />
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-4 py-5">
-          <nav className="space-y-2">
+        <div className="flex flex-1 flex-col justify-between overflow-y-auto px-6 py-6">
+          <nav className="space-y-1">
             {navLinks.map((link) => {
               const active = pathname === link.href
               return (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`block rounded-2xl px-4 py-3 text-sm font-medium transition-colors ${
+                  className={`block rounded-md px-4 py-3 text-base font-medium transition-colors ${
                     active
-                      ? 'bg-electric/10 text-electric'
-                      : 'text-slate-600 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800'
+                      ? 'bg-teal/10 font-semibold text-teal dark:bg-teal/20'
+                      : 'text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-900'
                   }`}
                 >
                   {link.label}
@@ -207,13 +206,9 @@ export default function Navbar() {
             })}
           </nav>
 
-          <div className="mt-6 rounded-3xl bg-gradient-to-br from-electric/10 via-white to-slate-50 p-4 ring-1 ring-slate-200/70 dark:from-electric/15 dark:via-slate-950 dark:to-slate-900 dark:ring-slate-800">
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-electric">Need help?</p>
-            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
-              Start with a free consultation and we&apos;ll help you figure out the cleanest next step.
-            </p>
-            <Link href="/contact" className="btn-primary mt-4 w-full justify-center">
-              Free Consultation
+          <div className="mt-8 space-y-4 border-t border-slate-100 pt-6 dark:border-slate-900">
+            <Link href="/contact" className="btn-primary w-full justify-center">
+              Free Consultation <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </div>

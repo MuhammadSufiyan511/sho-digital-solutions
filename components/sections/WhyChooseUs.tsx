@@ -1,4 +1,8 @@
-import { Award, Globe, Headphones, ShieldCheck, Sparkles, TrendingUp } from 'lucide-react'
+'use client'
+
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+import { ShieldCheck, Sparkles, Globe, Headphones, Award, TrendingUp } from 'lucide-react'
 import { Reveal, Stagger, StaggerItem } from '@/components/animations/Motion'
 import SectionHeader from '@/components/ui/SectionHeader'
 
@@ -37,34 +41,62 @@ const reasons = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="relative overflow-hidden bg-navy py-16 sm:py-24">
-      <div className="absolute right-0 top-0 h-96 w-96 rounded-full bg-electric/15 blur-[120px]" />
-
-      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="bg-[#0E1A2E] py-20 text-white lg:py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeader
             tag="Why SixByte"
             title="A partner that cares about how your business actually shows up online."
             subtitle="We keep the work calm, clear, and accountable so the end result feels dependable rather than flashy."
-            center
             light
           />
         </Reveal>
 
-        <Stagger className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {reasons.map(({ icon: Icon, title, description }) => (
-            <StaggerItem
-              key={title}
-              className="rounded-[1.5rem] border border-white/10 bg-white/5 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-electric/30 hover:bg-white/10"
+        <div className="mt-12 grid gap-10 lg:grid-cols-12 lg:items-center">
+          {/* Visual Left with Scroll Activation */}
+          <div className="lg:col-span-5">
+            <motion.div
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-electric/15 text-electric">
-                <Icon className="h-6 w-6" />
+              <div className="relative overflow-hidden rounded-xl border border-slate-800 bg-slate-900 p-2 shadow-2xl">
+                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-lg bg-slate-950">
+                  <Image
+                    src="/assets/about_architecture.png"
+                    alt="Digital architecture and systems positioning"
+                    fill
+                    className="object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                </div>
               </div>
-              <h3 className="mt-5 text-lg font-bold text-white">{title}</h3>
-              <p className="mt-3 text-sm leading-7 text-white/70">{description}</p>
-            </StaggerItem>
-          ))}
-        </Stagger>
+            </motion.div>
+          </div>
+
+          {/* Grid Right */}
+          <div className="lg:col-span-7">
+            <Stagger className="grid gap-6 sm:grid-cols-2">
+              {reasons.map(({ icon: Icon, title, description }, index) => (
+                <StaggerItem key={title}>
+                  <motion.div
+                    whileHover={{ y: -4, scale: 1.01, transition: { duration: 0.2 } }}
+                    className="rounded-lg border border-slate-800 bg-slate-900/60 p-5 transition-colors hover:border-teal/50 hover:bg-slate-900"
+                  >
+                    <div className="flex items-center justify-between">
+                      <Icon className="h-5 w-5 text-teal" />
+                      <span className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+                        0{index + 1}
+                      </span>
+                    </div>
+                    <h3 className="mt-3 text-base font-bold text-white">{title}</h3>
+                    <p className="mt-2 text-xs leading-relaxed text-slate-400">{description}</p>
+                  </motion.div>
+                </StaggerItem>
+              ))}
+            </Stagger>
+          </div>
+        </div>
       </div>
     </section>
   )
