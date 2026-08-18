@@ -12,7 +12,7 @@ export default function TestimonialsSection({ limit = 3 }: { limit?: number }) {
   const rest = featured.slice(1)
 
   return (
-    <section className="bg-white py-20 dark:bg-slate-950 lg:py-28">
+    <section className="bg-white py-10 dark:bg-slate-950 lg:py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeader

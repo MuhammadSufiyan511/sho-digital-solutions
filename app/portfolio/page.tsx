@@ -66,7 +66,7 @@ export default function PortfolioPage({ searchParams }: PortfolioPageProps) {
         panelStats={['Trust', 'Speed', 'Conversion']}
       />
 
-      <section className="py-20 lg:py-24">
+      <section className="py-10 lg:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Industry Filter Pills */}
           <div className="mb-12 flex flex-wrap gap-2 sm:justify-center">

@@ -21,7 +21,7 @@ export default function CTASection({
   showWhatsapp = true,
 }: CTASectionProps) {
   return (
-    <section className="relative overflow-hidden bg-[#0E1A2E] py-20 text-white lg:py-24">
+    <section className="relative overflow-hidden bg-[#0E1A2E] py-10 text-white lg:py-14">
       {/* Scroll-Activated Fine Geometric Line Grid Overlay */}
       <motion.div
         className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:32px_32px]"

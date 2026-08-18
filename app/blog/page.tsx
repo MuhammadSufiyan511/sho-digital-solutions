@@ -29,7 +29,7 @@ export default function BlogPage() {
         panelStats={['Useful', 'Practical', 'Clear']}
       />
 
-      <section className="py-20 lg:py-24">
+      <section className="py-10 lg:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Category Filter */}
           <div className="mb-12 flex flex-wrap gap-2 sm:justify-center">
@@ -111,7 +111,7 @@ export default function BlogPage() {
       </section>
 
       {/* Newsletter */}
-      <section className="bg-slate-50/80 py-16 dark:bg-slate-950/60 lg:py-20">
+      <section className="bg-slate-50/80 py-10 dark:bg-slate-950/60 lg:py-14">
         <div className="mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
           <h2 className="text-xl font-bold text-navy dark:text-white">Get Growth Tips in Your Inbox</h2>
           <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-400">

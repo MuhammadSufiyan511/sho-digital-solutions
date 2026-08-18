@@ -8,7 +8,7 @@ import SectionHeader from '@/components/ui/SectionHeader'
 
 export default function IndustriesSection() {
   return (
-    <section className="bg-slate-50/80 py-20 dark:bg-slate-950/60 lg:py-28">
+    <section className="bg-slate-50/80 py-10 dark:bg-slate-950/60 lg:py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeader

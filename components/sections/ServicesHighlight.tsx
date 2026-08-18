@@ -34,7 +34,7 @@ const highlights = [
 
 export default function ServicesHighlight() {
   return (
-    <section className="py-20 lg:py-28">
+    <section className="py-10 lg:py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-12 lg:items-start">
           {/* Header Left */}

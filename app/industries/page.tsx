@@ -34,7 +34,7 @@ export default function IndustriesPage() {
         panelStats={['Booking', 'Lead gen', 'Authority']}
       />
 
-      <section className="py-20 lg:py-24">
+      <section className="py-10 lg:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {industries.map((industry) => {
@@ -70,7 +70,7 @@ export default function IndustriesPage() {
         </div>
       </section>
 
-      <section className="bg-slate-50/80 py-16 dark:bg-slate-950/60 lg:py-20">
+      <section className="bg-slate-50/80 py-10 dark:bg-slate-950/60 lg:py-14">
         <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
           <SectionHeader
             tag="Not listed?"

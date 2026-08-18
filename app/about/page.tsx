@@ -1,15 +1,13 @@
-import type { Metadata } from 'next'
-import { Award, CheckCircle2, HeartHandshake, ShieldCheck, Target } from 'lucide-react'
+'use client'
+
+import { useEffect, useRef, useState } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { Award, CheckCircle2, HeartHandshake, ShieldCheck, Target, TrendingUp, Users } from 'lucide-react'
 import CTASection from '@/components/sections/CTASection'
 import PageHero from '@/components/sections/PageHero'
 import SectionHeader from '@/components/ui/SectionHeader'
-import TeamMembersSection from '@/components/sections/TeamMembersSection'
-
-export const metadata: Metadata = {
-  title: 'About Us',
-  description:
-    'Learn how SixByte Technologies works, what we value, and who helps shape the team behind each project.',
-}
+import KineticTeamShowcase from '@/components/sections/KineticTeamShowcase'
+import { Reveal, Stagger, StaggerItem } from '@/components/animations/Motion'
 
 const values = [
   {
@@ -62,51 +60,93 @@ const team = [
     initials: 'MS',
     name: 'Muhammad Sufiyan',
     role: 'Full Stack Developer',
-    bio: 'Specializes in MERN, MySQL, and AI-enabled web applications with a focus on scalable business products.',
-    image: '/assets/MuhammadSufiyan.webp',
+    bio: 'Leads full-stack development across the MERN ecosystem, MySQL databases, and AI-powered web applications. Passionate about architecting scalable SaaS products and turning complex business logic into clean, maintainable code that ships fast.',
+    image: '/assets/MuhammadSufiyan-Bgless.webp',
+    tags: ['Full-Stack', 'MERN & MySQL', 'AI Applications'],
   },
   {
     initials: 'ZY',
     name: 'Zohaib Younas',
     role: 'Full Stack Developer',
-    bio: 'Builds polished websites and products with a strong eye for structure, speed, and user experience.',
-    image: '/assets/ZohaibYounis.webp',
+    bio: 'Builds high-performance websites and web applications with a keen eye for structure, speed, and pixel-perfect user interfaces. Specializes in React, Next.js, and modern frontend architecture with a focus on delivering seamless digital experiences.',
+    image: '/assets/Zohaib-bgless.webp',
+    tags: ['Web Performance', 'UI/UX Architecture', 'React & Next.js'],
   },
   {
     initials: 'AW',
     name: 'Abdul Wahab',
     role: 'Mobile Application Developer',
-    bio: 'Creates smooth mobile experiences and handles app flows with a focus on usability and reliability.',
-    image: '/assets/AbdulWahab.webp',
+    bio: 'Crafts smooth, native-feeling mobile experiences for iOS and Android. Handles end-to-end app development from wireframe to App Store, with deep expertise in cross-platform frameworks, intuitive navigation flows, and performance optimization.',
+    image: '/assets/AbdulWahab-bgless.webp',
+    tags: ['Mobile Development', 'Cross-Platform', 'UX Design'],
   },
   {
     initials: 'AH',
     name: 'Abid Hussain',
     role: 'DevOps Engineer',
-    bio: 'Keeps deployment pipelines, infrastructure, and release processes stable and efficient.',
-    image: '/assets/AbidHussain.webp',
+    bio: 'Architects cloud infrastructure, CI/CD pipelines, and automated deployment workflows that keep production systems running at 99.9% uptime. Ensures every release is stable, secure, and delivered with zero-downtime confidence.',
+    image: '/assets/AbidHussain-bgless.webp',
+    tags: ['Cloud Infrastructure', 'CI/CD Pipelines', 'System Security'],
   },
   {
     initials: 'MU',
     name: 'Muhammad Umar',
     role: 'AI Engineer',
-    bio: 'Focuses on AI, machine learning, computer vision, and practical backend integration for products.',
-    image: '/assets/MuhammadUmer.webp',
+    bio: 'Designs and deploys machine learning models, computer vision systems, and intelligent backend services. Bridges the gap between research and production by integrating AI capabilities into real-world products using Python, PyTorch, and modern ML ops.',
+    image: '/assets/MuhammadUmar-bgless.webp',
+    tags: ['AI & ML', 'Computer Vision', 'Python & PyTorch'],
   },
   {
     initials: 'HA',
     name: 'Abdul Haq',
     role: 'Business Developer',
-    bio: 'Connects client goals with the right solution and helps shape clear, practical next steps.',
+    bio: 'Connects client ambitions with the right technical solutions through strategic consultation and discovery. Shapes clear project roadmaps, aligns stakeholder expectations, and drives business growth by turning ideas into actionable digital strategies.',
+    image: '/assets/AbdulHaq-bgless.webp',
+    tags: ['Client Relations', 'Strategy Alignment', 'Business Growth'],
   },
 ]
 
 const stats = [
-  { value: '150+', label: 'Projects delivered' },
-  { value: '98%', label: 'Client satisfaction' },
-  { value: '24/7', label: 'Digital presence' },
-  { value: '4', label: 'Core disciplines' },
+  { target: 150, suffix: '+', label: 'Projects delivered' },
+  { target: 98, suffix: '%', label: 'Client satisfaction' },
+  { target: 24, suffix: '/7', label: 'Digital presence' },
+  { target: 4, suffix: '', label: 'Core disciplines' },
 ]
+
+function AnimatedCount({ target, suffix = '' }: { target: number; suffix?: string }) {
+  const [count, setCount] = useState(0)
+  const ref = useRef<HTMLSpanElement>(null)
+  const isInView = useInView(ref, { once: true, margin: '-50px' })
+
+  useEffect(() => {
+    if (!isInView) return
+
+    const duration = 1600
+    const startTime = performance.now()
+
+    const updateCount = (now: number) => {
+      const elapsed = now - startTime
+      const progress = Math.min(elapsed / duration, 1)
+      const easeProgress = 1 - Math.pow(1 - progress, 3)
+      setCount(Math.floor(easeProgress * target))
+
+      if (progress < 1) {
+        requestAnimationFrame(updateCount)
+      } else {
+        setCount(target)
+      }
+    }
+
+    requestAnimationFrame(updateCount)
+  }, [isInView, target])
+
+  return (
+    <span ref={ref} className="inline-block">
+      {count}
+      {suffix}
+    </span>
+  )
+}
 
 export default function AboutPage() {
   return (
@@ -121,118 +161,202 @@ export default function AboutPage() {
         panelStats={['Human', 'Clear', 'Polished']}
       />
 
-      {/* Mission */}
-      <section className="py-20 lg:py-24">
+      {/* Mission Section */}
+      <section className="relative overflow-hidden py-10 lg:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7">
-              <SectionHeader
-                tag="Our mission"
-                title="Make business websites feel more human, more useful, and more trusted."
-                subtitle="We want visitors to feel clear on who you are, what you offer, and why you are the right team to contact."
-              />
+              <Reveal>
+                <SectionHeader
+                  tag="Our mission"
+                  title="Make business websites feel more human, more useful, and more trusted."
+                  subtitle="We want visitors to feel clear on who you are, what you offer, and why you are the right team to contact."
+                />
+              </Reveal>
 
-              <div className="mt-6 space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-                <p>
-                  We work best with businesses that want to present themselves well and communicate with more intention.
-                  That could mean a new brand direction, a stronger website, or a more useful lead-generation flow.
-                </p>
-                <p>
-                  The process is collaborative by design. We ask better questions up front, shape the structure with care,
-                  and keep the final result focused on the people who will actually use it.
-                </p>
-              </div>
+              <Reveal delay={0.1}>
+                <div className="mt-6 space-y-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                  <p>
+                    We work best with businesses that want to present themselves well and communicate with more intention.
+                    That could mean a new brand direction, a stronger website, or a more useful lead-generation flow.
+                  </p>
+                  <p>
+                    The process is collaborative by design. We ask better questions up front, shape the structure with care,
+                    and keep the final result focused on the people who will actually use it.
+                  </p>
+                </div>
+              </Reveal>
 
-              <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+              <Stagger className="mt-8 grid gap-3 sm:grid-cols-2">
                 {[
                   'Clear discovery and planning',
                   'Messaging that sounds human',
                   'Mobile-first, responsive design',
                   'Support after launch',
                 ].map((item) => (
-                  <li key={item} className="flex items-center gap-2.5 text-xs font-semibold text-slate-700 dark:text-slate-300">
-                    <CheckCircle2 className="h-4 w-4 shrink-0 text-teal" />
-                    {item}
-                  </li>
+                  <StaggerItem key={item}>
+                    <motion.div
+                      whileHover={{ x: 3 }}
+                      className="flex items-center gap-2.5 text-xs font-semibold text-slate-700 dark:text-slate-300"
+                    >
+                      <CheckCircle2 className="h-4 w-4 shrink-0 text-teal" />
+                      {item}
+                    </motion.div>
+                  </StaggerItem>
                 ))}
-              </ul>
+              </Stagger>
             </div>
 
+            {/* Stats Grid with Animated Count */}
             <div className="grid grid-cols-2 gap-4 lg:col-span-5">
-              {stats.map((stat) => (
-                <div key={stat.label} className="surface-card rounded-xl p-6 text-center">
-                  <div className="text-3xl font-extrabold text-navy dark:text-white">{stat.value}</div>
-                  <div className="mt-2 text-xs font-semibold uppercase tracking-wider text-slate-500">
-                    {stat.label}
-                  </div>
-                </div>
+              {stats.map((stat, idx) => (
+                <Reveal key={stat.label} delay={idx * 0.1}>
+                  <motion.div
+                    whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                    className="surface-card rounded-xl p-6 text-center transition-all hover:border-teal/40"
+                  >
+                    <div className="text-3xl sm:text-4xl font-extrabold text-navy dark:text-white">
+                      <AnimatedCount target={stat.target} suffix={stat.suffix} />
+                    </div>
+                    <div className="mt-2 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                      {stat.label}
+                    </div>
+                  </motion.div>
+                </Reveal>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="bg-slate-50/80 py-20 dark:bg-slate-950/60 lg:py-24">
+      {/* Values Section */}
+      <section className="relative overflow-hidden bg-slate-50/80 py-10 dark:bg-slate-950/60 lg:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            tag="What we value"
-            title="The principles that keep our work sharp and our process easy to trust."
-            subtitle="We try to make the experience steady, thoughtful, and respectful from the first email to the final launch."
-            center
-          />
+          <Reveal>
+            <SectionHeader
+              tag="What we value"
+              title="The principles that keep our work sharp and our process easy to trust."
+              subtitle="We try to make the experience steady, thoughtful, and respectful from the first email to the final launch."
+              center
+            />
+          </Reveal>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <Stagger className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {values.map(({ icon: Icon, title, description }) => (
-              <article key={title} className="surface-card rounded-xl p-6">
-                <Icon className="h-6 w-6 text-teal" />
-                <h3 className="mt-4 text-base font-bold text-navy dark:text-white">{title}</h3>
-                <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-400">{description}</p>
-              </article>
+              <StaggerItem key={title}>
+                <motion.article
+                  whileHover={{ y: -6, scale: 1.02 }}
+                  className="surface-card group flex h-full flex-col justify-between rounded-xl p-6 transition-all duration-200 hover:border-teal/40"
+                >
+                  <div>
+                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg bg-teal/10 text-teal transition-colors group-hover:bg-teal group-hover:text-white dark:bg-teal/20 dark:text-teal-light">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="mt-4 text-base font-bold text-navy dark:text-white">{title}</h3>
+                    <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-400">{description}</p>
+                  </div>
+                </motion.article>
+              </StaggerItem>
             ))}
+          </Stagger>
+        </div>
+      </section>
+
+      {/* Modern Vertical Animated Timeline / Milestones */}
+      <section className="relative overflow-hidden py-10 lg:py-14">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <Reveal>
+            <SectionHeader
+              tag="Our story"
+              title="How the business has grown over time."
+              subtitle="The focus has stayed the same: build work that feels professional, useful, and honest."
+              center
+            />
+          </Reveal>
+
+          <div className="relative mt-20">
+            {/* Scroll-Activated Continuous Vertical Timeline Line */}
+            <motion.div
+              className="absolute left-6 sm:left-1/2 top-3 bottom-3 w-0.5 -translate-x-1/2 bg-gradient-to-b from-[#0F766E] via-teal-500/50 to-[#0F766E]/10"
+              initial={{ scaleY: 0 }}
+              whileInView={{ scaleY: 1 }}
+              viewport={{ once: true, amount: 0.1 }}
+              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+            />
+
+            <div className="space-y-12 sm:space-y-16">
+              {milestones.map((item, idx) => {
+                const isEven = idx % 2 === 0
+                return (
+                  <div
+                    key={item.year}
+                    className="relative flex flex-col sm:flex-row items-center"
+                  >
+                    {/* Timeline Center Pulse Node */}
+                    <motion.div
+                      initial={{ scale: 0, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: idx * 0.15 }}
+                      className="absolute left-6 sm:left-1/2 -translate-x-1/2 flex h-7 w-7 items-center justify-center rounded-full border border-[#0F766E] bg-white dark:bg-[#0E1A2E] shadow-[0_0_12px_rgba(15,118,110,0.3)] z-10"
+                    >
+                      <span className="h-2 w-2 rounded-full bg-[#0F766E]" />
+                    </motion.div>
+
+                    {/* Milestone Content Card */}
+                    <div
+                      className={`w-full sm:w-1/2 ${
+                        isEven
+                          ? 'sm:pr-12 lg:pr-16 text-left sm:text-right'
+                          : 'sm:pl-12 lg:pl-16 sm:ml-auto text-left'
+                      } pl-16 sm:pl-0`}
+                    >
+                      <Reveal delay={idx * 0.12}>
+                        <motion.div
+                          whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                          className="surface-card group rounded-2xl p-6 sm:p-7 shadow-md border border-slate-200/80 dark:border-slate-800 transition-all duration-300 hover:border-[#0F766E]/40 dark:hover:border-teal-500/40 hover:shadow-xl"
+                        >
+                          <div
+                            className={`flex items-center gap-3 ${
+                              isEven ? 'sm:justify-end' : 'justify-start'
+                            }`}
+                          >
+                            <span className="font-mono text-xs font-bold tracking-widest text-[#0F766E] dark:text-teal-400">
+                              MILESTONE 0{idx + 1}
+                            </span>
+                            <span className="h-1 w-1 rounded-full bg-slate-300 dark:bg-slate-700" />
+                            <span className="inline-block rounded-md bg-[#0F766E]/10 dark:bg-teal-500/10 px-2.5 py-0.5 font-mono text-xs font-extrabold text-[#0F766E] dark:text-teal-300">
+                              {item.year}
+                            </span>
+                          </div>
+
+                          <h3 className="mt-3 text-lg sm:text-xl font-bold text-navy dark:text-white group-hover:text-[#0F766E] dark:group-hover:text-teal-300 transition-colors">
+                            {item.title}
+                          </h3>
+
+                          <p className="mt-2 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                            {item.description}
+                          </p>
+                        </motion.div>
+                      </Reveal>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Milestones */}
-      <section className="py-20 lg:py-24">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            tag="Our story"
-            title="How the business has grown over time."
-            subtitle="The focus has stayed the same: build work that feels professional, useful, and honest."
-            center
-          />
-
-          <div className="mt-12 space-y-6">
-            {milestones.map((item) => (
-              <div key={item.year} className="surface-card flex flex-col gap-4 rounded-xl p-6 sm:flex-row sm:items-start sm:gap-8">
-                <div className="text-xl font-extrabold text-teal dark:text-teal-light shrink-0 sm:w-20">
-                  {item.year}
-                </div>
-                <div>
-                  <h3 className="text-base font-bold text-navy dark:text-white">{item.title}</h3>
-                  <p className="mt-1 text-xs leading-relaxed text-slate-600 dark:text-slate-400">{item.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Team */}
-      <section className="bg-slate-50/80 py-20 dark:bg-slate-950/60 lg:py-24">
+      {/* Kinetic Team Showcase Stage */}
+      <section className="relative overflow-hidden py-6 lg:py-10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            tag="Our team"
+          <KineticTeamShowcase
+            team={team}
+            tag="Our People"
             title="The people building the work, together."
-            subtitle="A focused team keeps the process direct, collaborative, and easier to trust."
-            center
+            subtitle="Explore our team members in an interactive motion spotlight."
           />
-
-          <div className="mt-12">
-            <TeamMembersSection team={team} />
-          </div>
         </div>
       </section>
 

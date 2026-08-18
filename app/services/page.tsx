@@ -34,7 +34,7 @@ export default function ServicesPage() {
         panelStats={['Design', 'Build', 'Support']}
       />
 
-      <section className="py-20 lg:py-24">
+      <section className="py-10 lg:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-12 lg:items-start">
             <div className="lg:col-span-4 lg:sticky lg:top-28">
@@ -101,7 +101,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Promise */}
-      <section className="bg-slate-50/80 py-16 dark:bg-slate-950/60 lg:py-20">
+      <section className="bg-slate-50/80 py-10 dark:bg-slate-950/60 lg:py-14">
         <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <SectionHeader
             tag="Our promise"

@@ -47,7 +47,7 @@ export default function PricingPage() {
         panelStats={['Starter', 'Growth', 'Enterprise']}
       />
 
-      <section className="py-20 lg:py-24">
+      <section className="py-10 lg:py-14">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:items-stretch">
             {pricingPlans.map((plan) => (
@@ -121,7 +121,7 @@ export default function PricingPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-slate-50/80 py-16 dark:bg-slate-950/60 lg:py-20">
+      <section className="bg-slate-50/80 py-10 dark:bg-slate-950/60 lg:py-14">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <SectionHeader tag="FAQ" title="Questions about pricing" center />
           <div className="mt-8 space-y-4">

@@ -13,7 +13,7 @@ const featured = projects.slice(0, 4)
 
 export default function PortfolioPreview() {
   return (
-    <section className="py-20 lg:py-28">
+    <section className="py-10 lg:py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="mb-12">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">

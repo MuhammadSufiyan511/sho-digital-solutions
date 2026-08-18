@@ -41,7 +41,7 @@ const reasons = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="bg-[#0E1A2E] py-20 text-white lg:py-28">
+    <section className="bg-[#0E1A2E] py-10 text-white lg:py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <SectionHeader

@@ -95,7 +95,7 @@ export default function ProjectDetailPage({ params }: Props) {
         panelStats={['Strategy', 'Build', 'Outcome']}
       />
 
-      <section className="py-20 lg:py-24">
+      <section className="py-10 lg:py-14">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <Link
             href="/portfolio"

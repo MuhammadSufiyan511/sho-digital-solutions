@@ -95,7 +95,7 @@ export default function ContactPage() {
         panelStats={['Reply fast', 'No pressure', 'Clear next step']}
       />
 
-      <section className="py-20 lg:py-24">
+      <section className="py-10 lg:py-14">
         <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
           {/* Info Left */}
           <div className="space-y-6 lg:col-span-5">
