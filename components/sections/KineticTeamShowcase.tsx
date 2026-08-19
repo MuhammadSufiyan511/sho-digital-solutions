@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { Linkedin, ChevronLeft, ChevronRight } from 'lucide-react'
+import AnimatedTagHeader from '@/components/ui/AnimatedTagHeader'
 
 export type TeamMember = {
   name: string
@@ -144,28 +145,10 @@ export default function KineticTeamShowcase({ team, title, subtitle, tag }: Kine
         {(title || subtitle) && (
           <div className="text-center mb-3 lg:mb-4 flex flex-col items-center">
             {tag && (
-              <div className="mb-2 inline-flex flex-col items-center">
-                <span className="text-xs font-bold uppercase tracking-[0.2em] text-teal-400">
-                  {tag}
-                </span>
-                <svg
-                  className="h-2.5 w-full max-w-[100px] overflow-visible text-teal-400"
-                  viewBox="0 0 80 10"
-                  fill="none"
-                >
-                  <motion.path
-                    d="M2 5 Q 40 1, 78 5"
-                    stroke="currentColor"
-                    strokeWidth="3.5"
-                    strokeLinecap="round"
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    whileInView={{ pathLength: 1, opacity: 1 }}
-                    viewport={{ once: true, amount: 0.5 }}
-                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-                  />
-                </svg>
+              <div className="mb-2 flex justify-center">
+                <AnimatedTagHeader tag={tag} light center />
               </div>
-            )}
+          )}
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight">
               {title}
             </h2>

@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import AnimatedTagHeader from './AnimatedTagHeader'
 
 interface SectionHeaderProps {
   tag?: string
@@ -10,43 +11,38 @@ interface SectionHeaderProps {
   light?: boolean
 }
 
-export default function SectionHeader({ tag, title, subtitle, center = false, light = false }: SectionHeaderProps) {
+export default function SectionHeader({
+  tag,
+  title,
+  subtitle,
+  center = false,
+  light = false,
+}: SectionHeaderProps) {
   return (
-    <div className={`mb-10 sm:mb-12 ${center ? 'text-center' : 'text-left'}`}>
-      {/* Eyebrow Tag with Animated Underline directly beneath */}
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      className={`mb-10 sm:mb-12 ${center ? 'text-center' : 'text-left'}`}
+    >
+      {/* Kinetic (+) icon sweep + character-by-character tag reveal */}
       {tag && (
-        <div className={`mb-3 inline-flex flex-col ${center ? 'items-center' : 'items-start'}`}>
-          <span
-            className={`text-xs font-bold uppercase tracking-[0.2em] ${
-              light ? 'text-teal-light' : 'text-teal dark:text-teal-light'
-            }`}
-          >
-            {tag}
-          </span>
-          <svg
-            className={`h-2.5 w-full max-w-[120px] overflow-visible ${
-              light ? 'text-teal-light' : 'text-teal dark:text-teal-light'
-            }`}
-            viewBox="0 0 80 10"
-            fill="none"
-          >
-            <motion.path
-              d="M2 5 Q 40 1, 78 5"
-              stroke="currentColor"
-              strokeWidth="3.5"
-              strokeLinecap="round"
-              initial={{ pathLength: 0, opacity: 0 }}
-              whileInView={{ pathLength: 1, opacity: 1 }}
-              viewport={{ once: true, amount: 0.5 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-            />
-          </svg>
+        <div className={`mb-3 flex ${center ? 'justify-center' : 'justify-start'}`}>
+          <AnimatedTagHeader tag={tag} light={light} center={center} />
         </div>
       )}
 
       {/* Main Section Title */}
       <div className={`relative w-full max-w-4xl ${center ? 'mx-auto' : ''}`}>
-        <h2
+        <motion.h2
+          variants={{
+            hidden: { opacity: 0, y: 18 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { duration: 0.7, delay: 0.7, ease: [0.25, 1, 0.5, 1] },
+            },
+          }}
           className={`text-2xl font-bold leading-tight tracking-tight sm:text-3xl lg:text-4xl ${
             light ? 'text-white' : 'text-navy dark:text-white'
           }`}
@@ -56,14 +52,22 @@ export default function SectionHeader({ tag, title, subtitle, center = false, li
 
       {/* Section Subtitle */}
       {subtitle && (
-        <p
+        <motion.p
+          variants={{
+            hidden: { opacity: 0, y: 16 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { duration: 0.7, delay: 0.85, ease: [0.25, 1, 0.5, 1] },
+            },
+          }}
           className={`mt-3.5 max-w-2xl text-sm sm:text-base leading-relaxed ${center ? 'mx-auto' : ''} ${
             light ? 'text-slate-300' : 'text-slate-600 dark:text-slate-400'
           }`}
         >
           {subtitle}
-        </p>
+        </motion.p>
       )}
-    </div>
+    </motion.div>
   )
 }

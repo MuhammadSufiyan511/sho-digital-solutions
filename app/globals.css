@@ -209,6 +209,16 @@ html.dark {
   background: #0F766E;
 }
 
+/* Tech Stack Ticker — infinite scroll with pause-on-hover */
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+.animate-ticker {
+  animation: ticker linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight, MessageCircle } from 'lucide-react'
+import AnimatedTagHeader from '@/components/ui/AnimatedTagHeader'
 import { Reveal } from '@/components/animations/Motion'
 
 interface CTASectionProps {
@@ -33,9 +34,9 @@ export default function CTASection({
 
       <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
         <Reveal>
-          <span className="text-xs font-bold uppercase tracking-widest text-teal-light">
-            Let&apos;s build something better
-          </span>
+          <div className="mb-3 flex justify-center">
+            <AnimatedTagHeader tag="Let's build something better" light center />
+          </div>
           <h2 className="mt-4 text-2xl font-bold leading-tight text-white sm:text-4xl">
             {title}
           </h2>

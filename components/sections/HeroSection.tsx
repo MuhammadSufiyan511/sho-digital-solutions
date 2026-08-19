@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, CheckCircle2, Sparkles } from 'lucide-react'
 import { motion } from 'framer-motion'
+import AnimatedTagHeader from '@/components/ui/AnimatedTagHeader'
 import { Reveal, Stagger, StaggerItem } from '@/components/animations/Motion'
 
 const highlights = [
@@ -54,6 +55,9 @@ export default function HeroSection() {
           <div className="lg:col-span-7">
             <Stagger>
               <StaggerItem>
+                <div className="mb-4">
+                  <AnimatedTagHeader tag="DIGITAL AGENCY & SOFTWARE HOUSE" />
+                </div>
                 <h1 className="text-3xl font-bold leading-tight tracking-tight text-navy sm:text-5xl lg:text-5xl dark:text-white">
                   Websites that look{' '}
                   <span className="relative inline-block text-teal dark:text-teal-light">

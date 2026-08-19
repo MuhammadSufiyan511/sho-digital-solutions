@@ -52,6 +52,26 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={plusJakarta.variable} suppressHydrationWarning>
+      <head>
+        {/* Blocking script — runs before first paint to prevent FOUC on dark mode */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var saved = localStorage.getItem('theme');
+                  var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  if (saved === 'dark' || (!saved && prefersDark)) {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch(e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className="min-h-screen bg-slate-50 text-navy antialiased dark:bg-slate-950 dark:text-slate-100">
         <CustomCursor />
         <Navbar />

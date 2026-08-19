@@ -1,3 +1,7 @@
+'use client'
+
+import { motion } from 'framer-motion'
+import AnimatedTagHeader from '@/components/ui/AnimatedTagHeader'
 import { Reveal, Stagger, StaggerItem } from '@/components/animations/Motion'
 
 type PageHeroProps = {
@@ -27,10 +31,7 @@ export default function PageHero({
         <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
           <Stagger className="lg:col-span-8">
             <StaggerItem>
-              <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-teal dark:text-teal-light">
-                <span className="h-1.5 w-1.5 rounded-full bg-teal" />
-                {tag}
-              </span>
+              <AnimatedTagHeader tag={tag} />
             </StaggerItem>
 
             <StaggerItem>
