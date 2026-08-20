@@ -72,10 +72,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
       </head>
-      <body className="min-h-screen bg-slate-50 text-navy antialiased dark:bg-slate-950 dark:text-slate-100">
+      <body className="min-h-screen overflow-x-hidden bg-slate-50 text-navy antialiased dark:bg-slate-950 dark:text-slate-100">
         <CustomCursor />
         <Navbar />
-        <main>{children}</main>
+        <main className="overflow-x-hidden">{children}</main>
         <Footer />
         <BackToTop />
       </body>
