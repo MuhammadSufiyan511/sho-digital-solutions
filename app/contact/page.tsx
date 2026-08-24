@@ -2,9 +2,11 @@
 
 import type { ChangeEvent, FormEvent } from 'react'
 import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import { CheckCircle2, Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react'
 import type { ContactForm } from '@/types'
 import PageHero from '@/components/sections/PageHero'
+import { siteConfig } from '@/lib/site'
 
 const businessTypes = [
   'Restaurant / Food & Beverage',
@@ -24,6 +26,7 @@ const initialForm: ContactForm = {
   email: '',
   phone: '',
   businessType: '',
+  businessTypeOther: '',
   message: '',
 }
 
@@ -41,6 +44,8 @@ export default function ContactPage() {
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) nextErrors.email = 'Enter a valid email'
     if (!form.phone.trim()) nextErrors.phone = 'Phone is required'
     if (!form.businessType) nextErrors.businessType = 'Please select your business type'
+    else if (form.businessType === 'Other' && !form.businessTypeOther?.trim())
+      nextErrors.businessTypeOther = 'Please specify your business type'
     if (!form.message.trim()) nextErrors.message = 'Message is required'
     else if (form.message.trim().length < 20) nextErrors.message = 'Please add a little more detail'
 
@@ -55,10 +60,15 @@ export default function ContactPage() {
     setSubmitError('')
     setLoading(true)
     try {
+      const resolvedBusinessType =
+        form.businessType === 'Other' && form.businessTypeOther?.trim()
+          ? `Other: ${form.businessTypeOther.trim()}`
+          : form.businessType
+
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, businessType: resolvedBusinessType }),
       })
 
       if (!response.ok) {
@@ -77,9 +87,19 @@ export default function ContactPage() {
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = event.target
-    setForm((current) => ({ ...current, [name]: value }))
+    setForm((current) => {
+      const next = { ...current, [name]: value }
+      // Clear the "Please specify" value when switching away from "Other"
+      if (name === 'businessType' && value !== 'Other') {
+        next.businessTypeOther = ''
+      }
+      return next
+    })
     if (errors[name as keyof ContactForm]) {
       setErrors((current) => ({ ...current, [name]: '' }))
+    }
+    if (name === 'businessType' && value !== 'Other' && errors.businessTypeOther) {
+      setErrors((current) => ({ ...current, businessTypeOther: '' }))
     }
   }
 
@@ -109,24 +129,35 @@ export default function ContactPage() {
 
             <div className="space-y-3">
               {[
-                { icon: Mail, label: 'Email', value: 'connectshodigital@gmail.com', href: 'mailto:connectshodigital@gmail.com' },
-                { icon: Phone, label: 'Phone', value: '03345856255', href: 'tel:03345856255' },
-                { icon: MapPin, label: 'Location', value: 'Islamabad, Pakistan', href: '#' },
-              ].map(({ icon: Icon, label, value, href }) => (
-                <a key={label} href={href} className="surface-card flex items-center gap-4 rounded-xl p-4 transition-colors hover:border-teal/30">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-teal/10 text-teal dark:bg-teal/20 dark:text-teal-light">
-                    <Icon className="h-5 w-5" />
+                { icon: Mail, label: 'Email', value: siteConfig.email, href: `mailto:${siteConfig.email}` },
+                { icon: Phone, label: 'Phone', value: siteConfig.phoneDisplay, href: `tel:${siteConfig.phoneTel}` },
+                { icon: MapPin, label: 'Location', value: siteConfig.location, href: null },
+              ].map(({ icon: Icon, label, value, href }) => {
+                const cardInner = (
+                  <>
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-teal/10 text-teal dark:bg-teal/20 dark:text-teal-light">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">{label}</div>
+                      <div className="mt-0.5 text-xs font-bold text-navy dark:text-white">{value}</div>
+                    </div>
+                  </>
+                )
+                return href ? (
+                  <a key={label} href={href} className="surface-card flex items-center gap-4 rounded-xl p-4 transition-colors hover:border-teal/30">
+                    {cardInner}
+                  </a>
+                ) : (
+                  <div key={label} className="surface-card flex items-center gap-4 rounded-xl p-4">
+                    {cardInner}
                   </div>
-                  <div>
-                    <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">{label}</div>
-                    <div className="mt-0.5 text-xs font-bold text-navy dark:text-white">{value}</div>
-                  </div>
-                </a>
-              ))}
+                )
+              })}
             </div>
 
             <a
-              href="https://wa.me/923345856255"
+              href={siteConfig.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-primary w-full justify-center"
@@ -221,7 +252,7 @@ export default function ContactPage() {
                         name="phone"
                         value={form.phone}
                         onChange={handleChange}
-                        placeholder="+1 (555) 000-0000"
+                        placeholder="0329 5147621"
                         className={`w-full rounded border bg-white px-3.5 py-2.5 text-xs outline-none transition-colors focus:border-teal dark:border-slate-800 dark:bg-slate-900 dark:text-white ${
                           errors.phone ? 'border-red-500' : 'border-slate-200'
                         }`}
@@ -251,6 +282,38 @@ export default function ContactPage() {
                       {errors.businessType && <p className="mt-1 text-[11px] text-red-500">{errors.businessType}</p>}
                     </div>
                   </div>
+
+                  <AnimatePresence initial={false}>
+                    {form.businessType === 'Other' && (
+                      <motion.div
+                        key="business-type-other"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pt-1">
+                          <label className="mb-1 block text-xs font-semibold text-navy dark:text-slate-200">
+                            Please specify <span className="text-red-500">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            name="businessTypeOther"
+                            value={form.businessTypeOther ?? ''}
+                            onChange={handleChange}
+                            placeholder="Tell us what type of business you run"
+                            className={`w-full rounded border bg-white px-3.5 py-2.5 text-xs outline-none transition-colors focus:border-teal dark:border-slate-800 dark:bg-slate-900 dark:text-white ${
+                              errors.businessTypeOther ? 'border-red-500' : 'border-slate-200'
+                            }`}
+                          />
+                          {errors.businessTypeOther && (
+                            <p className="mt-1 text-[11px] text-red-500">{errors.businessTypeOther}</p>
+                          )}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
 
                   <div>
                     <label className="mb-1 block text-xs font-semibold text-navy dark:text-slate-200">

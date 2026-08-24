@@ -10,6 +10,7 @@ import Badge from '@/components/ui/Badge'
 export const metadata: Metadata = {
   title: 'Portfolio | Client Projects & Work',
   description: 'Explore selected projects that show how we help businesses present themselves online with more clarity.',
+  alternates: { canonical: '/portfolio' },
 }
 
 const industries = ['All', ...Array.from(new Set(projects.map((project) => project.industry)))]
@@ -40,19 +41,40 @@ function getOrderedProjects() {
 interface PortfolioPageProps {
   searchParams?: {
     page?: string
+    industry?: string
   }
 }
 
 export default function PortfolioPage({ searchParams }: PortfolioPageProps) {
   const orderedProjects = getOrderedProjects()
-  const totalPages = Math.max(1, Math.ceil(orderedProjects.length / itemsPerPage))
+
+  const requestedIndustry = searchParams?.industry
+  const activeIndustry =
+    requestedIndustry && industries.includes(requestedIndustry) ? requestedIndustry : 'All'
+
+  const filteredProjects =
+    activeIndustry === 'All'
+      ? orderedProjects
+      : orderedProjects.filter((project) => project.industry === activeIndustry)
+
+  const totalPages = Math.max(1, Math.ceil(filteredProjects.length / itemsPerPage))
   const requestedPage = Number(searchParams?.page ?? '1')
   const currentPage = Number.isFinite(requestedPage)
     ? Math.min(Math.max(1, Math.floor(requestedPage)), totalPages)
     : 1
   const start = (currentPage - 1) * itemsPerPage
-  const visibleProjects = orderedProjects.slice(start, start + itemsPerPage)
-  const buildPageHref = (page: number) => (page <= 1 ? '/portfolio' : `/portfolio?page=${page}`)
+  const visibleProjects = filteredProjects.slice(start, start + itemsPerPage)
+
+  const buildFilterHref = (industry: string) =>
+    industry === 'All' ? '/portfolio' : `/portfolio?industry=${encodeURIComponent(industry)}`
+
+  const buildPageHref = (page: number) => {
+    const params = new URLSearchParams()
+    if (activeIndustry !== 'All') params.set('industry', activeIndustry)
+    if (page > 1) params.set('page', String(page))
+    const query = params.toString()
+    return query ? `/portfolio?${query}` : '/portfolio'
+  }
 
   return (
     <>
@@ -70,14 +92,24 @@ export default function PortfolioPage({ searchParams }: PortfolioPageProps) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Industry Filter Pills */}
           <div className="mb-12 flex flex-wrap gap-2 sm:justify-center">
-            {industries.map((industry) => (
-              <span
-                key={industry}
-                className="rounded border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300"
-              >
-                {industry}
-              </span>
-            ))}
+            {industries.map((industry) => {
+              const active = industry === activeIndustry
+              return (
+                <Link
+                  key={industry}
+                  href={buildFilterHref(industry)}
+                  scroll={false}
+                  aria-current={active ? 'true' : undefined}
+                  className={`rounded border px-3 py-1.5 text-xs font-semibold transition-colors ${
+                    active
+                      ? 'border-navy bg-navy text-white dark:border-teal dark:bg-teal'
+                      : 'border-slate-200 bg-white text-slate-700 hover:border-teal hover:text-teal dark:border-slate-800 dark:bg-slate-900 dark:text-slate-300'
+                  }`}
+                >
+                  {industry}
+                </Link>
+              )
+            })}
           </div>
 
           {/* Project Grid */}
@@ -145,7 +177,7 @@ export default function PortfolioPage({ searchParams }: PortfolioPageProps) {
           {totalPages > 1 && (
             <div className="mt-12 flex flex-col items-center gap-4">
               <div className="text-xs text-slate-500 dark:text-slate-400">
-                Showing {start + 1}-{Math.min(start + itemsPerPage, orderedProjects.length)} of {orderedProjects.length} projects
+                Showing {start + 1}-{Math.min(start + itemsPerPage, filteredProjects.length)} of {filteredProjects.length} projects
               </div>
               <div className="flex items-center gap-2">
                 <Link

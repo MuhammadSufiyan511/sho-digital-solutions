@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Mail, Phone, MapPin, MessageCircle, Linkedin, Instagram, Facebook } from 'lucide-react'
+import { siteConfig } from '@/lib/site'
 
 const serviceLinks = [
   { label: 'Website Development', href: '/services#web-dev' },
@@ -21,9 +22,9 @@ const companyLinks = [
 ]
 
 const socialLinks = [
-  { Icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/company/sixbyte-technologies/' },
-  { Icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/artb_yfari' },
-  { Icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/share/19V3tqCFKm/' },
+  { Icon: Linkedin, label: 'LinkedIn', href: siteConfig.social.linkedin },
+  { Icon: Instagram, label: 'Instagram', href: siteConfig.social.instagram },
+  { Icon: Facebook, label: 'Facebook', href: siteConfig.social.facebook },
 ]
 
 export default function Footer() {
@@ -105,24 +106,24 @@ export default function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-slate-300">
               <li className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-teal shrink-0" />
-                <a href="mailto:connectshodigital@gmail.com" className="transition-colors hover:text-white">
-                  connectshodigital@gmail.com
+                <a href={`mailto:${siteConfig.email}`} className="transition-colors hover:text-white">
+                  {siteConfig.email}
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-teal shrink-0" />
-                <a href="tel:03345856255" className="transition-colors hover:text-white">
-                  03345856255
+                <a href={`tel:${siteConfig.phoneTel}`} className="transition-colors hover:text-white">
+                  {siteConfig.phoneDisplay}
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <MapPin className="h-4 w-4 text-teal shrink-0" />
-                <span>Islamabad, Pakistan</span>
+                <span>{siteConfig.location}</span>
               </li>
               <li className="flex items-center gap-3">
                 <MessageCircle className="h-4 w-4 text-teal shrink-0" />
                 <a
-                  href="https://wa.me/923345856255"
+                  href={siteConfig.whatsappUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="transition-colors hover:text-white"

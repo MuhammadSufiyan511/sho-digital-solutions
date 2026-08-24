@@ -14,18 +14,19 @@
   --color-soft-blue: #D1E2F8;
   --color-off-white: #FAFBFC;
 
-  /* Light mode semantic tokens */
-  --background: 210 20% 98%;
+  /* Light mode semantic tokens — navy-tinted neutrals (hue aligned to brand
+     navy ~214; lightness unchanged so contrast/legibility stay identical) */
+  --background: 214 30% 98%;
   --foreground: 220 47% 11%;
   --card: 0 0% 100%;
   --card-foreground: 220 47% 11%;
-  --muted: 214 20% 95%;
-  --muted-foreground: 215 16% 45%;
-  --border: 214 20% 90%;
-  --input: 214 20% 90%;
+  --muted: 214 28% 95%;
+  --muted-foreground: 215 22% 45%;
+  --border: 214 28% 90%;
+  --input: 214 28% 90%;
   --primary: 220 47% 11%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 215 25% 96%;
+  --secondary: 214 30% 96%;
   --secondary-foreground: 220 47% 11%;
   --accent: 174 78% 26%;
   --accent-foreground: 0 0% 100%;
@@ -34,10 +35,10 @@
 }
 
 html.dark {
-  /* Dark mode semantic tokens */
-  --background: 222 47% 7%;
+  /* Dark mode semantic tokens — deep brand navy (hue aligned to ~215) */
+  --background: 215 45% 7%;
   --foreground: 210 40% 98%;
-  --card: 222 40% 10%;
+  --card: 215 40% 10%;
   --card-foreground: 210 40% 98%;
   --muted: 215 28% 15%;
   --muted-foreground: 215 20% 68%;

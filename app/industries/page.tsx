@@ -10,6 +10,7 @@ import SectionHeader from '@/components/ui/SectionHeader'
 export const metadata: Metadata = {
   title: 'Industries | Tailored Digital Systems',
   description: 'Industry-focused website and digital system solutions for businesses that need a more tailored fit.',
+  alternates: { canonical: '/industries' },
 }
 
 const industryIcons: Record<string, ComponentType<{ className?: string }>> = {

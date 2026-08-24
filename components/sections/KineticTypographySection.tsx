@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { memo, useEffect, useState } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { Plus } from 'lucide-react'
 
@@ -147,6 +147,131 @@ const backgroundSpinningPluses = [
   { id: 6, position: 'right-6 top-1/2 -translate-y-1/2', size: 'text-3xl sm:text-5xl', opacity: 'opacity-20 text-teal-light', speed: 14 },
 ]
 
+// Helper function to return sequence animation variants (pure — hoisted so it is
+// not re-allocated on every 3.5s sequence change)
+const getVariants = (animType: string, lineIndex: number) => {
+  switch (animType) {
+    case 'zoom-reveal':
+      return {
+        initial: { opacity: 0, scale: 0.85, filter: 'blur(8px)' },
+        animate: { opacity: 1, scale: 1, filter: 'blur(0px)' },
+        exit: { opacity: 0, scale: 1.1, filter: 'blur(6px)' },
+        transition: { duration: 0.55, delay: lineIndex * 0.1, ease: [0.16, 1, 0.3, 1] as const },
+      }
+    case 'asymmetric-drift':
+      return {
+        initial: { opacity: 0, x: lineIndex % 2 === 0 ? -80 : 80 },
+        animate: { opacity: 1, x: 0 },
+        exit: { opacity: 0, x: lineIndex % 2 === 0 ? 80 : -80 },
+        transition: { duration: 0.6, delay: lineIndex * 0.1, ease: [0.22, 1, 0.36, 1] as const },
+      }
+    case 'flip-3d':
+      return {
+        initial: { opacity: 0, rotateX: 80, y: 30 },
+        animate: { opacity: 1, rotateX: 0, y: 0 },
+        exit: { opacity: 0, rotateX: -80, y: -30 },
+        transition: { duration: 0.6, delay: lineIndex * 0.12, ease: [0.34, 1.56, 0.64, 1] as const },
+      }
+    case 'split-center':
+      return {
+        initial: { opacity: 0, scaleX: 0.7 },
+        animate: { opacity: 1, scaleX: 1 },
+        exit: { opacity: 0, scaleX: 1.25 },
+        transition: { duration: 0.55, delay: lineIndex * 0.1, ease: [0.16, 1, 0.3, 1] as const },
+      }
+    case 'slide-up':
+    default:
+      return {
+        initial: { opacity: 0, y: 55 },
+        animate: { opacity: 1, y: 0 },
+        exit: { opacity: 0, y: -45 },
+        transition: { duration: 0.55, delay: lineIndex * 0.1, ease: [0.22, 1, 0.36, 1] as const },
+      }
+  }
+}
+
+/**
+ * Continuous background layers (grid, marquee, glow orbs, spinning + symbols,
+ * floating enterprise nodes). These do NOT depend on the active sequence, so
+ * they are memoized to render once — the 3.5s sequence swap no longer forces a
+ * costly reconciliation of ~12 infinite motion loops. `willChange: transform`
+ * promotes each animated layer to its own compositor layer for smoother, GPU-
+ * accelerated motion (transform/opacity only — no layout thrash).
+ */
+const KineticBackground = memo(function KineticBackground({ reduced }: { reduced: boolean | null }) {
+  return (
+    <>
+      {/* 1. INFINITE BACKGROUND ELEMENT: Fine Grid Pattern */}
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:36px_36px]" />
+
+      {/* 2. INFINITE BACKGROUND ELEMENT: Continuous Horizontal Marquee Text */}
+      {!reduced && (
+        <div className="pointer-events-none absolute top-1/2 -translate-y-1/2 left-0 right-0 overflow-hidden opacity-[0.06] z-0">
+          <motion.div
+            className="flex whitespace-nowrap text-6xl sm:text-8xl font-black uppercase tracking-widest text-teal-light"
+            style={{ willChange: 'transform' }}
+            animate={{ x: ['0%', '-50%'] }}
+            transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
+          >
+            <span>FULL STACK DEVELOPERS • SAAS ARCHITECTURE • CLOUD NATIVE • UI/UX DESIGN • BLAZING FAST PERF •&nbsp;</span>
+            <span>FULL STACK DEVELOPERS • SAAS ARCHITECTURE • CLOUD NATIVE • UI/UX DESIGN • BLAZING FAST PERF •&nbsp;</span>
+          </motion.div>
+        </div>
+      )}
+
+      {/* 3. INFINITE BACKGROUND ELEMENT: Floating Ambient Glow Orbs */}
+      {!reduced && (
+        <>
+          <motion.div
+            className="pointer-events-none absolute left-1/4 top-1/4 h-64 w-64 rounded-full bg-teal/20 blur-3xl z-0"
+            style={{ willChange: 'transform' }}
+            animate={{ scale: [1, 1.3, 1], x: [-15, 15, -15] }}
+            transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+          />
+          <motion.div
+            className="pointer-events-none absolute right-1/4 bottom-1/4 h-64 w-64 rounded-full bg-sky-500/15 blur-3xl z-0"
+            style={{ willChange: 'transform' }}
+            animate={{ scale: [1.3, 1, 1.3], y: [-15, 15, -15] }}
+            transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        </>
+      )}
+
+      {/* 4. BACKGROUND (+) SYMBOLS IN VARIOUS SIZES SPINNING CONTINUOUSLY */}
+      {!reduced &&
+        backgroundSpinningPluses.map((plus) => (
+          <motion.div
+            key={plus.id}
+            className={`pointer-events-none absolute font-light z-0 ${plus.position} ${plus.size} ${plus.opacity}`}
+            style={{ willChange: 'transform' }}
+            animate={{ rotate: plus.id % 2 === 0 ? [0, 360] : [360, 0] }}
+            transition={{ duration: plus.speed, repeat: Infinity, ease: 'linear' }}
+          >
+            +
+          </motion.div>
+        ))}
+
+      {/* 5. PROFESSIONAL FLOATING ENTERPRISE NODES WITH SPINNING (+) ICONS */}
+      {!reduced &&
+        professionalFloatingNodes.map((node) => (
+          <motion.div
+            key={node.id}
+            className={`pointer-events-none absolute z-10 ${node.position}`}
+            style={{ willChange: 'transform' }}
+            animate={{ y: node.y }}
+            transition={{
+              duration: node.duration,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          >
+            {node.content}
+          </motion.div>
+        ))}
+    </>
+  )
+})
+
 export default function KineticTypographySection() {
   const [index, setIndex] = useState(0)
   const prefersReducedMotion = useReducedMotion()
@@ -164,114 +289,12 @@ export default function KineticTypographySection() {
 
   const currentSeq = sequences[index]
 
-  // Helper function to return sequence animation variants
-  const getVariants = (animType: string, lineIndex: number) => {
-    switch (animType) {
-      case 'zoom-reveal':
-        return {
-          initial: { opacity: 0, scale: 0.85, filter: 'blur(8px)' },
-          animate: { opacity: 1, scale: 1, filter: 'blur(0px)' },
-          exit: { opacity: 0, scale: 1.1, filter: 'blur(6px)' },
-          transition: { duration: 0.55, delay: lineIndex * 0.1, ease: [0.16, 1, 0.3, 1] as const },
-        }
-      case 'asymmetric-drift':
-        return {
-          initial: { opacity: 0, x: lineIndex % 2 === 0 ? -80 : 80 },
-          animate: { opacity: 1, x: 0 },
-          exit: { opacity: 0, x: lineIndex % 2 === 0 ? 80 : -80 },
-          transition: { duration: 0.6, delay: lineIndex * 0.1, ease: [0.22, 1, 0.36, 1] as const },
-        }
-      case 'flip-3d':
-        return {
-          initial: { opacity: 0, rotateX: 80, y: 30 },
-          animate: { opacity: 1, rotateX: 0, y: 0 },
-          exit: { opacity: 0, rotateX: -80, y: -30 },
-          transition: { duration: 0.6, delay: lineIndex * 0.12, ease: [0.34, 1.56, 0.64, 1] as const },
-        }
-      case 'split-center':
-        return {
-          initial: { opacity: 0, scaleX: 0.7 },
-          animate: { opacity: 1, scaleX: 1 },
-          exit: { opacity: 0, scaleX: 1.25 },
-          transition: { duration: 0.55, delay: lineIndex * 0.1, ease: [0.16, 1, 0.3, 1] as const },
-        }
-      case 'slide-up':
-      default:
-        return {
-          initial: { opacity: 0, y: 55 },
-          animate: { opacity: 1, y: 0 },
-          exit: { opacity: 0, y: -45 },
-          transition: { duration: 0.55, delay: lineIndex * 0.1, ease: [0.22, 1, 0.36, 1] as const },
-        }
-    }
-  }
-
   return (
     <div className="w-full py-10 sm:py-16 px-4 sm:px-6">
       {/* 90% WIDTH BOXED CARD CONTAINER WITH MARGIN GAPS AND CORNER RADIUS */}
       <section className="relative h-[440px] sm:h-[480px] w-full sm:w-[92%] lg:w-[90%] max-w-[90%] mx-auto rounded-3xl border border-white/15 bg-[#0E1A2E] shadow-[0_20px_50px_rgba(0,0,0,0.5)] text-white select-none overflow-hidden">
-        {/* 1. INFINITE BACKGROUND ELEMENT: Fine Grid Pattern */}
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:36px_36px]" />
-
-        {/* 2. INFINITE BACKGROUND ELEMENT: Continuous Horizontal Marquee Text */}
-        {!prefersReducedMotion && (
-          <div className="pointer-events-none absolute top-1/2 -translate-y-1/2 left-0 right-0 overflow-hidden opacity-[0.06] z-0">
-            <motion.div
-              className="flex whitespace-nowrap text-6xl sm:text-8xl font-black uppercase tracking-widest text-teal-light"
-              animate={{ x: ['0%', '-50%'] }}
-              transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
-            >
-              <span>FULL STACK DEVELOPERS • SAAS ARCHITECTURE • CLOUD NATIVE • UI/UX DESIGN • BLAZING FAST PERF •&nbsp;</span>
-              <span>FULL STACK DEVELOPERS • SAAS ARCHITECTURE • CLOUD NATIVE • UI/UX DESIGN • BLAZING FAST PERF •&nbsp;</span>
-            </motion.div>
-          </div>
-        )}
-
-        {/* 3. INFINITE BACKGROUND ELEMENT: Floating Ambient Glow Orbs */}
-        {!prefersReducedMotion && (
-          <>
-            <motion.div
-              className="pointer-events-none absolute left-1/4 top-1/4 h-64 w-64 rounded-full bg-teal/20 blur-3xl z-0"
-              animate={{ scale: [1, 1.3, 1], x: [-15, 15, -15] }}
-              transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-            />
-            <motion.div
-              className="pointer-events-none absolute right-1/4 bottom-1/4 h-64 w-64 rounded-full bg-sky-500/15 blur-3xl z-0"
-              animate={{ scale: [1.3, 1, 1.3], y: [-15, 15, -15] }}
-              transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-            />
-          </>
-        )}
-
-        {/* 4. BACKGROUND (+) SYMBOLS IN VARIOUS SIZES SPINNING CONTINUOUSLY */}
-        {!prefersReducedMotion &&
-          backgroundSpinningPluses.map((plus) => (
-            <motion.div
-              key={plus.id}
-              className={`pointer-events-none absolute font-light z-0 ${plus.position} ${plus.size} ${plus.opacity}`}
-              animate={{ rotate: plus.id % 2 === 0 ? [0, 360] : [360, 0] }}
-              transition={{ duration: plus.speed, repeat: Infinity, ease: 'linear' }}
-            >
-              +
-            </motion.div>
-          ))}
-
-        {/* 5. PROFESSIONAL FLOATING ENTERPRISE NODES WITH SPINNING (+) ICONS */}
-        {!prefersReducedMotion &&
-          professionalFloatingNodes.map((node) => (
-            <motion.div
-              key={node.id}
-              className={`pointer-events-none absolute z-10 ${node.position}`}
-              animate={{ y: node.y }}
-              transition={{
-                duration: node.duration,
-                repeat: Infinity,
-                ease: 'easeInOut',
-              }}
-            >
-              {node.content}
-            </motion.div>
-          ))}
+        {/* Continuous, sequence-independent background (memoized) */}
+        <KineticBackground reduced={prefersReducedMotion} />
 
         {/* INNER STAGE CONTAINER */}
         <div className="relative z-20 mx-auto flex h-full w-full flex-col items-center justify-center px-6 py-6">

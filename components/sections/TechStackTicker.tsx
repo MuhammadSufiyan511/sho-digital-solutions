@@ -44,7 +44,7 @@ export default function TechStackTicker() {
       <div className="flex w-max items-center">
         <div
           className="flex items-center gap-8 sm:gap-12 animate-ticker group-hover:[animation-play-state:paused]"
-          style={{ animationDuration: '25s' }}
+          style={{ animationDuration: '55s', willChange: 'transform' }}
         >
           {doubleTech.map((item, index) => {
             const Icon = item.Icon

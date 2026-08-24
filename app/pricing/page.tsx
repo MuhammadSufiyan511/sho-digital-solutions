@@ -9,6 +9,7 @@ import SectionHeader from '@/components/ui/SectionHeader'
 export const metadata: Metadata = {
   title: 'Pricing | Transparent Web Development Packages',
   description: 'Transparent, affordable pricing for professional web development. No hidden fees.',
+  alternates: { canonical: '/pricing' },
 }
 
 const faqs = [

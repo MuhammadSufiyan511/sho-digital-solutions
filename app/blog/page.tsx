@@ -10,6 +10,7 @@ import Badge from '@/components/ui/Badge'
 export const metadata: Metadata = {
   title: 'Blog | Digital Marketing & Tech Insights',
   description: 'Digital marketing, web development, and growth tips from the SixByte Technologies team.',
+  alternates: { canonical: '/blog' },
 }
 
 const categories = ['All', 'Performance', 'SEO', 'Lead Generation', 'E-commerce', 'Strategy']

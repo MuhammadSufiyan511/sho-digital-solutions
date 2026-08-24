@@ -242,7 +242,7 @@ export const testimonials: Testimonial[] = [
     role: 'CEO',
     company: 'PrimeHomes Realty',
     content:
-      'Our old website was holding us back. SHO rebuilt it with a much stronger structure and the difference in leads was immediate.',
+      'Our old website was holding us back. SixByte Technologies rebuilt it with a much stronger structure and the difference in leads was immediate.',
     rating: 5,
     avatar: 'LT',
   },

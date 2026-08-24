@@ -10,6 +10,7 @@ import SectionHeader from '@/components/ui/SectionHeader'
 export const metadata: Metadata = {
   title: 'Services | Website Development & Digital Systems',
   description: 'Explore the web design, development, and support services offered by SixByte Technologies.',
+  alternates: { canonical: '/services' },
 }
 
 const serviceIcons: Record<string, ComponentType<{ className?: string }>> = {

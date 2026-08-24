@@ -75,5 +75,6 @@ export interface ContactForm {
   email: string
   phone: string
   businessType: string
+  businessTypeOther?: string
   message: string
 }

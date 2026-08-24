@@ -7,6 +7,7 @@ import PageHero from '@/components/sections/PageHero'
 export const metadata: Metadata = {
   title: 'Client Testimonials | Client Reviews',
   description: 'Read what our clients say about working with SixByte Technologies.',
+  alternates: { canonical: '/testimonials' },
 }
 
 export default function TestimonialsPage() {
