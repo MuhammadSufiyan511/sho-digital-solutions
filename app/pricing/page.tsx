@@ -2,9 +2,12 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { CheckCircle, ArrowRight } from 'lucide-react'
 import { pricingPlans } from '@/lib/data'
+import { faqLd, breadcrumbLd } from '@/lib/seo'
 import CTASection from '@/components/sections/CTASection'
 import PageHero from '@/components/sections/PageHero'
 import SectionHeader from '@/components/ui/SectionHeader'
+import FaqAccordion from '@/components/ui/FaqAccordion'
+import JsonLd from '@/components/JsonLd'
 
 export const metadata: Metadata = {
   title: 'Pricing | Transparent Web Development Packages',
@@ -38,6 +41,15 @@ const faqs = [
 export default function PricingPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumbLd([
+            { name: 'Home', path: '/' },
+            { name: 'Pricing', path: '/pricing' },
+          ]),
+          faqLd(faqs),
+        ]}
+      />
       <PageHero
         tag="Pricing"
         title="Clear pricing with no surprises."
@@ -125,14 +137,7 @@ export default function PricingPage() {
       <section className="bg-slate-50/80 py-10 dark:bg-slate-950/60 lg:py-14">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
           <SectionHeader tag="FAQ" title="Questions about pricing" center />
-          <div className="mt-8 space-y-4">
-            {faqs.map((faq) => (
-              <div key={faq.q} className="surface-card rounded-xl p-6">
-                <h3 className="text-sm font-bold text-navy dark:text-white">{faq.q}</h3>
-                <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-400">{faq.a}</p>
-              </div>
-            ))}
-          </div>
+          <FaqAccordion faqs={faqs} className="mt-8" />
         </div>
       </section>
 

@@ -3,14 +3,28 @@ import type { ComponentType } from 'react'
 import Link from 'next/link'
 import { ArrowRight, CheckCircle2, CarFront, HeartPulse, Landmark, Scale, ShoppingBag, UtensilsCrossed } from 'lucide-react'
 import { industries } from '@/lib/data'
+import { breadcrumbLd, absoluteUrl } from '@/lib/seo'
 import CTASection from '@/components/sections/CTASection'
 import PageHero from '@/components/sections/PageHero'
 import SectionHeader from '@/components/ui/SectionHeader'
+import JsonLd from '@/components/JsonLd'
 
 export const metadata: Metadata = {
   title: 'Industries | Tailored Digital Systems',
   description: 'Industry-focused website and digital system solutions for businesses that need a more tailored fit.',
   alternates: { canonical: '/industries' },
+}
+
+const industriesItemListLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Industries SixByte Technologies serves',
+  itemListElement: industries.map((industry, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: industry.name,
+    url: absoluteUrl(`/industries/${industry.id}`),
+  })),
 }
 
 const industryIcons: Record<string, ComponentType<{ className?: string }>> = {
@@ -25,6 +39,15 @@ const industryIcons: Record<string, ComponentType<{ className?: string }>> = {
 export default function IndustriesPage() {
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumbLd([
+            { name: 'Home', path: '/' },
+            { name: 'Industries', path: '/industries' },
+          ]),
+          industriesItemListLd,
+        ]}
+      />
       <PageHero
         tag="Industry expertise"
         title="We shape websites around the needs of the industry, not the other way around."
@@ -48,7 +71,14 @@ export default function IndustriesPage() {
                   <div className="flex h-12 w-12 items-center justify-center rounded border border-slate-200 bg-slate-50 text-teal dark:border-slate-800 dark:bg-slate-900 dark:text-teal-light">
                     <Icon className="h-6 w-6" />
                   </div>
-                  <h2 className="mt-5 text-xl font-bold text-navy dark:text-white">{industry.name}</h2>
+                  <h2 className="mt-5 text-xl font-bold text-navy dark:text-white">
+                    <Link
+                      href={`/industries/${industry.id}`}
+                      className="transition-colors hover:text-teal dark:hover:text-teal-light"
+                    >
+                      {industry.name}
+                    </Link>
+                  </h2>
                   <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-400">{industry.description}</p>
 
                   <div className="mt-6 border-t border-slate-100 pt-4 dark:border-slate-800">
@@ -64,6 +94,13 @@ export default function IndustriesPage() {
                       ))}
                     </ul>
                   </div>
+
+                  <Link
+                    href={`/industries/${industry.id}`}
+                    className="mt-6 inline-flex items-center gap-1.5 text-xs font-semibold text-teal transition-all hover:gap-2.5 dark:text-teal-light"
+                  >
+                    Learn more <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
                 </article>
               )
             })}

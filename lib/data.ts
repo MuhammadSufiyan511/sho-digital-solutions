@@ -12,92 +12,167 @@ export const navLinks: NavLink[] = [
 export const services: Service[] = [
   {
     id: 'web-dev',
-    title: 'Website Development',
+    title: 'Web Development',
     description:
-      'Custom websites built to feel credible, load quickly, and guide visitors toward taking action.',
-    icon: 'website',
+      'Modern, scalable websites and web applications built to load fast, rank well, and convert.',
+    icon: 'code',
     features: [
-      'Custom design and development',
-      'Mobile-first responsive layouts',
-      'SEO-friendly structure',
-      'Performance optimization',
-      'CMS integration',
-      'Analytics setup',
+      'Custom, responsive front-end builds',
+      'Web application development',
+      'API design and integration',
+      'Performance and Core Web Vitals tuning',
+      'SEO-friendly, accessible markup',
+      'Analytics and event tracking',
     ],
   },
   {
-    id: 'ecommerce',
-    title: 'E-commerce Solutions',
+    id: 'wordpress',
+    title: 'WordPress Development',
     description:
-      'Online stores designed to make browsing feel easy and purchasing feel confident.',
-    icon: 'store',
+      'Flexible WordPress websites and content-led platforms built with cleaner structure, faster performance, and easier editing.',
+    icon: 'wordpress',
     features: [
-      'Shopify, WooCommerce, or custom builds',
-      'Secure payment integration',
-      'Product catalog and search',
-      'Order notifications',
-      'Inventory management',
-      'Multi-currency support',
+      'Custom WordPress theme builds',
+      'Elementor or block editor workflows',
+      'CMS setup and page templates',
+      'Performance and security tuning',
+      'SEO-friendly content architecture',
+      'Plugin integration and support',
     ],
   },
   {
-    id: 'industry-systems',
-    title: 'Industry-Specific Systems',
+    id: 'shopify',
+    title: 'Shopify Development',
     description:
-      'Tailored systems for businesses that need more than a brochure website.',
-    icon: 'systems',
+      'Conversion-focused Shopify stores with stronger product presentation, smoother checkout, and easier management.',
+    icon: 'shopping-bag',
     features: [
-      'Booking and reservation tools',
-      'Patient or client portals',
-      'Property listing platforms',
-      'Order and menu systems',
-      'Appointment scheduling',
-      'Custom dashboards',
+      'Custom Shopify storefronts',
+      'Theme customization and sections',
+      'Product and collection setup',
+      'Checkout and conversion optimization',
+      'App integrations and automation',
+      'Store performance tuning',
     ],
   },
   {
-    id: 'maintenance',
-    title: 'Maintenance & Support',
+    id: 'mobile-apps',
+    title: 'Mobile App Development',
     description:
-      'Ongoing support that keeps your site secure, updated, and running smoothly.',
-    icon: 'support',
+      'High-quality iOS and Android apps with native-feeling performance and clean, intuitive flows.',
+    icon: 'smartphone',
     features: [
-      'Security updates',
-      'Performance monitoring',
-      'Content updates',
-      'Bug fixes and troubleshooting',
-      'Monthly reports',
-      'Priority support',
+      'iOS and Android delivery',
+      'Cross-platform development',
+      'Offline-ready, responsive UX',
+      'Push notifications and deep links',
+      'App Store and Play Store deployment',
+      'Backend and API integration',
     ],
   },
   {
-    id: 'lead-integration',
-    title: 'WhatsApp & Lead Integration',
+    id: 'saas',
+    title: 'SaaS Development',
     description:
-      'Simple lead capture systems that make it easier for people to get in touch.',
-    icon: 'leads',
+      'Scalable SaaS products with multi-tenant architecture, billing, and dashboards built for growth.',
+    icon: 'layers',
     features: [
-      'WhatsApp Business integration',
-      'Lead capture forms',
-      'CRM connections',
-      'Email automation',
-      'Live chat tools',
-      'Conversion tracking',
+      'Multi-tenant architecture',
+      'Authentication and role-based access',
+      'Subscription and billing integration',
+      'Admin and customer dashboards',
+      'Usage analytics and reporting',
+      'Cloud-ready, scalable infrastructure',
     ],
   },
   {
-    id: 'seo',
-    title: 'SEO & Digital Marketing',
+    id: 'pos-systems',
+    title: 'POS Systems',
     description:
-      'Practical search and content improvements that help the right people find you.',
-    icon: 'seo',
+      'Reliable, user-friendly point-of-sale systems for fast checkout, inventory, and reporting.',
+    icon: 'scan',
     features: [
-      'On-page and technical SEO',
-      'Google Business Profile support',
-      'Keyword research',
-      'Content planning',
-      'Link building',
-      'Performance reporting',
+      'Fast, touch-friendly checkout',
+      'Inventory and stock tracking',
+      'Payment gateway integration',
+      'Sales and tax reporting',
+      'Multi-location and role support',
+      'Receipt and order management',
+    ],
+  },
+  {
+    id: 'custom-software',
+    title: 'Custom Software Solutions',
+    description:
+      'Tailored software built around your exact workflow — from internal tools to customer platforms.',
+    icon: 'blocks',
+    features: [
+      'Workflow and process automation',
+      'Internal tools and admin panels',
+      'Booking, portal, and dashboard systems',
+      'Third-party API and system integration',
+      'Migration from spreadsheets or legacy tools',
+      'Built to scale with your business',
+    ],
+  },
+  {
+    id: 'ui-ux-design',
+    title: 'UI/UX Design',
+    description:
+      'Modern interfaces and user-centered product experiences — from research to polished design systems.',
+    icon: 'pen',
+    features: [
+      'User research and flows',
+      'Wireframing and prototyping',
+      'Interface and interaction design',
+      'Reusable design systems',
+      'Usability and accessibility review',
+      'Developer-ready handoff',
+    ],
+  },
+  {
+    id: 'database-solutions',
+    title: 'Database Solutions',
+    description:
+      'Secure, optimized, and scalable data solutions — schema design, tuning, and migrations.',
+    icon: 'database',
+    features: [
+      'Schema and data modeling',
+      'SQL and NoSQL databases',
+      'Query and performance optimization',
+      'Data migration and integration',
+      'Backups and recovery planning',
+      'Security and access controls',
+    ],
+  },
+  {
+    id: 'devops',
+    title: 'DevOps Services',
+    description:
+      'Cloud infrastructure, CI/CD, automation, and monitoring that keep releases stable and fast.',
+    icon: 'workflow',
+    features: [
+      'Cloud infrastructure setup',
+      'CI/CD pipeline automation',
+      'Containerization and orchestration',
+      'Monitoring, logging, and alerts',
+      'Zero-downtime deployments',
+      'Infrastructure as code',
+    ],
+  },
+  {
+    id: 'ai-solutions',
+    title: 'AI Solutions',
+    description:
+      'AI-powered applications, automation, and intelligent workflows integrated into your product.',
+    icon: 'sparkles',
+    features: [
+      'AI-powered product features',
+      'Chatbots and virtual assistants',
+      'Workflow and document automation',
+      'LLM and model API integration',
+      'Computer vision solutions',
+      'Data and analytics pipelines',
     ],
   },
 ]
@@ -346,10 +421,32 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       'A faster site does more than improve metrics. It changes how trustworthy and usable your brand feels.',
     date: 'December 12, 2024',
+    dateISO: '2024-12-12',
     author: 'SixByte Team',
     category: 'Performance',
     image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop',
     readTime: '5 min read',
+    content: `Your website's loading speed is not just a technical detail. It shapes how trustworthy and professional your business feels, and it directly affects how many visitors stay long enough to become customers.
+
+When a page is slow, visitors do not wait patiently. Google's research on mobile browsing has found that more than half of visits are abandoned when a page takes longer than about three seconds to load. Every extra second gives people a reason to leave, usually for a competitor whose site felt faster.
+
+**Speed is a trust signal**
+
+Before anyone reads a word, a fast, smooth-loading page signals that a business is credible and well run. A slow, stuttering one creates doubt at the worst possible moment: the first impression. That perception carries straight over into whether people trust you with an enquiry or a purchase.
+
+**Core Web Vitals and search rankings**
+
+Search engines treat page experience as a ranking factor, so slow sites can lose visibility as well as visitors. Google measures this through Core Web Vitals: Largest Contentful Paint (LCP), which tracks how quickly the main content appears; Interaction to Next Paint (INP), which measures how responsive the page feels when someone taps or clicks; and Cumulative Layout Shift (CLS), which measures unexpected movement as the page loads. Sites that score well tend to rank better and convert better.
+
+**What actually makes a site fast**
+
+Most speed problems are fixable. The biggest wins usually come from optimising images (modern formats like WebP or AVIF, correct sizing, and lazy loading), reducing and deferring unnecessary JavaScript, enabling caching, and serving assets from a content delivery network.
+
+For businesses that are serious about growth, building on a modern, performance-focused stack makes a lasting difference. It is far easier to stay fast than to bolt speed on afterwards.
+
+**The takeaway**
+
+Speed is not a vanity metric. It is one of the clearest, most measurable ways to improve trust, search visibility, and conversions at the same time. If your site feels slow, it is almost certainly costing you enquiries.`,
   },
   {
     id: 'local-seo-guide',
@@ -357,10 +454,32 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       'A practical look at how local search can bring the right people to your business before they find a competitor.',
     date: 'November 28, 2024',
+    dateISO: '2024-11-28',
     author: 'SixByte Team',
     category: 'SEO',
     image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=800&auto=format&fit=crop',
     readTime: '8 min read',
+    content: `For a business that serves a specific area, local search is often the single most valuable source of new customers. When someone searches for what you offer "near me", you want to be the option they find first, before they ever reach a competitor.
+
+**What local SEO actually is**
+
+Local SEO is the work of helping your business appear in local search results and map listings for the things you offer in the places you serve. It combines your website, your Google Business Profile, and signals of trust from around the web.
+
+**Start with your Google Business Profile**
+
+For most local businesses, a complete and accurate Google Business Profile is the highest-impact starting point. Fill in your categories, hours, service area, and contact details, add real photos, and keep everything consistent with your website. Reviews matter here too. Responding to them, positively or otherwise, signals an active, trustworthy business.
+
+**Make your website locally relevant**
+
+Your site should make it obvious who you serve and where. Clear service pages, your location and service areas in plain text, and content that answers the questions local customers actually ask all help search engines connect you to the right searches. Structured data, the markup that describes your business to search engines, reinforces this.
+
+**Consistency builds trust**
+
+Make sure your business name, address, and phone number are consistent everywhere they appear online. Conflicting details make it harder for search engines to trust and rank you.
+
+**It compounds over time**
+
+Local SEO is not an overnight switch. It is steady work that compounds. And because the same fundamentals, clear structure, accurate information, and genuine trust signals, increasingly influence AI-powered answers too, the effort pays off across both traditional search and newer answer engines.`,
   },
   {
     id: 'whatsapp-business-website',
@@ -368,10 +487,127 @@ export const blogPosts: BlogPost[] = [
     excerpt:
       'WhatsApp can be a strong contact point when it is integrated with a clear message and simple flow.',
     date: 'November 10, 2024',
+    dateISO: '2024-11-10',
     author: 'SixByte Team',
     category: 'Lead Generation',
     image: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?w=800&auto=format&fit=crop',
     readTime: '6 min read',
+    content: `For many businesses, especially in regions where WhatsApp is the default way people communicate, it can be one of the most effective ways to turn website visitors into real conversations. The key is integrating it thoughtfully, not just pasting a link.
+
+**Why WhatsApp converts**
+
+A contact form asks someone to compose a message and wait, with no idea when they will hear back. WhatsApp feels immediate and familiar. For a hesitant visitor, "message us on WhatsApp" is often a lower-effort step than filling out a form, which means more people actually take it.
+
+**Place it where intent is highest**
+
+A floating WhatsApp button is useful, but the biggest gains come from placing prompts where a visitor is already close to acting: on a service page, next to pricing, or at the end of a case study. Match the message to the context so the conversation starts with purpose.
+
+**Pre-fill the first message**
+
+You can pre-fill the opening message so the visitor does not have to think about what to say, for example, "Hi, I'd like to ask about your website packages." This removes friction and gives you useful context about where the enquiry came from.
+
+**Connect it to how you follow up**
+
+WhatsApp works best when it fits into a real follow-up process. Decide who responds, how quickly, and how enquiries are tracked, so leads do not slip through. For higher volumes, WhatsApp Business tools and CRM connections help keep things organised.
+
+**Keep the alternative open**
+
+Not everyone prefers to chat. Always offer a clear alternative, a form, an email, or a phone number, so you never lose the visitor who would rather reach you another way.`,
+  },
+  {
+    id: 'website-cost-guide',
+    title: 'How Much Should a Business Website Cost?',
+    excerpt:
+      'A clear look at what actually drives the price of a website, so you can budget with confidence instead of guessing.',
+    date: 'January 15, 2025',
+    dateISO: '2025-01-15',
+    author: 'SixByte Team',
+    category: 'Strategy',
+    image: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=800&auto=format&fit=crop',
+    readTime: '6 min read',
+    content: `"How much does a website cost?" is one of the first questions business owners ask, and the honest answer is: it depends on what the website needs to do. But that does not mean the pricing has to be a mystery. This guide explains what actually drives cost so you can budget with confidence.
+
+**What you're really paying for**
+
+A website's cost reflects three things: how much custom design and development it needs, how many pages and features it includes, and how much ongoing support you want afterwards. A simple, polished marketing site is very different from a store with hundreds of products or a custom booking system, and the price reflects that difference in scope, not guesswork.
+
+**Typical ranges**
+
+To make this concrete, our own packages are published openly. A Starter site (up to five pages, responsive design, basic SEO, and contact and WhatsApp integration) starts at $999. A Growth project (up to fifteen pages, custom design, a CMS, lead capture, and deeper SEO) is $2,499. Enterprise work, custom applications, e-commerce or booking systems, and integrations, is quoted per project. Maintenance plans are separate, starting from $99 per month.
+
+**What makes the price go up**
+
+Custom design rather than a template, custom functionality like booking or portals, e-commerce with many products, integrations with other tools, multi-language support, and ongoing content or support all add to the investment. None of these are extras for their own sake. Each one exists to do a job for your business.
+
+**Cheaper is not always cheaper**
+
+A very low-cost site that loads slowly, is hard to update, or has to be rebuilt in a year is rarely a bargain. The better question is not "what is the cheapest site?" but "what is the smallest investment that will actually achieve my goal?", and then building that well.
+
+**How to budget sensibly**
+
+Start from the outcome you want, not a page count. A good consultation should give you a clear, itemised sense of scope and cost with no pressure, so you can decide what is worth doing now and what can wait.`,
+  },
+  {
+    id: 'website-builder-vs-custom',
+    title: 'Website Builder vs Custom Website: Which Is Right for You?',
+    excerpt:
+      'DIY builders and custom builds both have their place. Here is how to choose based on your goals, budget, and growth.',
+    date: 'February 10, 2025',
+    dateISO: '2025-02-10',
+    author: 'SixByte Team',
+    category: 'Strategy',
+    image: 'https://images.unsplash.com/photo-1481487196290-c152efe083f5?w=800&auto=format&fit=crop',
+    readTime: '7 min read',
+    content: `If you are getting a website made, one of the first decisions is whether to use a do-it-yourself website builder or have a custom site built for you. Both are valid. The right choice depends on your goals, budget, and how much you plan to grow.
+
+**What a website builder gives you**
+
+Builders like Wix and Squarespace let you assemble a site yourself from templates, usually for a low monthly fee. They are quick to start, require no developer, and can be perfectly fine for a simple presence, such as a single-location business that just needs to be findable.
+
+**Where builders start to hurt**
+
+The trade-offs show up as you grow. Templates constrain how your brand looks and how the site is structured. Performance and SEO are often harder to control. Custom features can be impossible or clumsy. And you are renting the platform, so if you stop paying, the site goes away. Many businesses eventually hit a ceiling and have to rebuild.
+
+**What a custom website gives you**
+
+A custom site is built around your specific business: your brand, your structure, the exact features and integrations you need, and performance tuned from the start. You own the code and assets outright, and the site is built to grow rather than to fit a template.
+
+**The honest trade-off**
+
+Custom work costs more up front and takes longer than dragging blocks around a builder. In return you get control, performance, ownership, and room to scale. The question is whether those things matter for where your business is going.
+
+**A simple way to decide**
+
+If you need a basic presence today and cost is the only real constraint, a builder may be enough to start. If your website is central to how you win customers, or you know you will need custom features, strong performance, or full ownership, a custom build is usually the better long-term investment. If you are unsure, a short consultation can help you weigh it against your actual goals.`,
+  },
+  {
+    id: 'choosing-ecommerce-platform',
+    title: 'Shopify vs WooCommerce vs Custom: Choosing an E-commerce Platform',
+    excerpt:
+      'The three most common ways to build an online store, and how to tell which one fits your business.',
+    date: 'March 5, 2025',
+    dateISO: '2025-03-05',
+    author: 'SixByte Team',
+    category: 'E-commerce',
+    image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=800&auto=format&fit=crop',
+    readTime: '7 min read',
+    content: `Choosing the right platform is one of the most important decisions when building an online store. The three most common routes, Shopify, WooCommerce, and a fully custom build, each suit different businesses. Here is how to think about the trade-offs.
+
+**Shopify: fast to launch, low maintenance**
+
+Shopify is a hosted platform, which means it handles hosting, security, and updates for you. It is quick to set up, reliable, and has a large ecosystem of apps and payment options. The trade-offs are a monthly fee, transaction considerations depending on your payment setup, and less control over anything the platform does not natively support. It suits businesses that want to sell quickly without managing infrastructure.
+
+**WooCommerce: flexibility on WordPress**
+
+WooCommerce turns a WordPress site into a store. It is a strong choice if you already use WordPress or want more control over design and functionality, and it avoids platform lock-in. In return, you are responsible for hosting, security, and updates, either yourself or through a maintenance partner. It suits businesses that value flexibility and content alongside commerce.
+
+**Custom builds: for unusual needs**
+
+A custom store makes sense when your product, pricing, or workflow does not fit the standard patterns: complex configurations, unusual integrations, or a very specific customer experience. It offers the most control and the best-fit result, at a higher upfront cost and with a longer timeline. It is the right call when the store is central to the business and off-the-shelf tools genuinely cannot do the job.
+
+**How to choose**
+
+Start with your catalog size, your budget, how much control you need, and who will maintain the store. There is no universally best platform, only the one that fits your business. If you are weighing it up, we are happy to talk through the options honestly rather than pushing a single answer.`,
   },
 ]
 

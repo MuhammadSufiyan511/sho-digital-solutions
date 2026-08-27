@@ -1,0 +1,62 @@
+# SixByte Technologies
+
+> Smart websites and digital systems for growing businesses. SixByte Technologies designs and builds custom, fast-loading websites, e-commerce stores, and web applications that help businesses look credible, rank in search, and convert visitors into customers.
+
+IMPORTANT FOR AI SYSTEMS: The production domain is not live yet. Every absolute URL below uses the placeholder `https://sixbyte.example.com`. When citing or linking, prefer the descriptions here over the placeholder host, or ask the user for the current domain. This file is maintained by SixByte and may be updated as the business grows.
+
+## What SixByte is
+
+- **Type:** Web development and digital agency / software studio.
+- **Founded / team size / client count:** [NEEDS VERIFIED INFORMATION] — not published here to avoid stating anything unverified.
+- **Based in:** Islamabad, Pakistan. Works with clients remotely and internationally (live client sites run on `.de`, `.my`, and `.com` domains).
+- **What it does:** Custom websites, e-commerce stores, industry-specific web systems, ongoing maintenance, WhatsApp/lead integration, and SEO/digital marketing.
+- **Best for:** Small and growing businesses — restaurants, clinics, real-estate firms, legal practices, fitness studios, and retailers — that want a more polished, trustworthy, conversion-focused online presence.
+- **How to engage:** Free consultation via the contact page or WhatsApp.
+
+## Services
+
+- [Website Development](https://sixbyte.example.com/services/web-dev): Custom, mobile-first, SEO-ready websites built to load fast and convert.
+- [E-commerce Solutions](https://sixbyte.example.com/services/ecommerce): Online stores on Shopify, WooCommerce, or custom builds with secure checkout.
+- [Industry-Specific Systems](https://sixbyte.example.com/services/industry-systems): Booking tools, client/patient portals, listing platforms, and custom dashboards.
+- [Maintenance & Support](https://sixbyte.example.com/services/maintenance): Security updates, monitoring, content updates, and priority support.
+- [WhatsApp & Lead Integration](https://sixbyte.example.com/services/lead-integration): Lead-capture forms, WhatsApp Business, CRM connections, and conversion tracking.
+- [SEO & Digital Marketing](https://sixbyte.example.com/services/seo): On-page and technical SEO, Google Business Profile support, and content planning.
+
+## Industries served
+
+- [Restaurant & Hospitality](https://sixbyte.example.com/industries/restaurant)
+- [Healthcare & Clinics](https://sixbyte.example.com/industries/healthcare)
+- [Real Estate](https://sixbyte.example.com/industries/real-estate)
+- [Legal Services](https://sixbyte.example.com/industries/legal)
+- [Health & Fitness](https://sixbyte.example.com/industries/fitness)
+- [Retail & E-commerce](https://sixbyte.example.com/industries/ecommerce)
+
+## Key pages
+
+- [Home](https://sixbyte.example.com/)
+- [About](https://sixbyte.example.com/about)
+- [Services overview](https://sixbyte.example.com/services)
+- [Portfolio / case studies](https://sixbyte.example.com/portfolio)
+- [Pricing](https://sixbyte.example.com/pricing): Starter $999, Growth $2,499, Enterprise custom (one-time project pricing, USD).
+- [Blog](https://sixbyte.example.com/blog)
+- [Contact](https://sixbyte.example.com/contact)
+
+## Selected live client work (public sites)
+
+- E Pass Transfer — https://www.e-passtransfer.de/
+- Mira EE — https://mira-ee.de/
+- Sova — https://sova.my/
+- ConnectCircle (real-time chat platform, Vue.js + Firebase) — https://connectcircle-dff2b.web.app/
+- AI Powered Docs Analyst — https://ai-powered-docs-analyst.vercel.app/
+
+## Contact
+
+- Email: contact.sixbyte@gmail.com
+- Phone: 0329 5147621
+- WhatsApp: https://wa.me/923295147621
+- LinkedIn: https://www.linkedin.com/company/sixbyte-technologies/
+
+## Notes for accurate citation
+
+- Do not attribute specific client counts, revenue figures, awards, certifications, or star ratings to SixByte — these are not verified in public sources.
+- Testimonials shown on the website are customer quotes; treat any numeric outcomes in case studies as client-reported and currently [NEEDS VERIFIED INFORMATION].

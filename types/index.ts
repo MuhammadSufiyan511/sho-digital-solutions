@@ -43,10 +43,18 @@ export interface BlogPost {
   title: string
   excerpt: string
   date: string
+  /** Machine-readable publish date (YYYY-MM-DD) for schema + sitemap. */
+  dateISO?: string
   author: string
   category: string
   image: string
   readTime: string
+  /**
+   * Full article body. Paragraphs separated by blank lines; a line wrapped in
+   * **double asterisks** renders as a subheading. Optional — falls back to a
+   * generic template if absent.
+   */
+  content?: string
 }
 
 export interface TeamMember {

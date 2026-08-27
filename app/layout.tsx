@@ -6,6 +6,8 @@ import BackToTop from '@/components/layout/BackToTop'
 import CustomCursor from '@/components/layout/CustomCursor'
 import { Plus_Jakarta_Sans } from 'next/font/google'
 import { siteConfig } from '@/lib/site'
+import { organizationLd, websiteLd } from '@/lib/seo'
+import JsonLd from '@/components/JsonLd'
 
 const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -61,30 +63,6 @@ export const metadata: Metadata = {
   },
 }
 
-const organizationJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: siteConfig.name,
-  url: siteConfig.url,
-  logo: `${siteConfig.url}${siteConfig.logo}`,
-  description: siteConfig.description,
-  email: siteConfig.email,
-  telephone: siteConfig.phoneTel,
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Islamabad',
-    addressCountry: 'PK',
-  },
-  sameAs: [siteConfig.social.linkedin, siteConfig.social.instagram, siteConfig.social.facebook],
-}
-
-const websiteJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: siteConfig.name,
-  url: siteConfig.url,
-}
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={plusJakarta.variable} suppressHydrationWarning>
@@ -107,19 +85,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             `,
           }}
         />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-        />
+        <JsonLd data={[organizationLd(), websiteLd()]} />
       </head>
       <body className="min-h-screen overflow-x-hidden bg-slate-50 text-navy antialiased dark:bg-slate-950 dark:text-slate-100">
         <CustomCursor />
         <Navbar />
-        <main className="overflow-x-hidden">{children}</main>
+        <main className="overflow-x-clip">{children}</main>
         <Footer />
         <BackToTop />
       </body>

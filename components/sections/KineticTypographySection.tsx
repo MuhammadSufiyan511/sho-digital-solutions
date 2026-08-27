@@ -90,48 +90,48 @@ const professionalFloatingNodes = [
   {
     id: 1,
     content: (
-      <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest text-teal-light">
-        <Plus className="h-4 w-4 text-teal animate-spin" style={{ animationDuration: '8s' }} />
+      <div className="flex items-center gap-1.5 sm:gap-2 font-mono text-[9px] sm:text-[11px] uppercase tracking-normal sm:tracking-widest text-teal-light">
+        <Plus className="h-3 w-3 sm:h-4 sm:w-4 text-teal animate-spin" style={{ animationDuration: '8s' }} />
         <span>SYS.STATUS // ACTIVE</span>
       </div>
     ),
-    position: 'top-6 left-6 sm:left-10',
+    position: 'top-4 left-3 sm:top-6 sm:left-10',
     duration: 8,
     y: [-8, 8, -8],
   },
   {
     id: 2,
     content: (
-      <div className="flex items-center gap-2 font-mono text-[11px] tracking-wider text-white/60 border border-white/10 bg-white/5 backdrop-blur-md px-3 py-1 rounded-md">
-        <Plus className="h-3.5 w-3.5 text-teal-light animate-spin" style={{ animationDuration: '10s' }} />
+      <div className="flex items-center gap-1.5 sm:gap-2 font-mono text-[9px] sm:text-[11px] tracking-wider text-white/60 border border-white/10 bg-white/5 backdrop-blur-md px-2 py-0.5 sm:px-3 sm:py-1 rounded-md">
+        <Plus className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-teal-light animate-spin" style={{ animationDuration: '10s' }} />
         <span>99.99% UPTIME</span>
       </div>
     ),
-    position: 'top-7 right-6 sm:right-10',
+    position: 'top-4 right-3 sm:top-7 sm:right-10',
     duration: 10,
     y: [8, -10, 8],
   },
   {
     id: 3,
     content: (
-      <div className="flex items-center gap-2 font-mono text-[11px] text-teal/80 border border-teal/20 bg-teal/10 backdrop-blur-md px-3 py-1 rounded-md">
-        <Plus className="h-3.5 w-3.5 text-teal-light animate-spin" style={{ animationDuration: '12s' }} />
+      <div className="flex items-center gap-1.5 sm:gap-2 font-mono text-[9px] sm:text-[11px] text-teal/80 border border-teal/20 bg-teal/10 backdrop-blur-md px-2 py-0.5 sm:px-3 sm:py-1 rounded-md">
+        <Plus className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-teal-light animate-spin" style={{ animationDuration: '12s' }} />
         <span>ENTERPRISE STACK</span>
       </div>
     ),
-    position: 'bottom-8 left-6 sm:left-10',
+    position: 'bottom-5 left-2 sm:bottom-8 sm:left-10',
     duration: 9,
     y: [-10, 10, -10],
   },
   {
     id: 4,
     content: (
-      <div className="flex items-center gap-2 font-mono text-[11px] text-white/50 border border-white/10 bg-white/5 backdrop-blur-md px-3 py-1 rounded-md">
-        <Plus className="h-3.5 w-3.5 text-emerald-400 animate-spin" style={{ animationDuration: '9s' }} />
+      <div className="flex items-center gap-1.5 sm:gap-2 font-mono text-[9px] sm:text-[11px] text-white/50 border border-white/10 bg-white/5 backdrop-blur-md px-2 py-0.5 sm:px-3 sm:py-1 rounded-md">
+        <Plus className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-emerald-400 animate-spin" style={{ animationDuration: '9s' }} />
         <span>SECURE ENDPOINTS</span>
       </div>
     ),
-    position: 'bottom-8 right-6 sm:right-10',
+    position: 'bottom-5 right-2 sm:bottom-8 sm:right-10',
     duration: 7,
     y: [10, -8, 10],
   },

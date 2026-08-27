@@ -1,347 +1,152 @@
-'use client'
-
-import type { ChangeEvent, FormEvent } from 'react'
-import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { CheckCircle2, Mail, MapPin, MessageCircle, Phone, Send } from 'lucide-react'
-import type { ContactForm } from '@/types'
-import PageHero from '@/components/sections/PageHero'
+import type { Metadata } from 'next'
+import { Clock, Globe, MapPin, Navigation } from 'lucide-react'
 import { siteConfig } from '@/lib/site'
+import { pageMetadata, breadcrumbLd, faqLd } from '@/lib/seo'
+import JsonLd from '@/components/JsonLd'
+import SectionHeader from '@/components/ui/SectionHeader'
+import FaqAccordion from '@/components/ui/FaqAccordion'
+import ContactClient from './ContactClient'
 
-const businessTypes = [
-  'Restaurant / Food & Beverage',
-  'Healthcare / Clinic',
-  'Real Estate',
-  'E-commerce / Retail',
-  'Legal Services',
-  'Health & Fitness',
-  'Professional Services',
-  'Technology / SaaS',
-  'Education',
-  'Other',
+export const metadata: Metadata = pageMetadata({
+  title: 'Contact Us | Web Design Studio in I-8, Islamabad',
+  description:
+    'Get in touch with SixByte Technologies, a web design and development studio based in I-8, Islamabad, Pakistan. Book a free consultation by form, phone, email, or WhatsApp — we work with clients across Pakistan and worldwide.',
+  path: '/contact',
+})
+
+/**
+ * Contact-focused FAQs. Every answer is grounded in facts already stated across
+ * the site (Islamabad/I-8 base, remote delivery, English & Urdu, free
+ * consultation, ~2 business-hour response) and is written to be self-contained
+ * so search engines and AI answer engines can quote a single answer cleanly.
+ * The same array powers the visible section and the FAQPage structured data.
+ */
+const contactFaqs = [
+  {
+    q: 'Where is SixByte Technologies located?',
+    a: 'SixByte Technologies is based in the I-8 sector of Islamabad, Pakistan. We work with businesses across Islamabad and the rest of Pakistan, and with international clients remotely — most projects run over email, phone, video call, and WhatsApp.',
+  },
+  {
+    q: 'Do you work with clients outside Islamabad or internationally?',
+    a: "Yes. Although we're based in Islamabad, we work remotely with businesses throughout Pakistan and in several other countries. Our process is built to run smoothly online, from the first consultation through to launch and support.",
+  },
+  {
+    q: 'Can we meet in person, or is everything online?',
+    a: "Both. If you're in or near Islamabad, we can arrange an in-person meeting by appointment. Otherwise, the consultation, updates, and reviews can all happen over video call, phone, or WhatsApp — whichever is easiest for you.",
+  },
+  {
+    q: 'How quickly will you respond after I get in touch?',
+    a: 'We aim to reply to new enquiries within about two business hours. If you message us on WhatsApp during business hours, you will usually hear back even sooner.',
+  },
+  {
+    q: 'What languages do you work in?',
+    a: "We work in English and Urdu, so you can share your project details in whichever you're more comfortable with.",
+  },
+  {
+    q: 'Is the first consultation really free?',
+    a: 'Yes. The initial consultation is a free, no-pressure conversation about your goals, your current website if you have one, and the most practical next step. There is no obligation to proceed.',
+  },
 ]
 
-const initialForm: ContactForm = {
-  name: '',
-  email: '',
-  phone: '',
-  businessType: '',
-  businessTypeOther: '',
-  message: '',
-}
+const locationHighlights = [
+  {
+    icon: MapPin,
+    label: 'Our base',
+    value: `${siteConfig.address.sector}, ${siteConfig.address.locality}`,
+    detail: `${siteConfig.address.region}, ${siteConfig.address.country}`,
+  },
+  {
+    icon: Globe,
+    label: 'How we work',
+    value: 'Remote-first',
+    detail: 'Serving clients across Pakistan and worldwide',
+  },
+  {
+    icon: Clock,
+    label: 'Response time',
+    value: 'Within ~2 business hours',
+    detail: 'Even faster on WhatsApp during business hours',
+  },
+]
 
 export default function ContactPage() {
-  const [form, setForm] = useState<ContactForm>(initialForm)
-  const [errors, setErrors] = useState<Partial<ContactForm>>({})
-  const [submitted, setSubmitted] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [submitError, setSubmitError] = useState('')
-
-  const validate = (): boolean => {
-    const nextErrors: Partial<ContactForm> = {}
-    if (!form.name.trim()) nextErrors.name = 'Name is required'
-    if (!form.email.trim()) nextErrors.email = 'Email is required'
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) nextErrors.email = 'Enter a valid email'
-    if (!form.phone.trim()) nextErrors.phone = 'Phone is required'
-    if (!form.businessType) nextErrors.businessType = 'Please select your business type'
-    else if (form.businessType === 'Other' && !form.businessTypeOther?.trim())
-      nextErrors.businessTypeOther = 'Please specify your business type'
-    if (!form.message.trim()) nextErrors.message = 'Message is required'
-    else if (form.message.trim().length < 20) nextErrors.message = 'Please add a little more detail'
-
-    setErrors(nextErrors)
-    return Object.keys(nextErrors).length === 0
-  }
-
-  const handleSubmit = async (event: FormEvent) => {
-    event.preventDefault()
-    if (!validate()) return
-
-    setSubmitError('')
-    setLoading(true)
-    try {
-      const resolvedBusinessType =
-        form.businessType === 'Other' && form.businessTypeOther?.trim()
-          ? `Other: ${form.businessTypeOther.trim()}`
-          : form.businessType
-
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, businessType: resolvedBusinessType }),
-      })
-
-      if (!response.ok) {
-        const data = await response.json().catch(() => null)
-        throw new Error(data?.error || 'Something went wrong. Please try again.')
-      }
-
-      setSubmitted(true)
-      setForm(initialForm)
-    } catch (error) {
-      setSubmitError(error instanceof Error ? error.message : 'Unable to send your message right now.')
-    } finally {
-      setLoading(false)
-    }
-  }
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = event.target
-    setForm((current) => {
-      const next = { ...current, [name]: value }
-      // Clear the "Please specify" value when switching away from "Other"
-      if (name === 'businessType' && value !== 'Other') {
-        next.businessTypeOther = ''
-      }
-      return next
-    })
-    if (errors[name as keyof ContactForm]) {
-      setErrors((current) => ({ ...current, [name]: '' }))
-    }
-    if (name === 'businessType' && value !== 'Other' && errors.businessTypeOther) {
-      setErrors((current) => ({ ...current, businessTypeOther: '' }))
-    }
-  }
-
   return (
     <>
-      <PageHero
-        tag="Contact"
-        title="Let&apos;s talk about how to make your website feel more credible and more effective."
-        subtitle="Share a little about your business and we&apos;ll help you figure out the next step with clarity and honesty."
-        chips={['Consultation', 'Support', 'WhatsApp']}
-        panelTitle="What to expect"
-        panelBody="A short, helpful conversation about goals, scope, and the most practical next step for your business."
-        panelStats={['Reply fast', 'No pressure', 'Clear next step']}
+      <JsonLd
+        data={[
+          breadcrumbLd([
+            { name: 'Home', path: '/' },
+            { name: 'Contact', path: '/contact' },
+          ]),
+          faqLd(contactFaqs),
+        ]}
       />
 
-      <section className="py-10 lg:py-14">
-        <div className="mx-auto grid max-w-7xl gap-12 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
-          {/* Info Left */}
-          <div className="space-y-6 lg:col-span-5">
-            <div>
-              <h2 className="text-xl font-bold text-navy dark:text-white">Reach out directly</h2>
-              <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-                If you prefer to speak first, use email or WhatsApp. We keep responses clear and timely during business
-                hours.
-              </p>
-            </div>
+      <ContactClient />
 
-            <div className="space-y-3">
-              {[
-                { icon: Mail, label: 'Email', value: siteConfig.email, href: `mailto:${siteConfig.email}` },
-                { icon: Phone, label: 'Phone', value: siteConfig.phoneDisplay, href: `tel:${siteConfig.phoneTel}` },
-                { icon: MapPin, label: 'Location', value: siteConfig.location, href: null },
-              ].map(({ icon: Icon, label, value, href }) => {
-                const cardInner = (
-                  <>
+      {/* Location + Google Map */}
+      <section className="border-t border-slate-200 py-10 dark:border-slate-800 lg:py-14">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
+            {/* Address + context */}
+            <div className="lg:col-span-5">
+              <SectionHeader
+                tag="Our location"
+                title="Based in I-8, Islamabad — building for clients everywhere."
+                subtitle="Come say hello in Islamabad, or work with us remotely from anywhere. Either way, you get the same clear, hands-on process from first call to launch."
+              />
+
+              <address className="not-italic space-y-3">
+                {locationHighlights.map(({ icon: Icon, label, value, detail }) => (
+                  <div key={label} className="surface-card flex items-start gap-4 rounded-xl p-4">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded bg-teal/10 text-teal dark:bg-teal/20 dark:text-teal-light">
                       <Icon className="h-5 w-5" />
                     </div>
                     <div>
                       <div className="text-[11px] font-bold uppercase tracking-wider text-slate-400">{label}</div>
-                      <div className="mt-0.5 text-xs font-bold text-navy dark:text-white">{value}</div>
+                      <div className="mt-0.5 text-sm font-bold text-navy dark:text-white">{value}</div>
+                      <div className="mt-0.5 text-xs text-slate-600 dark:text-slate-400">{detail}</div>
                     </div>
-                  </>
-                )
-                return href ? (
-                  <a key={label} href={href} className="surface-card flex items-center gap-4 rounded-xl p-4 transition-colors hover:border-teal/30">
-                    {cardInner}
-                  </a>
-                ) : (
-                  <div key={label} className="surface-card flex items-center gap-4 rounded-xl p-4">
-                    {cardInner}
                   </div>
-                )
-              })}
-            </div>
-
-            <a
-              href={siteConfig.whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary w-full justify-center"
-            >
-              <MessageCircle className="h-4 w-4" />
-              Chat on WhatsApp
-            </a>
-
-            <div className="surface-card rounded-xl p-6">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-400">What to expect</h3>
-              <ul className="mt-3 space-y-2 text-xs text-slate-600 dark:text-slate-300">
-                {[
-                  'A quick review of your goals and priorities',
-                  'A simple recommendation for the right next step',
-                  'A clear sense of timeline and scope',
-                ].map((item) => (
-                  <li key={item} className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-teal shrink-0" />
-                    {item}
-                  </li>
                 ))}
-              </ul>
+              </address>
+
+              <a
+                href={siteConfig.mapLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-outline-navy mt-6"
+              >
+                Open in Google Maps <Navigation className="h-4 w-4" />
+              </a>
+            </div>
+
+            {/* Interactive map */}
+            <div className="lg:col-span-7">
+              <div className="overflow-hidden rounded-xl border border-slate-200 shadow-lg dark:border-slate-800">
+                <iframe
+                  title="Google Map showing SixByte Technologies' location in I-8, Islamabad, Pakistan"
+                  src={siteConfig.mapEmbedUrl}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  allowFullScreen
+                  className="h-[320px] w-full sm:h-[420px]"
+                  style={{ border: 0 }}
+                />
+              </div>
+              <p className="mt-3 text-center text-[11px] text-slate-500 dark:text-slate-400">
+                SixByte Technologies is located in Sector I-8, Islamabad, Islamabad Capital Territory, Pakistan.
+              </p>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Form Right */}
-          <div className="lg:col-span-7">
-            {submitted ? (
-              <div className="surface-card rounded-xl p-8 text-center sm:p-12">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-emerald-100 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-300">
-                  <CheckCircle2 className="h-7 w-7" />
-                </div>
-                <h2 className="mt-4 text-xl font-bold text-navy dark:text-white">Message sent</h2>
-                <p className="mt-2 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-                  Thank you for reaching out. We&apos;ll review your message and get back to you within 2 business hours.
-                </p>
-                <button onClick={() => setSubmitted(false)} className="btn-primary mt-6">
-                  Send another message
-                </button>
-              </div>
-            ) : (
-              <div className="surface-card rounded-xl p-6 sm:p-8">
-                <h2 className="text-xl font-bold text-navy dark:text-white">Book a free consultation</h2>
-                <p className="mt-1 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-                  Tell us a bit about the business, and we&apos;ll take it from there.
-                </p>
-
-                <form onSubmit={handleSubmit} noValidate className="mt-6 space-y-4">
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div>
-                      <label className="mb-1 block text-xs font-semibold text-navy dark:text-slate-200">
-                        Full name <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
-                        value={form.name}
-                        onChange={handleChange}
-                        placeholder="John Smith"
-                        className={`w-full rounded border bg-white px-3.5 py-2.5 text-xs outline-none transition-colors focus:border-teal dark:border-slate-800 dark:bg-slate-900 dark:text-white ${
-                          errors.name ? 'border-red-500' : 'border-slate-200'
-                        }`}
-                      />
-                      {errors.name && <p className="mt-1 text-[11px] text-red-500">{errors.name}</p>}
-                    </div>
-
-                    <div>
-                      <label className="mb-1 block text-xs font-semibold text-navy dark:text-slate-200">
-                        Email address <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={form.email}
-                        onChange={handleChange}
-                        placeholder="john@business.com"
-                        className={`w-full rounded border bg-white px-3.5 py-2.5 text-xs outline-none transition-colors focus:border-teal dark:border-slate-800 dark:bg-slate-900 dark:text-white ${
-                          errors.email ? 'border-red-500' : 'border-slate-200'
-                        }`}
-                      />
-                      {errors.email && <p className="mt-1 text-[11px] text-red-500">{errors.email}</p>}
-                    </div>
-                  </div>
-
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div>
-                      <label className="mb-1 block text-xs font-semibold text-navy dark:text-slate-200">
-                        Phone number <span className="text-red-500">*</span>
-                      </label>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={form.phone}
-                        onChange={handleChange}
-                        placeholder="0329 5147621"
-                        className={`w-full rounded border bg-white px-3.5 py-2.5 text-xs outline-none transition-colors focus:border-teal dark:border-slate-800 dark:bg-slate-900 dark:text-white ${
-                          errors.phone ? 'border-red-500' : 'border-slate-200'
-                        }`}
-                      />
-                      {errors.phone && <p className="mt-1 text-[11px] text-red-500">{errors.phone}</p>}
-                    </div>
-
-                    <div>
-                      <label className="mb-1 block text-xs font-semibold text-navy dark:text-slate-200">
-                        Business type <span className="text-red-500">*</span>
-                      </label>
-                      <select
-                        name="businessType"
-                        value={form.businessType}
-                        onChange={handleChange}
-                        className={`w-full rounded border bg-white px-3.5 py-2.5 text-xs outline-none transition-colors focus:border-teal dark:border-slate-800 dark:bg-slate-900 dark:text-white ${
-                          errors.businessType ? 'border-red-500' : 'border-slate-200'
-                        }`}
-                      >
-                        <option value="">Select your industry</option>
-                        {businessTypes.map((type) => (
-                          <option key={type} value={type}>
-                            {type}
-                          </option>
-                        ))}
-                      </select>
-                      {errors.businessType && <p className="mt-1 text-[11px] text-red-500">{errors.businessType}</p>}
-                    </div>
-                  </div>
-
-                  <AnimatePresence initial={false}>
-                    {form.businessType === 'Other' && (
-                      <motion.div
-                        key="business-type-other"
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                        className="overflow-hidden"
-                      >
-                        <div className="pt-1">
-                          <label className="mb-1 block text-xs font-semibold text-navy dark:text-slate-200">
-                            Please specify <span className="text-red-500">*</span>
-                          </label>
-                          <input
-                            type="text"
-                            name="businessTypeOther"
-                            value={form.businessTypeOther ?? ''}
-                            onChange={handleChange}
-                            placeholder="Tell us what type of business you run"
-                            className={`w-full rounded border bg-white px-3.5 py-2.5 text-xs outline-none transition-colors focus:border-teal dark:border-slate-800 dark:bg-slate-900 dark:text-white ${
-                              errors.businessTypeOther ? 'border-red-500' : 'border-slate-200'
-                            }`}
-                          />
-                          {errors.businessTypeOther && (
-                            <p className="mt-1 text-[11px] text-red-500">{errors.businessTypeOther}</p>
-                          )}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-
-                  <div>
-                    <label className="mb-1 block text-xs font-semibold text-navy dark:text-slate-200">
-                      Tell us about your project <span className="text-red-500">*</span>
-                    </label>
-                    <textarea
-                      name="message"
-                      value={form.message}
-                      onChange={handleChange}
-                      rows={5}
-                      placeholder="Describe your business, your goals, and what you would like the website to do."
-                      className={`w-full resize-none rounded border bg-white px-3.5 py-2.5 text-xs outline-none transition-colors focus:border-teal dark:border-slate-800 dark:bg-slate-900 dark:text-white ${
-                        errors.message ? 'border-red-500' : 'border-slate-200'
-                      }`}
-                    />
-                    {errors.message && <p className="mt-1 text-[11px] text-red-500">{errors.message}</p>}
-                  </div>
-
-                  <button type="submit" disabled={loading} className="btn-primary w-full justify-center">
-                    {loading ? 'Sending...' : 'Send message and book consultation'}
-                    {!loading && <Send className="h-4 w-4" />}
-                  </button>
-
-                  {submitError && <p className="text-center text-xs text-red-500">{submitError}</p>}
-                </form>
-              </div>
-            )}
-          </div>
+      {/* FAQ */}
+      <section className="bg-slate-50/80 py-10 dark:bg-slate-950/60 lg:py-14">
+        <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <SectionHeader tag="FAQ" title="Questions before you reach out" center />
+          <FaqAccordion faqs={contactFaqs} className="mt-8" />
         </div>
       </section>
     </>

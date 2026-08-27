@@ -5,6 +5,8 @@ import Image from 'next/image'
 import { ArrowRight, CheckCircle2, Sparkles } from 'lucide-react'
 import { motion } from 'framer-motion'
 import AnimatedTagHeader from '@/components/ui/AnimatedTagHeader'
+import SquaresBackground from '@/components/ui/SquaresBackground'
+import ParticlesBackground from '@/components/ui/ParticlesBackground'
 import { Reveal, Stagger, StaggerItem } from '@/components/animations/Motion'
 
 const highlights = [
@@ -16,6 +18,10 @@ const highlights = [
 export default function HeroSection() {
   return (
     <section className="relative overflow-hidden bg-slate-50/70 pt-28 pb-16 dark:bg-slate-950/80 lg:pt-36 lg:pb-24">
+      {/* ReactBits Animated Background Layers */}
+      <SquaresBackground speed={0.3} squareSize={48} direction="diagonal" />
+      <ParticlesBackground quantity={35} color="15, 118, 110" />
+
       {/* Ambient Background Mesh & Subtle Animated Elements */}
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,#0e1a2e0a_1px,transparent_1px),linear-gradient(to_bottom,#0e1a2e0a_1px,transparent_1px)] bg-[size:40px_40px] dark:bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)]" />
 
@@ -59,18 +65,19 @@ export default function HeroSection() {
                   <AnimatedTagHeader tag="DIGITAL AGENCY & SOFTWARE HOUSE" />
                 </div>
                 <h1 className="text-3xl font-bold leading-tight tracking-tight text-navy sm:text-5xl lg:text-5xl dark:text-white">
-                  Websites that look{' '}
+                  We build{' '}
                   <span className="relative inline-block text-teal dark:text-teal-light">
-                    premium
+                    digital solutions
                     <svg
-                      className="absolute -bottom-2 left-0 h-3 w-full text-teal dark:text-teal-light overflow-visible"
-                      viewBox="0 0 120 20"
+                      className="absolute -bottom-2.5 left-0 h-3.5 w-full text-teal dark:text-teal-light overflow-visible"
+                      viewBox="0 0 100 12"
                       fill="none"
+                      preserveAspectRatio="none"
                     >
                       <motion.path
-                        d="M3 14 C 40 4, 80 18, 117 10"
+                        d="M 1 6 Q 50 1, 99 7"
                         stroke="currentColor"
-                        strokeWidth="3.5"
+                        strokeWidth="4"
                         strokeLinecap="round"
                         initial={{ pathLength: 0, opacity: 0 }}
                         animate={{ pathLength: 1, opacity: 1 }}
@@ -81,15 +88,14 @@ export default function HeroSection() {
                         }}
                       />
                     </svg>
-                  </span>
-                  , feel trustworthy, and turn visits into real conversations.
+                  </span>{' '}
+                  that move your business forward.
                 </h1>
               </StaggerItem>
 
               <StaggerItem>
                 <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg dark:text-slate-300">
-                  We craft polished digital experiences with clear structure, strong visual hierarchy, and the kind of
-                  confidence that helps people trust your business faster.
+                  From business websites and online stores to mobile apps and custom software — we create simple, easy-to-use digital solutions for local businesses and growing companies. No tech jargon, just real results.
                 </p>
               </StaggerItem>
 

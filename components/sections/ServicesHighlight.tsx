@@ -1,94 +1,158 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
-import { Reveal, Stagger, StaggerItem } from '@/components/animations/Motion'
-import SectionHeader from '@/components/ui/SectionHeader'
+import { ArrowRight, Blocks, Brain, Code2, Globe, Layers3, ShoppingBag } from 'lucide-react'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import { useMemo, useState } from 'react'
+import { services } from '@/lib/data'
+import { homepageServiceIds, servicePreviewMeta } from '@/lib/service-showcase'
 
-const highlights = [
-  {
-    number: '01',
-    title: 'Website Development',
-    description: 'Custom websites built to feel credible, load quickly, and guide visitors toward taking action.',
-    href: '/services#web-dev',
-  },
-  {
-    number: '02',
-    title: 'E-commerce Solutions',
-    description: 'Online stores designed to make browsing feel easy and purchasing feel confident.',
-    href: '/services#ecommerce',
-  },
-  {
-    number: '03',
-    title: 'Industry-Specific Systems',
-    description: 'Tailored systems for businesses that need more than a brochure website.',
-    href: '/services#industry-systems',
-  },
-  {
-    number: '04',
-    title: 'Maintenance & Support',
-    description: 'Ongoing support that keeps your site secure, updated, and running smoothly.',
-    href: '/services#maintenance',
-  },
-]
+const serviceIcons = {
+  'web-dev': Code2,
+  wordpress: Globe,
+  shopify: ShoppingBag,
+  saas: Layers3,
+  'ai-solutions': Brain,
+  'custom-software': Blocks,
+} as const
 
 export default function ServicesHighlight() {
+  const [activeId, setActiveId] = useState<string>(homepageServiceIds[0])
+  const prefersReducedMotion = useReducedMotion() ?? false
+
+  const featuredServices = useMemo(
+    () => services.filter((service) => homepageServiceIds.includes(service.id as (typeof homepageServiceIds)[number])),
+    [],
+  )
+
+  const activeService = featuredServices.find((service) => service.id === activeId) ?? featuredServices[0]
+  const preview = servicePreviewMeta[activeService.id] ?? servicePreviewMeta['web-dev']
+  const ActiveIcon = serviceIcons[activeService.id as keyof typeof serviceIcons] ?? Code2
+
   return (
     <section className="py-10 lg:py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-12 lg:items-start">
-          {/* Header Left */}
-          <div className="lg:col-span-5 lg:sticky lg:top-28">
-            <Reveal>
-              <SectionHeader
-                tag="What we do"
-                title="Practical digital services with a more polished, human feel."
-                subtitle="We focus on the pieces that matter most: trust, clarity, and a user journey that feels effortless."
-              />
+        <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
+          <div className="lg:col-span-4 lg:sticky lg:top-28">
+            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-teal">What we do</p>
+            <h2 className="mt-4 text-2xl font-semibold tracking-tight text-navy dark:text-white sm:text-3xl">
+              A sharper service lineup for serious product teams.
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+              We focus on the services most businesses actually need: websites, WordPress, Shopify, SaaS, and AI
+              work that feels technical, calm, and credible.
+            </p>
 
-              <div className="mt-6">
-                <Link href="/services" className="btn-outline-navy">
-                  View all services <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </Reveal>
+            <div className="mt-8">
+              <Link href="/services" className="btn-outline-navy">
+                View all services <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
 
-          {/* Editorial Service Stack Right */}
-          <div className="lg:col-span-7">
-            <Stagger className="divide-y divide-slate-200 dark:divide-slate-800">
-              {highlights.map((item) => (
-                <StaggerItem key={item.title}>
-                  <Link
-                    href={item.href}
-                    className="group relative block py-8 px-6 sm:px-8 transition-colors hover:bg-slate-50/50 dark:hover:bg-slate-900/50 rounded-lg"
-                  >
-                    {/* Hover Teal Accent Line */}
-                    <div className="absolute left-0 top-0 h-full w-1 rounded-l origin-left scale-y-0 bg-teal transition-transform duration-300 group-hover:scale-y-100" />
+          <div className="lg:col-span-8">
+            <div className="rounded-[2rem] border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-950">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeService.id}
+                  initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 14 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: -14 }}
+                  transition={{ duration: prefersReducedMotion ? 0 : 0.24, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative overflow-hidden rounded-t-[2rem] border-b border-slate-200 bg-slate-950 px-6 py-6 text-white dark:border-slate-800 sm:px-8"
+                >
+                  <div className="absolute inset-x-0 top-0 h-1 bg-teal" />
+                  <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+                    <div className="max-w-2xl">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-white/60">
+                        {preview.tagline}
+                      </p>
+                      <h3 className="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">
+                        {activeService.title}
+                      </h3>
+                      <p className="mt-3 max-w-xl text-sm leading-relaxed text-white/75">{preview.summary}</p>
+                    </div>
+                    <span className="inline-flex w-fit rounded-full border border-white/15 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/70">
+                      {activeService.id}
+                    </span>
+                  </div>
 
-                    <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-                      <div className="flex items-start gap-5">
-                        <span className="text-sm font-bold text-slate-400 transition-colors group-hover:text-teal shrink-0">
-                          {item.number}
-                        </span>
-                        <div>
-                          <h3 className="text-xl font-bold text-navy transition-colors group-hover:text-teal dark:text-white dark:group-hover:text-teal-light">
-                            {item.title}
-                          </h3>
-                          <p className="mt-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                            {item.description}
+                  <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                    {[
+                      { label: 'Focus', value: preview.focus },
+                      { label: 'Outcome', value: preview.outcome },
+                      { label: 'Format', value: preview.format },
+                    ].map((item) => (
+                      <div key={item.label} className="rounded-2xl border border-white/10 bg-white/10 p-4">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/50">{item.label}</p>
+                        <p className="mt-2 text-sm font-medium leading-snug text-white">{item.value}</p>
+                      </div>
+                    ))}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              <div className="grid gap-3 p-5 md:grid-cols-2">
+                {featuredServices.map((service, index) => {
+                  const ServiceIcon = serviceIcons[service.id as keyof typeof serviceIcons] ?? Code2
+                  const active = activeService.id === service.id
+
+                  return (
+                    <motion.button
+                      key={service.id}
+                      type="button"
+                      onMouseEnter={() => setActiveId(service.id)}
+                      onFocus={() => setActiveId(service.id)}
+                      onClick={() => setActiveId(service.id)}
+                      whileHover={prefersReducedMotion ? undefined : { y: -2 }}
+                      whileTap={prefersReducedMotion ? undefined : { scale: 0.99 }}
+                      className={`group rounded-2xl border px-4 py-4 text-left transition-colors ${active
+                          ? 'border-teal/40 bg-teal/5'
+                          : 'border-slate-200 bg-slate-50/70 hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-slate-700'
+                        }`}
+                    >
+                      <div className="flex items-start gap-4">
+                        <div
+                          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border ${active
+                              ? 'border-teal/20 bg-teal text-white'
+                              : 'border-slate-200 bg-white text-teal dark:border-slate-800 dark:bg-slate-950 dark:text-teal-light'
+                            }`}
+                        >
+                          <ServiceIcon className="h-4 w-4" />
+                        </div>
+
+                        <div className="min-w-0 flex-1">
+                          <div className="flex items-center justify-between gap-3">
+                            <span className="text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-400">
+                              0{index + 1}
+                            </span>
+                            <ArrowRight
+                              className={`h-4 w-4 shrink-0 transition-transform ${active ? 'translate-x-1 text-teal' : 'text-slate-300 group-hover:translate-x-1 group-hover:text-teal dark:text-slate-600'
+                                }`}
+                            />
+                          </div>
+                          <h4
+                            className={`mt-2 text-sm font-semibold tracking-tight ${active ? 'text-navy dark:text-white' : 'text-slate-800 dark:text-slate-100'
+                              }`}
+                          >
+                            {service.title}
+                          </h4>
+                          <p className="mt-1.5 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
+                            {service.description}
                           </p>
                         </div>
                       </div>
+                    </motion.button>
+                  )
+                })}
+              </div>
 
-                      <div className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded border border-slate-200 bg-white text-slate-500 transition-all duration-200 group-hover:translate-x-1 group-hover:border-teal group-hover:bg-teal group-hover:text-white dark:border-slate-800 dark:bg-slate-900 dark:text-slate-400">
-                        <ArrowRight className="h-4 w-4" />
-                      </div>
-                    </div>
-                  </Link>
-                </StaggerItem>
-              ))}
-            </Stagger>
+              <div className="flex flex-wrap items-center justify-end gap-3 border-t border-slate-200 px-5 py-4 text-sm dark:border-slate-800 sm:px-6">
+                <Link href={`/services/${activeService.id}`} className="btn-outline-navy text-xs">
+                  Explore <ArrowRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>

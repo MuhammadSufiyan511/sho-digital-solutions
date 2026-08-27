@@ -4,9 +4,11 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, CheckCircle, ExternalLink } from 'lucide-react'
 import { projects } from '@/lib/data'
+import { pageMetadata, breadcrumbLd } from '@/lib/seo'
 import CTASection from '@/components/sections/CTASection'
 import PageHero from '@/components/sections/PageHero'
 import Badge from '@/components/ui/Badge'
+import JsonLd from '@/components/JsonLd'
 
 interface Props {
   params: { id: string }
@@ -19,10 +21,12 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = projects.find((p) => p.id === params.id)
   if (!project) return { title: 'Project Not Found' }
-  return {
+  return pageMetadata({
     title: project.title,
     description: project.description,
-  }
+    path: `/portfolio/${project.id}`,
+    image: project.image,
+  })
 }
 
 const projectDetails: Record<string, { challenge: string; solution: string; results: string[]; deliverables: string[] }> = {
@@ -38,35 +42,25 @@ const projectDetails: Record<string, { challenge: string; solution: string; resu
     results: ['Stronger premium brand perception through cohesive visual design', 'Improved discovery across collections and featured products', 'Smoother user journey from landing page to cart action', 'Higher purchase readiness through clearer product presentation'],
     deliverables: ['Custom storefront UI for ethnic menswear positioning', 'Collection and category-driven navigation architecture', 'Product listing and detail page experience', 'Shopping cart and order flow integration', 'Responsive design for mobile and desktop shoppers', 'Brand-consistent typography and style system'],
   },
-  'medico-pharmacy': {
-    challenge: 'The client needed a reliable online pharmacy presence that made medicine discovery and ordering straightforward while still communicating trust, safety, and responsive customer support.',
-    solution: 'We delivered a clean healthcare-focused e-commerce experience with product search, category-driven navigation, cart and checkout flows, promotional offer sections, and clear support touchpoints for order and delivery inquiries.',
-    results: ['Faster product discovery through search + category flows', 'Improved checkout readiness with clear cart and order summary UX', 'Stronger trust signals via healthcare-focused content and messaging', 'Better support accessibility through prominent contact and inquiry sections'],
-    deliverables: ['Pharmacy storefront and brand-focused homepage', 'Searchable products and category architecture', 'Cart, order, and checkout experience', 'Promotions and offer-driven conversion sections', 'Order and delivery inquiry contact flows', 'Content blocks for health guidance and customer trust'],
-  },
-  'designlab-grocery': {
-    challenge: 'The grocery brand needed an online channel that could showcase freshness and product variety while reducing friction in everyday ordering and repeat purchases.',
-    solution: 'We built a modern grocery storefront centered on fresh and organic product presentation, intuitive product browsing, lightweight cart interactions, and a clear delivery-focused buying journey.',
-    results: ['More intuitive browsing across grocery categories', 'Higher purchase intent through fresh/organic-first positioning', 'Reduced friction from product search to cart action', 'Improved customer confidence with transparent delivery/support messaging'],
-    deliverables: ['Grocery e-commerce homepage and product catalog UX', 'Fresh and organic category presentation', 'Cart and order journey for daily essentials', 'Delivery-focused service and support sections', 'Brand storytelling for local sourcing and quality', 'Mobile-friendly, responsive shopping interface'],
-  },
   'resto-booking': {
-    challenge: 'Saveur Restaurant had no online presence and was losing potential customers to competitors with better digital experiences. Reservations were entirely phone-based, causing lost bookings and no-shows.',
-    solution: 'We designed and developed a custom website with integrated online reservation system, dynamic menu display, photo gallery, and Google Reviews integration. The site was built with local SEO in mind to capture nearby search intent.',
-    results: ['+140% online reservations in 3 months', '65% reduction in phone call volume', '#1 ranking for "restaurant near me" in target area', '4.8/5 average review score displayed prominently'],
-    deliverables: ['Custom Next.js website', 'Real-time booking system', 'Digital menu with seasonal updates', 'Google Business integration', 'Mobile-first responsive design', 'Local SEO optimization'],
-  },
-  'clinic-portal': {
-    challenge: 'MedCare was managing patient appointments via phone and paper, leading to inefficiencies and patient frustration. They needed a compliant, secure digital solution.',
-    solution: 'We built a full patient management portal with online appointment scheduling, secure medical records access, and telehealth video consultation capabilities — all while maintaining HIPAA compliance.',
-    results: ['80% of appointments now booked online', '40% reduction in administrative workload', 'Patient satisfaction score improved to 4.9/5', '200+ telehealth consultations in first month'],
-    deliverables: ['Patient portal application', 'Appointment scheduling system', 'Telehealth integration', 'Secure records access', 'HIPAA-compliant infrastructure', 'Staff admin dashboard'],
-  },
-  'realestate-platform': {
-    challenge: 'PrimeHomes was relying on third-party listing platforms and losing commission revenue while having no control over their brand experience.',
-    solution: 'We built a full-featured property listing platform with advanced search, virtual tour embedding, mortgage calculator, and agent profiles — fully owned by the client.',
-    results: ['300% increase in direct lead inquiries', '3x more time spent on property listings', 'Eliminated third-party platform fees', '25 properties sold through site in year one'],
-    deliverables: ['Property listing platform', 'Advanced search & filtering', 'Virtual tour embedding', 'Mortgage calculator', 'Agent profile pages', 'Lead capture system'],
+    challenge:
+      "E2H Corian Fabrication needed a professional online presence to present their solid-surface fabrication work for kitchens, worktops, and interior surfaces, and to make it easy for prospective clients to understand their capabilities and get in touch.",
+    solution:
+      "We built a clean, image-led marketing website that showcases E2H's fabrication work and services, explains the material and its applications clearly, and guides visitors toward a direct enquiry.",
+    results: [
+      'A clear, professional presentation of fabrication services and completed work',
+      'Easier for prospective clients to understand the offering and make an enquiry',
+      'A mobile-friendly experience that works consistently across devices',
+      'A foundation that can grow as the business adds more projects and services',
+    ],
+    deliverables: [
+      'Custom marketing website design',
+      'Services and capabilities presentation',
+      'Project and work gallery',
+      'Enquiry and contact flow',
+      'Responsive, mobile-first build',
+      'Performance-focused implementation',
+    ],
   },
 }
 
@@ -85,6 +79,15 @@ export default function ProjectDetailPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd
+        data={[
+          breadcrumbLd([
+            { name: 'Home', path: '/' },
+            { name: 'Portfolio', path: '/portfolio' },
+            { name: project.title, path: `/portfolio/${project.id}` },
+          ]),
+        ]}
+      />
       <PageHero
         tag="Portfolio Case Study"
         title={project.title}

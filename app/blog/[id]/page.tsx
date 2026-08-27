@@ -2,11 +2,13 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowLeft, Clock, User } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { blogPosts } from '@/lib/data'
+import { pageMetadata, articleLd, breadcrumbLd } from '@/lib/seo'
 import CTASection from '@/components/sections/CTASection'
 import PageHero from '@/components/sections/PageHero'
 import Badge from '@/components/ui/Badge'
+import JsonLd from '@/components/JsonLd'
 
 interface Props {
   params: { id: string }
@@ -19,51 +21,47 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = blogPosts.find((p) => p.id === params.id)
   if (!post) return { title: 'Post Not Found' }
-  return { title: post.title, description: post.excerpt }
-}
-
-const articleContent: Record<string, string> = {
-  'why-website-speed-matters': `
-    In today's digital landscape, your website's loading speed isn't just a technical metric — it's a direct driver of revenue.
-
-    Every second of delay in page load time can reduce conversions by up to 7%, according to multiple industry studies. For a website generating $10,000 per month, that's $700 in lost revenue per second of slowness.
-
-    **Why Speed Matters So Much**
-
-    When visitors land on your site, they make split-second decisions about whether to stay or leave. If your page takes more than 3 seconds to load, over half of your visitors will abandon it — regardless of how good your product or service is.
-
-    Search engines like Google have made page speed a ranking factor, meaning slow sites don't just lose visitors — they lose visibility in search results too.
-
-    **Core Web Vitals: The New Standard**
-
-    Google's Core Web Vitals framework measures three key performance indicators: Largest Contentful Paint (LCP), First Input Delay (FID), and Cumulative Layout Shift (CLS). Sites that score well on these metrics rank higher and convert better.
-
-    **How to Improve Your Site Speed**
-
-    The good news is that most speed issues are fixable. Start by optimizing your images (using WebP format, proper sizing, and lazy loading), minifying CSS and JavaScript files, enabling browser caching, and using a Content Delivery Network (CDN).
-
-    For businesses serious about growth, moving to a modern tech stack like Next.js with server-side rendering can dramatically improve performance scores and, more importantly, your bottom line.
-  `,
+  return pageMetadata({
+    title: post.title,
+    description: post.excerpt,
+    path: `/blog/${post.id}`,
+    image: post.image,
+    type: 'article',
+  })
 }
 
 export default function BlogDetailPage({ params }: Props) {
   const post = blogPosts.find((p) => p.id === params.id)
   if (!post) notFound()
 
-  const content = articleContent[post.id] || `
-    This article covers key insights about ${post.category.toLowerCase()} that every business owner should know.
+  const content =
+    post.content ||
+    `This article covers key insights about ${post.category.toLowerCase()} that every business owner should know.
 
-    The digital landscape is constantly evolving, and staying ahead requires understanding the fundamentals that drive online growth.
+The digital landscape is constantly evolving, and staying ahead requires understanding the fundamentals that drive online growth.
 
-    In this comprehensive guide, we'll walk through the strategies that our most successful clients have used to dramatically improve their online performance and generate more leads through their websites.
-
-    The key takeaway is that small, consistent improvements compound over time — and the businesses that invest in their digital presence today will have a significant competitive advantage tomorrow.
-  `
+The key takeaway is that small, consistent improvements compound over time, and the businesses that invest in their digital presence today will have a significant competitive advantage tomorrow.`
 
   const related = blogPosts.filter((p) => p.id !== post.id).slice(0, 2)
 
   return (
     <>
+      <JsonLd
+        data={[
+          articleLd({
+            title: post.title,
+            description: post.excerpt,
+            path: `/blog/${post.id}`,
+            image: post.image,
+            dateISO: post.dateISO,
+          }),
+          breadcrumbLd([
+            { name: 'Home', path: '/' },
+            { name: 'Blog', path: '/blog' },
+            { name: post.title, path: `/blog/${post.id}` },
+          ]),
+        ]}
+      />
       <PageHero
         tag="Blog Article"
         title={post.title}
@@ -90,10 +88,11 @@ export default function BlogDetailPage({ params }: Props) {
           <div className="prose prose-slate max-w-none dark:prose-invert">
             <p className="text-base font-semibold leading-relaxed text-slate-700 dark:text-slate-200 mb-6">{post.excerpt}</p>
             {content.trim().split('\n\n').map((para, idx) => {
-              if (para.startsWith('**') && para.endsWith('**')) {
-                return <h2 key={idx} className="mt-8 mb-3 text-lg font-bold text-navy dark:text-white">{para.replace(/\*\*/g, '')}</h2>
+              const trimmed = para.trim()
+              if (trimmed.startsWith('**') && trimmed.endsWith('**')) {
+                return <h2 key={idx} className="mt-8 mb-3 text-lg font-bold text-navy dark:text-white">{trimmed.replace(/\*\*/g, '')}</h2>
               }
-              return <p key={idx} className="mb-4 text-xs leading-relaxed text-slate-600 dark:text-slate-300">{para.trim()}</p>
+              return <p key={idx} className="mb-4 text-xs leading-relaxed text-slate-600 dark:text-slate-300">{trimmed}</p>
             })}
           </div>
 

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, MessageCircle } from 'lucide-react'
 import AnimatedTagHeader from '@/components/ui/AnimatedTagHeader'
 import { Reveal } from '@/components/animations/Motion'
-import { siteConfig } from '@/lib/site'
+import Magnetic from '@/components/ui/Magnetic'
 
 interface CTASectionProps {
   title?: string
@@ -23,7 +23,7 @@ export default function CTASection({
   showWhatsapp = true,
 }: CTASectionProps) {
   return (
-    <section className="relative overflow-hidden bg-[#0E1A2E] py-10 text-white lg:py-14">
+    <section className="relative overflow-hidden bg-[#0E1A2E] py-8 text-white lg:py-10">
       {/* Scroll-Activated Fine Geometric Line Grid Overlay */}
       <motion.div
         className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:32px_32px]"
@@ -46,24 +46,28 @@ export default function CTASection({
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
-              <Link href={primaryHref} className="btn-primary">
-                {primaryCta} <ArrowRight className="h-4 w-4" />
-              </Link>
-            </motion.div>
+            <Magnetic strength={0.3}>
+              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+                <Link href={primaryHref} className="btn-primary">
+                  {primaryCta} <ArrowRight className="h-4 w-4" />
+                </Link>
+              </motion.div>
+            </Magnetic>
 
             {showWhatsapp && (
-              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
-                <a
-                  href={siteConfig.whatsappUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-outline-navy border-slate-700 bg-slate-900/40 text-white hover:bg-slate-900"
-                >
-                  <MessageCircle className="h-4 w-4" />
-                  Chat on WhatsApp
-                </a>
-              </motion.div>
+              <Magnetic strength={0.3}>
+                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+                  <a
+                    href="https://wa.me/923345856255"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-outline-navy border-slate-700 bg-slate-900/40 text-white hover:bg-slate-900"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    Chat on WhatsApp
+                  </a>
+                </motion.div>
+              </Magnetic>
             )}
           </div>
 

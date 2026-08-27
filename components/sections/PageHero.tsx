@@ -24,7 +24,7 @@ export default function PageHero({
   panelStats = [],
 }: PageHeroProps) {
   return (
-    <section className="relative overflow-hidden bg-slate-50/80 pt-28 pb-16 dark:bg-slate-950/60 lg:pt-36 lg:pb-20">
+    <section className="relative overflow-hidden bg-slate-50/80 pt-24 pb-8 dark:bg-slate-950/60 lg:pt-28 lg:pb-10">
       <div className="absolute inset-x-0 bottom-0 h-px bg-slate-200 dark:bg-slate-800" />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
