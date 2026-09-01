@@ -79,7 +79,7 @@ export function organizationLd() {
       'SEO and digital marketing',
       'WhatsApp and lead integration',
     ],
-    sameAs: [siteConfig.social.linkedin, siteConfig.social.instagram, siteConfig.social.facebook],
+    sameAs: [siteConfig.social.linkedin, siteConfig.social.instagram, siteConfig.social.x, siteConfig.social.facebook],
   }
 }
 

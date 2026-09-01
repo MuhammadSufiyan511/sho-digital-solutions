@@ -44,7 +44,7 @@ const commonProcess = (buildLabel: string, buildDetail: string) => [
   {
     title: 'Launch & support',
     detail:
-      'We test across devices, check performance and basic SEO, then launch. You keep full ownership of the code and assets, with post-launch support to keep things running smoothly.',
+      'We test across devices, check performance and basic SEO, then launch. You keep full ownership of the code and assets, with post launch support to keep things running smoothly.',
   },
 ]
 
@@ -53,12 +53,12 @@ export const serviceContent: Record<string, ServiceContent> = {
     slug: 'web-dev',
     metaTitle: 'Website Development Services',
     metaDescription:
-      'Custom website development for growing businesses — fast, mobile-first, SEO-ready sites built to convert. Based in Islamabad, working with clients worldwide.',
+      'Custom website development for growing businesses — fast, mobile first, SEO ready sites built to convert. Based in Islamabad, working with clients worldwide.',
     heroTitle: 'Website development that turns visitors into customers',
     heroSubtitle:
-      'We design and build custom, fast-loading websites that make your business look credible and guide people toward taking action.',
+      'We design and build custom, fast loading websites that make your business look credible and guide people toward taking action.',
     summary:
-      'Website development is the design and build of a custom, mobile-first business website engineered for speed, search visibility, and conversion.',
+      'Website development is the design and build of a custom, mobile first business website engineered for speed, search visibility, and conversion.',
     overview: [
       'A website is often the first real impression a business makes. If it loads slowly, looks dated, or is hard to navigate, potential customers quietly leave — usually for a competitor. Our website development work exists to prevent that.',
       'We build custom websites rather than heavy templates, so the structure, speed, and messaging are shaped around your specific business and the action you want visitors to take. Every build is responsive on mobile, structured for search engines, and set up with analytics so you can see what is working.',

@@ -52,7 +52,8 @@ export const siteConfig = {
   // Social profiles
   social: {
     linkedin: 'https://www.linkedin.com/company/sixbyte-technologies/',
-    instagram: 'https://www.instagram.com/artb_yfari',
+    instagram: 'https://www.instagram.com/sixbyte_technologies?igsi=OHgwc3Fid2toMXkx',
+    x: 'https://x.com/sixbytetech',
     facebook: 'https://www.facebook.com/share/19V3tqCFKm/',
   },
 

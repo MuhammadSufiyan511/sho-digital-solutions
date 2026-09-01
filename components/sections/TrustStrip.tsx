@@ -11,7 +11,7 @@ interface StatItem {
 }
 
 const stats: StatItem[] = [
-  { target: 150, suffix: '+', label: 'Projects delivered' },
+  { target: 10, suffix: '+', label: 'Projects delivered' },
   { target: 98, suffix: '%', label: 'Client satisfaction' },
   { target: 3, suffix: 'x', label: 'Avg. lead lift' },
 ]

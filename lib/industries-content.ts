@@ -79,7 +79,7 @@ export const industryContent: Record<string, IndustryContent> = {
     slug: 'healthcare',
     metaTitle: 'Websites for Healthcare & Clinics',
     metaDescription:
-      'Patient-focused websites and portals for clinics and healthcare providers — online appointment scheduling, intake forms, and dependable, easy-to-navigate design.',
+      'Patient focused websites and portals for clinics and healthcare providers — online appointment scheduling, intake forms, and dependable, easy to navigate design.',
     heroTitle: 'Patient-friendly websites that build trust and save time',
     heroSubtitle:
       'For clinics and healthcare providers, we build clear, dependable sites that make it simple for patients to find information and book appointments.',
@@ -87,7 +87,7 @@ export const industryContent: Record<string, IndustryContent> = {
       'For healthcare and clinics, we build patient-focused websites with online scheduling and intake forms that reduce admin load and build patient trust.',
     overview: [
       'When someone is choosing a clinic, they are really deciding whether to trust it. A clear, calm, professional website signals that the practice is dependable — while a confusing or dated one raises doubt at exactly the wrong moment.',
-      'We build patient-focused sites and portals that make access easy: online appointment scheduling, digital intake forms, clear service and clinician information, and a structure that respects how people actually look for care. The aim is to reduce phone and paperwork load for staff while making patients feel looked after from the first click.',
+      'We build patient focused sites and portals that make access easy: online appointment scheduling, digital intake forms, clear service and clinician information, and a structure that respects how people actually look for care. The aim is to reduce phone and paperwork load for staff while making patients feel looked after from the first click.',
     ],
     challenges: [
       'Appointment booking handled entirely by phone',

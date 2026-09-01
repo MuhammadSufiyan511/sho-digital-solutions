@@ -6,6 +6,7 @@ import { ArrowRight, MessageCircle } from 'lucide-react'
 import AnimatedTagHeader from '@/components/ui/AnimatedTagHeader'
 import { Reveal } from '@/components/animations/Motion'
 import Magnetic from '@/components/ui/Magnetic'
+import { siteConfig } from '@/lib/site'
 
 interface CTASectionProps {
   title?: string
@@ -58,7 +59,7 @@ export default function CTASection({
               <Magnetic strength={0.3}>
                 <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
                   <a
-                    href="https://wa.me/923345856255"
+                    href={siteConfig.whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-outline-navy border-slate-700 bg-slate-900/40 text-white hover:bg-slate-900"

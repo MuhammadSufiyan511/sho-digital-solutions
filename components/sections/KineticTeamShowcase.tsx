@@ -148,7 +148,7 @@ export default function KineticTeamShowcase({ team, title, subtitle, tag }: Kine
               <div className="mb-2 flex justify-center">
                 <AnimatedTagHeader tag={tag} light center />
               </div>
-          )}
+            )}
             <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight">
               {title}
             </h2>

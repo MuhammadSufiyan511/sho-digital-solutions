@@ -14,7 +14,7 @@ import CTASection from '@/components/sections/CTASection'
 export const metadata: Metadata = {
   title: 'Home | Smart Websites for Growing Businesses',
   description:
-    'SixByte Technologies helps businesses build a more polished, credible, and conversion-focused online presence.',
+    'SixByte Technologies helps businesses build a more polished, credible, and conversion focused online presence.',
 }
 
 export default function HomePage() {

@@ -196,7 +196,7 @@ export default function Navbar() {
 
               <div className="flex flex-1 flex-col justify-between overflow-y-auto px-6 py-6">
                 <nav className="space-y-1">
-                  {navLinks.map((link) => {
+                  {[{ label: 'Home', href: '/' }, ...navLinks].map((link) => {
                     const active = pathname === link.href
                     return (
                       <Link

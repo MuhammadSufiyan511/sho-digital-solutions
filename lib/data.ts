@@ -17,11 +17,11 @@ export const services: Service[] = [
       'Modern, scalable websites and web applications built to load fast, rank well, and convert.',
     icon: 'code',
     features: [
-      'Custom, responsive front-end builds',
+      'Custom, responsive frontend builds',
       'Web application development',
       'API design and integration',
       'Performance and Core Web Vitals tuning',
-      'SEO-friendly, accessible markup',
+      'SEO friendly, accessible markup',
       'Analytics and event tracking',
     ],
   },
@@ -29,14 +29,14 @@ export const services: Service[] = [
     id: 'wordpress',
     title: 'WordPress Development',
     description:
-      'Flexible WordPress websites and content-led platforms built with cleaner structure, faster performance, and easier editing.',
+      'Flexible WordPress websites and content led platforms built with cleaner structure, faster performance, and easier editing.',
     icon: 'wordpress',
     features: [
       'Custom WordPress theme builds',
       'Elementor or block editor workflows',
       'CMS setup and page templates',
       'Performance and security tuning',
-      'SEO-friendly content architecture',
+      'SEO friendly content architecture',
       'Plugin integration and support',
     ],
   },
@@ -44,7 +44,7 @@ export const services: Service[] = [
     id: 'shopify',
     title: 'Shopify Development',
     description:
-      'Conversion-focused Shopify stores with stronger product presentation, smoother checkout, and easier management.',
+      'Conversion focused Shopify stores with stronger product presentation, smoother checkout, and easier management.',
     icon: 'shopping-bag',
     features: [
       'Custom Shopify storefronts',
@@ -59,12 +59,12 @@ export const services: Service[] = [
     id: 'mobile-apps',
     title: 'Mobile App Development',
     description:
-      'High-quality iOS and Android apps with native-feeling performance and clean, intuitive flows.',
+      'High-quality iOS and Android apps with native feeling performance and clean, intuitive flows.',
     icon: 'smartphone',
     features: [
       'iOS and Android delivery',
-      'Cross-platform development',
-      'Offline-ready, responsive UX',
+      'Cross platform development',
+      'Offline ready, responsive UX',
       'Push notifications and deep links',
       'App Store and Play Store deployment',
       'Backend and API integration',
@@ -74,29 +74,29 @@ export const services: Service[] = [
     id: 'saas',
     title: 'SaaS Development',
     description:
-      'Scalable SaaS products with multi-tenant architecture, billing, and dashboards built for growth.',
+      'Scalable SaaS products with multi tenant architecture, billing, and dashboards built for growth.',
     icon: 'layers',
     features: [
-      'Multi-tenant architecture',
-      'Authentication and role-based access',
+      'Multi tenant architecture',
+      'Authentication and role based access',
       'Subscription and billing integration',
       'Admin and customer dashboards',
       'Usage analytics and reporting',
-      'Cloud-ready, scalable infrastructure',
+      'Cloud ready, scalable infrastructure',
     ],
   },
   {
     id: 'pos-systems',
     title: 'POS Systems',
     description:
-      'Reliable, user-friendly point-of-sale systems for fast checkout, inventory, and reporting.',
+      'Reliable, user friendly point of sale systems for fast checkout, inventory, and reporting.',
     icon: 'scan',
     features: [
-      'Fast, touch-friendly checkout',
+      'Fast, touch friendly checkout',
       'Inventory and stock tracking',
       'Payment gateway integration',
       'Sales and tax reporting',
-      'Multi-location and role support',
+      'Multi location and role support',
       'Receipt and order management',
     ],
   },
@@ -110,7 +110,7 @@ export const services: Service[] = [
       'Workflow and process automation',
       'Internal tools and admin panels',
       'Booking, portal, and dashboard systems',
-      'Third-party API and system integration',
+      'Third party API and system integration',
       'Migration from spreadsheets or legacy tools',
       'Built to scale with your business',
     ],
@@ -119,7 +119,7 @@ export const services: Service[] = [
     id: 'ui-ux-design',
     title: 'UI/UX Design',
     description:
-      'Modern interfaces and user-centered product experiences — from research to polished design systems.',
+      'Modern interfaces and user centered product experiences — from research to polished design systems.',
     icon: 'pen',
     features: [
       'User research and flows',
@@ -127,7 +127,7 @@ export const services: Service[] = [
       'Interface and interaction design',
       'Reusable design systems',
       'Usability and accessibility review',
-      'Developer-ready handoff',
+      'Developer ready handoff',
     ],
   },
   {
@@ -254,7 +254,7 @@ export const projects: Project[] = [
     description:
       'An e-commerce login and storefront experience shaped to feel more dependable, organized, and production-ready.',
     industry: 'E-commerce',
-    image: 'https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800&auto=format&fit=crop',
+    image: '/assets/mockups/mustafa_store.webp',
     tags: ['Client Work', 'Commerce', 'Auth Flow'],
     link: 'https://www.mustafa-ss.shop/login',
   },

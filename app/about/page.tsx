@@ -12,7 +12,7 @@ import { Reveal, Stagger, StaggerItem } from '@/components/animations/Motion'
 const values = [
   {
     icon: Target,
-    title: 'Business-first thinking',
+    title: 'Business first thinking',
     description: 'Every decision should help the website do a real job for the business, not just look impressive.',
   },
   {
@@ -23,7 +23,7 @@ const values = [
   {
     icon: ShieldCheck,
     title: 'Dependable delivery',
-    description: 'We care about the details, the timelines, and the long-term stability of the work we ship.',
+    description: 'We care about the details, the timelines, and the long term stability of the work we ship.',
   },
   {
     icon: Award,
@@ -60,15 +60,15 @@ const team = [
     initials: 'MS',
     name: 'Muhammad Sufiyan',
     role: 'Full Stack Developer',
-    bio: 'Leads full-stack development across the MERN ecosystem, MySQL databases, and AI-powered web applications. Passionate about architecting scalable SaaS products and turning complex business logic into clean, maintainable code that ships fast.',
+    bio: 'Leads full stack development across the MERN ecosystem, MySQL databases, and AI powered web applications. Passionate about architecting scalable SaaS products and turning complex business logic into clean, maintainable code that ships fast.',
     image: '/assets/MuhammadSufiyan-Bgless.webp',
-    tags: ['Full-Stack', 'MERN & MySQL', 'AI Applications'],
+    tags: ['Full Stack', 'MERN & MySQL', 'AI Applications'],
   },
   {
     initials: 'ZY',
     name: 'Zohaib Younas',
     role: 'Full Stack Developer',
-    bio: 'Builds high-performance websites and web applications with a keen eye for structure, speed, and pixel-perfect user interfaces. Specializes in React, Next.js, and modern frontend architecture with a focus on delivering seamless digital experiences.',
+    bio: 'Builds high performance websites and web applications with a keen eye for structure, speed, and pixel perfect user interfaces. Specializes in React, Next.js, and modern frontend architecture with a focus on delivering seamless digital experiences.',
     image: '/assets/Zohaib-bgless.webp',
     tags: ['Web Performance', 'UI/UX Architecture', 'React & Next.js'],
   },
@@ -76,15 +76,15 @@ const team = [
     initials: 'AW',
     name: 'Abdul Wahab',
     role: 'Mobile Application Developer',
-    bio: 'Crafts smooth, native-feeling mobile experiences for iOS and Android. Handles end-to-end app development from wireframe to App Store, with deep expertise in cross-platform frameworks, intuitive navigation flows, and performance optimization.',
+    bio: 'Crafts smooth, native feeling mobile experiences for iOS and Android. Handles end to end app development from wireframe to App Store, with deep expertise in cross platform frameworks, intuitive navigation flows, and performance optimization.',
     image: '/assets/AbdulWahab-bgless.webp',
-    tags: ['Mobile Development', 'Cross-Platform', 'UX Design'],
+    tags: ['Mobile Development', 'Cross Platform', 'UX Design'],
   },
   {
     initials: 'AH',
     name: 'Abid Hussain',
     role: 'DevOps Engineer',
-    bio: 'Architects cloud infrastructure, CI/CD pipelines, and automated deployment workflows that keep production systems running at 99.9% uptime. Ensures every release is stable, secure, and delivered with zero-downtime confidence.',
+    bio: 'Architects cloud infrastructure, CI/CD pipelines, and automated deployment workflows that keep production systems running at 99.9% uptime. Ensures every release is stable, secure, and delivered with zero downtime confidence.',
     image: '/assets/AbidHussain-bgless.webp',
     tags: ['Cloud Infrastructure', 'CI/CD Pipelines', 'System Security'],
   },
@@ -92,7 +92,7 @@ const team = [
     initials: 'MU',
     name: 'Muhammad Umar',
     role: 'AI Engineer',
-    bio: 'Designs and deploys machine learning models, computer vision systems, and intelligent backend services. Bridges the gap between research and production by integrating AI capabilities into real-world products using Python, PyTorch, and modern ML ops.',
+    bio: 'Designs and deploys machine learning models, computer vision systems, and intelligent backend services. Bridges the gap between research and production by integrating AI capabilities into real world products using Python, PyTorch, and modern ML ops.',
     image: '/assets/MuhammadUmar-bgless.webp',
     tags: ['AI & ML', 'Computer Vision', 'Python & PyTorch'],
   },
@@ -107,7 +107,7 @@ const team = [
 ]
 
 const stats = [
-  { target: 150, suffix: '+', label: 'Projects delivered' },
+  { target: 10, suffix: '+', label: 'Projects delivered' },
   { target: 98, suffix: '%', label: 'Client satisfaction' },
   { target: 24, suffix: '/7', label: 'Digital presence' },
   { target: 4, suffix: '', label: 'Core disciplines' },

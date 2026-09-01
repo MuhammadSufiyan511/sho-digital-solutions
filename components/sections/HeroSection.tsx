@@ -95,7 +95,7 @@ export default function HeroSection() {
 
               <StaggerItem>
                 <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg dark:text-slate-300">
-                  From business websites and online stores to mobile apps and custom software — we create simple, easy-to-use digital solutions for local businesses and growing companies. No tech jargon, just real results.
+                  From business websites and online stores to mobile apps and custom software, we create simple, easy to use digital solutions for local businesses and growing companies. No tech jargon, just real results.
                 </p>
               </StaggerItem>
 

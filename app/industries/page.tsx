@@ -11,7 +11,7 @@ import JsonLd from '@/components/JsonLd'
 
 export const metadata: Metadata = {
   title: 'Industries | Tailored Digital Systems',
-  description: 'Industry-focused website and digital system solutions for businesses that need a more tailored fit.',
+  description: 'Industry focused website and digital system solutions for businesses that need a more tailored fit.',
   alternates: { canonical: '/industries' },
 }
 

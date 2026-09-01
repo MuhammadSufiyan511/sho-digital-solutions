@@ -42,12 +42,6 @@ export default function ServicesHighlight() {
               We focus on the services most businesses actually need: websites, WordPress, Shopify, SaaS, and AI
               work that feels technical, calm, and credible.
             </p>
-
-            <div className="mt-8">
-              <Link href="/services" className="btn-outline-navy">
-                View all services <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
           </div>
 
           <div className="lg:col-span-8">
@@ -98,58 +92,66 @@ export default function ServicesHighlight() {
                   const active = activeService.id === service.id
 
                   return (
-                    <motion.button
+                    <motion.div
                       key={service.id}
-                      type="button"
                       onMouseEnter={() => setActiveId(service.id)}
                       onFocus={() => setActiveId(service.id)}
-                      onClick={() => setActiveId(service.id)}
                       whileHover={prefersReducedMotion ? undefined : { y: -2 }}
                       whileTap={prefersReducedMotion ? undefined : { scale: 0.99 }}
-                      className={`group rounded-2xl border px-4 py-4 text-left transition-colors ${active
-                          ? 'border-teal/40 bg-teal/5'
-                          : 'border-slate-200 bg-slate-50/70 hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-slate-700'
-                        }`}
                     >
-                      <div className="flex items-start gap-4">
-                        <div
-                          className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border ${active
-                              ? 'border-teal/20 bg-teal text-white'
-                              : 'border-slate-200 bg-white text-teal dark:border-slate-800 dark:bg-slate-950 dark:text-teal-light'
+                      <Link
+                        href={`/services/${service.id}`}
+                        className={`group block rounded-2xl border px-4 py-4 text-left transition-colors ${
+                          active
+                            ? 'border-teal/40 bg-teal/5'
+                            : 'border-slate-200 bg-slate-50/70 hover:border-slate-300 dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-slate-700'
+                        }`}
+                      >
+                        <div className="flex items-start gap-4">
+                          <div
+                            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border ${
+                              active
+                                ? 'border-teal/20 bg-teal text-white'
+                                : 'border-slate-200 bg-white text-teal dark:border-slate-800 dark:bg-slate-950 dark:text-teal-light'
                             }`}
-                        >
-                          <ServiceIcon className="h-4 w-4" />
-                        </div>
-
-                        <div className="min-w-0 flex-1">
-                          <div className="flex items-center justify-between gap-3">
-                            <span className="text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-400">
-                              0{index + 1}
-                            </span>
-                            <ArrowRight
-                              className={`h-4 w-4 shrink-0 transition-transform ${active ? 'translate-x-1 text-teal' : 'text-slate-300 group-hover:translate-x-1 group-hover:text-teal dark:text-slate-600'
-                                }`}
-                            />
-                          </div>
-                          <h4
-                            className={`mt-2 text-sm font-semibold tracking-tight ${active ? 'text-navy dark:text-white' : 'text-slate-800 dark:text-slate-100'
-                              }`}
                           >
-                            {service.title}
-                          </h4>
-                          <p className="mt-1.5 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
-                            {service.description}
-                          </p>
+                            <ServiceIcon className="h-4 w-4" />
+                          </div>
+
+                          <div className="min-w-0 flex-1">
+                            <div className="flex items-center justify-between gap-3">
+                              <span className="text-[11px] font-semibold uppercase tracking-[0.35em] text-slate-400">
+                                0{index + 1}
+                              </span>
+                              <ArrowRight
+                                className={`h-4 w-4 shrink-0 transition-transform ${
+                                  active
+                                    ? 'translate-x-1 text-teal'
+                                    : 'text-slate-300 group-hover:translate-x-1 group-hover:text-teal dark:text-slate-600'
+                                }`}
+                              />
+                            </div>
+                            <h4
+                              className={`mt-2 text-sm font-semibold tracking-tight ${
+                                active ? 'text-navy dark:text-white' : 'text-slate-800 dark:text-slate-100'
+                              }`}
+                            >
+                              {service.title}
+                            </h4>
+                            <p className="mt-1.5 text-xs leading-relaxed text-slate-600 dark:text-slate-400">
+                              {service.description}
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    </motion.button>
+                      </Link>
+                    </motion.div>
                   )
                 })}
               </div>
 
               <div className="flex flex-wrap items-center justify-end gap-3 border-t border-slate-200 px-5 py-4 text-sm dark:border-slate-800 sm:px-6">
-                <Link href={`/services/${activeService.id}`} className="btn-outline-navy text-xs">
-                  Explore <ArrowRight className="h-4 w-4" />
+                <Link href="/services" className="btn-outline-navy text-xs">
+                  View all services <ArrowRight className="h-4 w-4" />
                 </Link>
               </div>
             </div>

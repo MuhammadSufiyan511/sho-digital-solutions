@@ -50,7 +50,7 @@ const projectDetails: Record<string, { challenge: string; solution: string; resu
     results: [
       'A clear, professional presentation of fabrication services and completed work',
       'Easier for prospective clients to understand the offering and make an enquiry',
-      'A mobile-friendly experience that works consistently across devices',
+      'A mobile friendly experience that works consistently across devices',
       'A foundation that can grow as the business adds more projects and services',
     ],
     deliverables: [

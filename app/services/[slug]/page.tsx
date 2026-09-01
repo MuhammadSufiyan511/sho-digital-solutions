@@ -73,7 +73,7 @@ function buildFallbackContent(service: (typeof services)[number]) {
       {
         title: 'Design',
         detail:
-          'We shape the structure and user experience so the service feels clear, premium, and conversion-friendly.',
+          'We shape the structure and user experience so the service feels clear, premium, and conversion friendly.',
       },
       {
         title: 'Build',

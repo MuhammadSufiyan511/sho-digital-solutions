@@ -31,7 +31,7 @@ export async function POST(req: Request) {
     }
 
     const resendApiKey = process.env.RESEND_API_KEY
-    const toEmail = process.env.CONTACT_TO_EMAIL || 'leads@shodigital.com'
+    const toEmail = process.env.CONTACT_TO_EMAIL || 'contact.sixbyte@gmail.com'
     const fromEmail = process.env.CONTACT_FROM_EMAIL || 'SixByte Leads <onboarding@resend.dev>'
 
     if (!resendApiKey) {

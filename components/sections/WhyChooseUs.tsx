@@ -15,7 +15,7 @@ const reasons = [
   {
     icon: Sparkles,
     title: 'Thoughtful design',
-    description: 'The work feels polished without feeling over-designed or hard to use.',
+    description: 'The work feels polished without feeling overdesigned or hard to use.',
   },
   {
     icon: Globe,
@@ -35,7 +35,7 @@ const reasons = [
   {
     icon: TrendingUp,
     title: 'Growth mindset',
-    description: 'Every choice is made with your long-term brand and revenue in mind.',
+    description: 'Every choice is made with your long term brand and revenue in mind.',
   },
 ]
 
