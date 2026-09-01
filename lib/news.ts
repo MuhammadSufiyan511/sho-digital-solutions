@@ -15,7 +15,7 @@ export interface TechNewsArticle {
   url: string
 }
 
-const NEWS_API_KEY = process.env.NEWS_API_KEY || '61c22237ac8e4ab89612644d07ca3acb'
+const NEWS_API_KEY = process.env.NEWS_API_KEY
 
 // Fallback high quality technology images for articles without images
 const FALLBACK_IMAGES = [
