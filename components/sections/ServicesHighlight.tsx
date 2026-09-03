@@ -34,13 +34,12 @@ export default function ServicesHighlight() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-12 lg:items-start">
           <div className="lg:col-span-4 lg:sticky lg:top-28">
-            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-teal">What we do</p>
-            <h2 className="mt-4 text-2xl font-semibold tracking-tight text-navy dark:text-white sm:text-3xl">
-              A sharper service lineup for serious product teams.
+            <p className="text-xs font-semibold uppercase tracking-[0.32em] text-teal">CORE SERVICES</p>
+            <h2 className="mt-4 text-2xl font-bold tracking-tight text-navy dark:text-white sm:text-3xl">
+              Custom Web Development, Shopify & Software Solutions.
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
-              We focus on the services most businesses actually need: websites, WordPress, Shopify, SaaS, and AI
-              work that feels technical, calm, and credible.
+              From Next.js web development in Islamabad to high-converting Shopify e-commerce stores and custom business software, we engineer digital platforms that scale.
             </p>
           </div>
 

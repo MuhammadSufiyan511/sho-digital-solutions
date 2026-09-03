@@ -1,7 +1,8 @@
 'use client'
 
+import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Quote, Star } from 'lucide-react'
+import { Quote, Star, ArrowRight } from 'lucide-react'
 import { testimonials } from '@/lib/data'
 import { Reveal, Stagger, StaggerItem } from '@/components/animations/Motion'
 import SectionHeader from '@/components/ui/SectionHeader'
@@ -116,6 +117,15 @@ export default function TestimonialsSection({ limit = 3 }: { limit?: number }) {
             </div>
           </div>
         )}
+
+        <div className="mt-10 text-center">
+          <Link
+            href="/testimonials"
+            className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-5 py-2.5 text-xs font-semibold text-slate-800 shadow-sm transition-all hover:border-teal hover:text-teal dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200 dark:hover:border-teal"
+          >
+            Read All Client Reviews & Testimonials <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
       </div>
     </section>
   )
